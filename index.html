@@ -1,0 +1,450 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sehaj Singh</title>
+<meta name="description" content="Sehaj Randhir Singh, founder of Guerilla. Control and dynamics engineer building the Index of Operations.">
+<style>
+  :root {
+    --bg: #f5f3ef;
+    --ink: #1a1a1a;
+    --muted: #6f6f6a;
+    --line: #d8d5cd;
+    --box: #ffffff;
+    --accent: #1a1a1a;
+    --serif: "Iowan Old Style", "Palatino Linotype", "Book Antiqua", Palatino, Georgia, serif;
+    --mono: "SF Mono", "JetBrains Mono", "Menlo", "Consolas", "Liberation Mono", monospace;
+  }
+  * { box-sizing: border-box; margin: 0; padding: 0; }
+  html { -webkit-text-size-adjust: 100%; scroll-behavior: smooth; }
+  body {
+    background: var(--bg);
+    color: var(--ink);
+    font-family: var(--mono);
+    font-size: 15px;
+    line-height: 1.65;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+  .wrap { max-width: 760px; margin: 0 auto; padding: 64px 28px 120px; }
+
+  header { display: flex; justify-content: space-between; align-items: baseline; gap: 24px; flex-wrap: wrap; margin-bottom: 44px; }
+  .brand { font-family: var(--serif); font-size: 34px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.1; }
+  nav { display: flex; gap: 20px; font-size: 13.5px; flex-wrap: wrap; }
+  nav a { color: var(--ink); text-decoration: none; padding-bottom: 3px; border-bottom: 1.5px solid transparent; transition: border-color .18s ease; }
+  nav a:hover, nav a.active { border-color: var(--ink); }
+
+  .intro { font-size: 15px; line-height: 1.7; max-width: 640px; margin-bottom: 8px; }
+  .intro .tagline { margin-bottom: 18px; }
+  .intro b { font-weight: 600; }
+  .intro a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; text-decoration-thickness: 1px; }
+  .affil { color: var(--muted); font-size: 13.5px; line-height: 1.7; margin-top: 20px; }
+  .affil a { color: var(--muted); text-decoration: underline; text-underline-offset: 2px; }
+
+  .sec-label {
+    font-size: 12px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted);
+    margin: 62px 0 8px; padding-bottom: 10px; border-bottom: 1px solid var(--line);
+  }
+  .sec-note { color: var(--muted); font-size: 12.5px; line-height: 1.6; margin: 0 0 14px; max-width: 620px; }
+  .theme { font-family: var(--serif); font-size: 17px; font-weight: 500; letter-spacing: -0.01em; margin: 30px 0 4px; }
+
+  .entry { display: grid; grid-template-columns: 14px 1fr; gap: 16px; padding: 18px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .entry:last-child { border-bottom: none; }
+  .dot { width: 6px; height: 6px; background: var(--ink); border-radius: 50%; margin-top: 9px; }
+  .entry.boxed { background: var(--box); border: 1px solid var(--ink); border-radius: 3px; padding: 18px 20px; margin: 10px 0; grid-template-columns: 1fr; gap: 6px; }
+  .entry.boxed .dot { display: none; }
+  .e-head { display: flex; justify-content: space-between; align-items: baseline; gap: 16px; flex-wrap: wrap; }
+  .e-title { font-weight: 600; font-size: 14.5px; letter-spacing: -0.005em; }
+  .e-title a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color .18s; }
+  .e-title a:hover { border-color: var(--ink); }
+  .e-meta { color: var(--muted); font-size: 12.5px; white-space: nowrap; }
+  .e-body { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin-top: 5px; }
+  .e-links { margin-top: 9px; display: flex; gap: 16px; flex-wrap: wrap; }
+  .e-links a { color: var(--ink); font-size: 12.5px; text-decoration: none; border-bottom: 1px solid var(--line); padding-bottom: 1px; transition: border-color .18s; }
+  .e-links a:hover { border-color: var(--ink); }
+  .tag { display: inline-block; font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; color: var(--muted); border: 1px solid var(--line); border-radius: 2px; padding: 1px 7px; margin-left: 4px; vertical-align: 1px; }
+  .tag.live { color: var(--ink); border-color: var(--ink); }
+  .tag.priv { color: var(--muted); border-color: var(--line); }
+
+  .pub { display: grid; grid-template-columns: 14px 1fr; gap: 16px; padding: 16px 0; border-bottom: 1px solid var(--line); align-items: start; }
+  .pub:last-child { border-bottom: none; }
+  .pub .num { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  .pub-title { font-weight: 600; font-size: 14px; line-height: 1.45; }
+  .pub-venue { color: var(--muted); font-size: 12.5px; margin-top: 3px; }
+
+  .contact { margin-top: 20px; font-size: 14px; line-height: 1.9; }
+  .contact a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
+  .contact .row { color: var(--muted); }
+  .contact .row b { color: var(--ink); font-weight: 600; font-variant: normal; }
+
+  footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
+
+
+  .intro .lede { font-family: var(--serif); font-size: 21px; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.01em; }
+  .theme { font-family: var(--serif); font-size: 16px; font-weight: 500; margin: 26px 0 2px; }
+  .ml { list-style: none; }
+  .ml li { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; line-height: 1.5; }
+  .ml li:last-child { border-bottom: none; }
+  .ml li .r { color: var(--muted); font-size: 12px; white-space: nowrap; }
+  .ml a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
+  .ml a:hover { border-color: var(--ink); }
+  details.post { border-bottom: 1px solid var(--line); padding: 14px 0; }
+  details.post summary { cursor: pointer; list-style: none; font-family: var(--serif); font-size: 18px; line-height: 1.35; }
+  details.post summary::-webkit-details-marker { display: none; }
+  details.post summary::before { content: "+ "; font-family: var(--mono); font-size: 13px; color: var(--muted); }
+  details.post[open] summary::before { content: "\2212 "; }
+  details.post .dek { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  details.post .body { margin-top: 14px; }
+  details.post .body p { font-size: 14px; line-height: 1.75; margin-bottom: 12px; max-width: 640px; }
+  details.post .body h2 { font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 20px 0 8px; }
+  details.post .body blockquote { border-left: 2px solid var(--ink); padding-left: 14px; margin: 16px 0; font-family: var(--serif); font-size: 17px; line-height: 1.5; max-width: 600px; }
+  .go { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
+  .orgs { color: var(--ink); }
+
+  @media (max-width: 560px) {
+    .ml li { grid-template-columns: 1fr; gap: 2px; }
+    .intro .lede { font-size: 18px; }
+    .wrap { padding: 40px 20px 80px; }
+    .brand { font-size: 27px; }
+    header { margin-bottom: 34px; }
+    .e-meta { white-space: normal; }
+  }
+  @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
+</style>
+</head>
+<body>
+<div class="wrap">
+
+  <header>
+    <div class="brand">Sehaj Singh</div>
+    <nav>
+      <a href="#guerilla" class="active">Guerilla</a>
+      <a href="#work">Work</a>
+      <a href="#pubs">Publications</a>
+      <a href="#projects">Projects</a>
+      <a href="#writing">Writing</a>
+      <a href="#contact">Contact</a>
+      <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a>
+    </nav>
+  </header>
+
+  <div class="intro">
+    <div class="lede">I build learned control for physical machines that comes with proofs.</div>
+    <div class="tagline">
+      I'm the founder of <b>Guerilla</b> and a control and dynamics engineer in New York. Guerilla is building the <b>Index of Operations</b>, one representation that reads a machine as the shape its physical parts draw together and uses that shape to monitor it, model its dynamics and control it. The goal is the control layer for the machine age: the grid, the factory floor and the robots that come next.
+    </div>
+    <div>
+      I also work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers, where my first-author paper was accepted at NeurIPS 2026's Tackling Climate Change with ML workshop, and I intern on data-center grid infrastructure.
+    </div>
+    <div class="affil">
+      Founder, Guerilla &nbsp;·&nbsp; Research Collaborator, Cui Group, NYU Tandon ECE &nbsp;·&nbsp; QHSS Class of 2028<br>
+      <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a> &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/sehaj-randhir-singh" target="_blank" rel="noopener">LinkedIn</a>
+    </div>
+  </div>
+
+  <!-- ================= GUERILLA ================= -->
+  <div class="sec-label" id="guerilla">Guerilla</div>
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title"><a href="guerilla/">Guerilla &middot; the Index of Operations</a> <span class="tag live">building</span></div>
+      <div class="e-meta">2026 · Founder</div>
+    </div>
+    <div class="e-body">
+      The Index of Operations is an index of the physical operators every machine is made of, like motors, pumps, joints and thermal masses, connected where they pass energy and force. Build a machine from it and its telemetry becomes a shape. That shape doesn't move when sensors are recalibrated (0.749 to 0.736 AUROC on ESA's OPS-SAT satellite, where raw features fall to 0.487), it beats the published OPS-SAT baseline (0.911 to 0.951), and the same signal that detects a fault gates the controller, cutting tracking error 8.2&times; under a 5&times; actuator fault in simulation. From one index it goes two ways: a world model of machines, and tiny models that run at the edge and retrofit the installed industrial base.
+    </div>
+    <div class="e-links"><a href="guerilla/">What I'm building, in full &rarr;</a></div>
+  </div>
+
+  <!-- ================= STUDY ================= -->
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
+      <div class="e-meta">2026 – Present</div>
+    </div>
+    <div class="e-body">
+      AI data centers arrive as huge blocks of load, fast, on wires sized for a different decade. This study asks how the grid can carry that load through control instead of only new build-out: data centers and batteries as flexible, controllable loads, faster certified interconnection screening, and frequency and voltage margins under fast-ramping demand.
+    </div>
+  </div>
+
+  <!-- ================= WORK ================= -->
+  <div class="sec-label" id="work">Work</div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Research Collaborator, Cui Group, NYU Tandon ECE</a></div><div class="e-meta">2026 – Present</div></div>
+      <div class="e-body">Certified neural Lyapunov functions for power-grid transient stability. Instead of repairing a learned certificate after the fact, the network is trained to be verifiable by construction by differentiating through the CROWN bound. On the lossy 39-bus model it certifies ρ = 2.5 on all five seeds where counterexample repair stalls at 1.8, verified three independent ways. The only person in the group working on Lyapunov stability.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Research Intern, data-center grid infrastructure</div><div class="e-meta">2025–Present</div></div>
+      <div class="e-body">Researching power-distribution bottlenecks and grid strain driven by the exponential compute demand of large-scale data centers, including generation-and-tie planning for how new load interconnects to the grid. Role and findings held under confidentiality.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Power-systems modeling, grid infrastructure</div><div class="e-meta">ongoing</div></div>
+      <div class="e-body">Build and run power-flow simulations for grid infrastructure design, gathering and analyzing the simulation data and producing engineering reports that inform decisions such as line selection and routing. Work conducted under confidentiality, described here at the level of capability rather than client detail.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/motion-reid" target="_blank" rel="noopener">Research Collaborator, Mechatronics, Controls &amp; Robotics Lab, NYU Tandon MAE</a></div><div class="e-meta">2026 · with Prof. Vikram Kapila</div></div>
+      <div class="e-body">Motion-first multi-object re-identification for robotics, treating identity as a decision problem with gait, trajectory and geometry as primary signals. Manuscript in preparation.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Antioch, robotics simulation</div><div class="e-meta">2025–26 · research collaboration</div></div>
+      <div class="e-body">Control and stability for simulated physical systems with an early-stage robotics-simulation startup, contributing technical feedback and development.</div>
+    </div>
+  </div>
+
+  <!-- ================= PUBLICATIONS ================= -->
+  <div class="sec-label" id="pubs">Publications &amp; manuscripts</div>
+
+  <div class="pub">
+    <div class="num">01</div>
+    <div>
+      <div class="pub-title">Learning Lyapunov Functions for Power System Transient Stability: Neural Verification and Retraining</div>
+      <div class="pub-venue">S. R. Singh, W. Cui &nbsp;·&nbsp; TCCML @ NeurIPS 2026 &mdash; accepted, camera-ready in preparation &nbsp;·&nbsp; <a href="https://openreview.net/forum?id=iAKq71lqO6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">code</a></div>
+    </div>
+  </div>
+  <div class="pub">
+    <div class="num">02</div>
+    <div>
+      <div class="pub-title">Two manuscripts submitted to IEEE</div>
+      <div class="pub-venue">IEEE &nbsp;·&nbsp; 2026 &mdash; under review</div>
+    </div>
+  </div>
+
+  <div class="theme">The geometry of dynamics</div>
+  <ul class="ml">
+      <li><span>Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/agfno" target="_blank" rel="noopener">Restoring the Truncated Band: Geometry-Aware Spectral Operators and a Direct Measurement of Geometric Forgetting</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span>Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</span><span class="r">manuscript · 2026</span></li>
+  </ul>
+  <div class="theme">Certified control</div>
+  <ul class="ml">
+      <li><span>The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a></span><span class="r">manuscript · 2026</span></li>
+  </ul>
+  <div class="theme">The grid under AI load</div>
+  <ul class="ml">
+      <li><span>Certified Feasible-Capacity Operators for Interconnection Queues</span><span class="r">manuscript · 2026</span></li>
+      <li><span>Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span>Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</span><span class="r">manuscript · 2026</span></li>
+      <li><span>Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</span><span class="r">manuscript · 2026</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a></span><span class="r">manuscript · 2026</span></li>
+  </ul>
+
+  <!-- ================= PROJECTS ================= -->
+  <div class="sec-label" id="projects">Selected repositories</div>
+  <div class="sec-note">The builds behind the work above. Every one links to its code.</div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">Operating Atlas</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">Recalibration-invariant fingerprints of machine operation. 99.4% identification across 7 real systems, 99.0% under re-instrumentation vs 80.3% for marginal statistics.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Certified training for neural Lyapunov functions</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">Trains the stability certificate through the CROWN bound so it is verifiable by construction. ρ = 2.5 on all five seeds vs 1.8 for counterexample repair, three verifiers in agreement.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-neural-lyapunov" target="_blank" rel="noopener">Formal verification of neural Lyapunov certificates</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">99.98% of sampled states pass, 200,000 random samples find nothing, a directed search finds violations 6.1% of the time. Closed with counterexample-guided verification, cross-checked three ways.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time-Series Operator</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">Time as geometry, not tokens. Delay embedding, Koopman lifting and a learned vector field pretrained across domains, 31 of 40 zero-shot wins against a per-series GRU.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/adaptive-contact-dynamics" target="_blank" rel="noopener">Stability-constrained neural adaptive control</a></div><div class="e-meta">2025–26</div></div>
+      <div class="e-body">Bounded RBF network inside a Lyapunov-derived adaptive law. 2.06° vs 98.98° joint error on a UR5e contact task in MuJoCo.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/SELF-MODELING-STABLE-CONTROL" target="_blank" rel="noopener">Self-modeling stable control</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">A Lyapunov-derived residual self-model with leakage and projection. R² 0.985 on unseen high-drift data.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">Operator</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/steerable-vla" target="_blank" rel="noopener">Steerable VLA</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">VLM subgoal planner, flow-matching action expert, a conditioning layer with a certified no-jerk bound and a runtime verification envelope, at miniature scale on cable untangling.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">Robotic Data Flywheel</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/stable-world-model" target="_blank" rel="noopener">Stable World Model</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">A JEPA-style world model whose latent dynamics are stable by construction, built from a five-mode failure atlas.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">Multi-agent ISS certificates</a></div><div class="e-meta">2026</div></div>
+      <div class="e-body">Small-gain stability guarantees that hold across a swarm of agents whose dynamics were learned rather than derived.</div>
+    </div>
+  </div>
+
+  <!-- ================= RECOGNITION ================= -->
+  <div class="sec-label">Recognition</div>
+  <ul class="ml">
+      <li><span>Paper accepted, Tackling Climate Change with ML @ NeurIPS 2026</span><span class="r">2026</span></li>
+      <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
+      <li><span>Anduril AI Grand Prix, Team GREMLIN Team Lead, Qualifier 1 passed</span><span class="r">2026</span></li>
+      <li><span>OpenAI Parameter Golf Challenge, Advanced Development Grant</span><span class="r">2026</span></li>
+      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026</span><span class="r">2026</span></li>
+      <li><span>Columbia University, energy systems coursework (Powering the Future)</span><span class="r">2026–27</span></li>
+      <li><span>MIT Beaver Works CubeSat Program, Co-Lead &amp; Engineering Lead</span><span class="r">2025–</span></li>
+      <li><span>FTC Robotics, Team 19426, World Championship</span><span class="r">2025–26</span></li>
+  </ul>
+
+  <!-- ================= WRITING ================= -->
+  <div class="sec-label" id="writing">Writing</div>
+  <div class="sec-note">Short essays on what I'm building and why. Click one to read it.</div>
+  <details class="post" id="what-world-models-throw-away">
+    <summary>What world models throw away<span class="dek">Machines break at the low level first. A model that predicts in a compressed latent can't see it coming.</span></summary>
+    <div class="body">
+<p>I think the deepest unsolved problem in physical AI is representation. Not scale, not compute. How do you take continuous sensor data off a real machine and put it into a mathematical space that keeps the physics?</p>
+<p>The best world models right now answer that with compression. They encode the scene into a smaller latent, predict how the latent moves, and treat the fine detail as noise. For a lot of the world that's the right call. If you want to know where a thrown ball lands, you don't need the stitching on the ball.</p>
+<p>Machines are different, because machines break at exactly the level compression throws away. A bearing starts to wear. A winding runs a few degrees hot. A joint picks up a little backlash. None of that changes the big picture at first. What changes is how two parts relate, a small break in the energy that should pass cleanly from one to the next. By the time it shows up at the macro level it's not a warning anymore, it's a failure.</p>
+<blockquote>A model that predicts in a compressed latent can't see the fault coming, because the fault lives in what it compressed.</blockquote>
+<h2>Keep the low level, on its own axes</h2>
+<p>So I went the other way. The Index of Operations doesn't squash a machine into one latent. It splits it into the physical operators it's made of, gives each one its own axes, and joins them where they trade energy, mass, heat or force. Then it watches whether each joint keeps conserving what flows across it.</p>
+<p>The payoff shows up in the most boring test there is. On ESA's OPS-SAT satellite telemetry, recalibrate the sensors and a detector on raw features drops from 0.919 to 0.487 AUROC. That's a coin flip, for a change that has nothing to do with the satellite's health. Reading conservation at the joints, it goes 0.749 to 0.736. The machine didn't change, so the representation didn't either.</p>
+<h2>A robot with no hands</h2>
+<p>There's a thought experiment I keep coming back to. Put a robot with two rounded stubs for arms in front of a keyboard and tell it to type. A policy trained on video of human hands has nothing to copy, because nothing in its data looks like its body. A model that indexes its own body as operators can treat it as geometry. The stub covers three keys, so tilt until the contact patch covers one, feel for slip where it touches, correct. A new body is a new shape from the same index, not a new dataset.</p>
+<p>IOO can't do that yet. The control results are in simulation and I still build each operator by hand. But I'm pretty sure about the direction. The world models that end up running real machines won't be the ones that watched the most video. They'll be the ones that know what the machine is made of.</p>
+    </div>
+  </details>
+  <details class="post" id="built-not-learned">
+    <summary>Invariance you build, not invariance you learn<span class="dek">Why I stopped asking optimizers to discover physics I already know.</span></summary>
+    <div class="body">
+<p>There's a habit in machine learning I used to have too. You want a model that doesn't care about something, like which sensor it's reading or how that sensor was calibrated, so you add a loss term and hope the optimizer learns not to care. Domain-adversarial training is the cleanest version of this. Train the features so a second network can't tell the domains apart, and in theory the features become invariant.</p>
+<p>In practice it holds up in the lab and falls apart in the field. I ran it on the same recalibration test I use for everything. Given labels and target-domain data, a domain-adversarial network scored 0.983 in-domain on turbofan engines and then dropped 0.41 AUROC once the sensors were rescaled. On satellite telemetry it dropped 0.36. It learned the invariance on the data it saw, and the field gave it data it hadn't seen.</p>
+<h2>Put it in the representation</h2>
+<p>The thing is, I already know the invariance I want. Recalibrating a sensor multiplies and shifts one channel. It doesn't change the machine. So instead of asking the optimizer to discover that, I built it into what the model reads. IOO measures how much each physical interface stops conserving, normalized by magnitude, and under that normalization any per-channel rescale cancels exactly. I checked it numerically to 1e-14, and it's provable, not just observed.</p>
+<p>Same test, same drift. IOO's slip went from 0.749 to 0.736 on satellites, and the drop on engines was 0.0012.</p>
+<blockquote>The optimizer can't recover what the representation never lost.</blockquote>
+<h2>The catch, and why it's a feature</h2>
+<p>Invariance has a cost, and I'd rather say it than have someone find it. The property that makes the shape immune to recalibration also makes it blind to slow level drift, and slow level drift is what real wear looks like. Raw statistics catch that and shape doesn't, so the two are complements, not rivals. That's fine with me, because it tells me exactly what each piece is for.</p>
+<p>The bigger lesson is about where physics should live. If you know a symmetry, don't spend data teaching it. Build it in, and spend the data on what you don't know yet.</p>
+    </div>
+  </details>
+  <details class="post" id="one-shape-monitor-to-control">
+    <summary>One shape, from monitoring to control<span class="dek">The signal that tells you something's wrong should be the same one that fixes it.</span></summary>
+    <div class="body">
+<p>Most industrial AI stacks are split down the middle. One model watches the machine and raises alarms. A separate controller runs the machine, usually tuned once at commissioning. They don't share a representation, so when the monitor sees something, a human has to translate it into what the controller should do. That translation is slow, and on the grid or a production line slow is expensive.</p>
+<p>I wanted one object that does both. In the Index of Operations, the thing that detects a fault is the conservation slip at an interface between two operators. A healthy interface conserves what crosses it, and a failing one stops. That slip is also exactly what a controller needs to know, which part is misbehaving and by how much.</p>
+<h2>Close the loop with the same signal</h2>
+<p>So I used it as a gate. The controller runs model predictive control on the IOO graph, and adaptation only turns on at an interface whose slip says it stopped conserving. In simulation, with a 5× drop in actuator gain, slip-gated control had 8.2× lower tracking error than the same controller without the gate. With dropouts and sensor noise thrown in, steady-state error was 11.4× lower.</p>
+<p>The part I like most is what happens when nothing's wrong. The gate never opens, so healthy control is bit-identical to the plain controller. Adaptation costs nothing where it isn't needed, and that's the property you need before anyone lets a learned component near real hardware.</p>
+<blockquote>Monitoring and control aren't two products. They're two readings of the same shape.</blockquote>
+<h2>Where it has to go next</h2>
+<p>All of this is still simulation, a motor and a flywheel on a two-node graph, and there's no stability certificate yet tying the gate to closed-loop robustness. That second gap is the one I'm most equipped to close, because it's the same Lyapunov machinery from my work on certified grid controllers. The first gap closes on a bench, with one frozen controller across a physical actuator swap. That's the next 90 days.</p>
+    </div>
+  </details>
+  <details class="post" id="retrofit-the-machine-age">
+    <summary>Retrofit the machine age<span class="dek">The biggest market for physical AI is the machines that already exist.</span></summary>
+    <div class="body">
+<p>When people say physical AI they usually mean new things, humanoids and robotaxis and dark factories. Those matter. But most of the machines that will exist in 2035 are already installed today. Motors, pumps, compressors, turbines, transformers. They'll run for decades, and almost none of them get any smarter after the day they're commissioned.</p>
+<p>Not by inventing new motors, but by getting existing systems to understand themselves. I wrote some version of that line in my notes a long time ago, and it's still the most underrated opportunity I know.</p>
+<h2>Why most AI can't retrofit</h2>
+<p>Retrofitting is hostile to the way most models are built. Every unit is a little different, so a model trained on one doesn't transfer to the next. Sensors get swapped and recalibrated, so features drift for reasons that have nothing to do with health. And there's no labeled failure data, because the whole point is that failures are rare. A model that needs millions of examples per machine never pays for itself on a pump.</p>
+<h2>Why shape can</h2>
+<p>IOO works on the telemetry machines already stream, and it reads relationships instead of raw levels, so it doesn't care which sensor brand is on the shaft. The models are graphs of tens of nodes, so they run on a CPU next to the machine. And it doesn't start from zero. A pump and a motor share operators, so the index that learned one already knows a lot about the other.</p>
+<p>That's the flywheel. Every machine IOO reads adds operators and interfaces to the index, and every new machine built from known operators starts with a prior instead of an empty model. The data flywheel in most of physical AI runs on more hours of video. This one runs on structure.</p>
+<h2>What's not done</h2>
+<p>Right now I hand-build each operator and the catalog is mostly rotating machinery, so the honest claim is a method that works across satellites, engines, a hexapod and a cruise benchmark, not yet a catalog that covers a factory. Learning operators from data is the step that turns this from a method into a company. That's what I'm building next.</p>
+    </div>
+  </details>
+  <details class="post" id="the-biggest-machine">
+    <summary>The biggest machine we've ever built<span class="dek">Growing up around the grid, and why the data-center boom is a control problem.</span></summary>
+    <div class="body">
+<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
+<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set. So I started writing code and running experiments on anything I thought could make it more modern from a control and dynamics view. That turned into research, and the research turned into everything I work on now.</p>
+<h2>The data-center boom is a control problem</h2>
+<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
+<h2>Sampling isn't proof</h2>
+<p>That question is why I work on certified control. With Prof. Wenqi Cui at NYU I took a learned stability function for grid frequency that looked perfect by testing. It passed on 99.98% of sampled states, and 200,000 random samples found nothing. A directed search found violations 6.1% of the time. Testing visits points and a proof has to cover a region. Closing that gap, using the verifier to find counterexamples and then training through its bound, is our NeurIPS workshop paper.</p>
+<p>The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
+    </div>
+  </details>
+
+  <!-- ================= CONTACT ================= -->
+  <div class="sec-label" id="contact">Contact</div>
+  <div class="contact">
+    <div class="row"><b>Email</b> &nbsp; <a href="mailto:sehajrsinghs@gmail.com">sehajrsinghs@gmail.com</a></div>
+    <div class="row"><b>GitHub</b> &nbsp; <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">github.com/sehajr-singhs</a></div>
+    <div class="row"><b>LinkedIn</b> &nbsp; <a href="https://www.linkedin.com/in/sehaj-randhir-singh" target="_blank" rel="noopener">linkedin.com/in/sehaj-randhir-singh</a></div>
+  </div>
+
+  <footer>
+    Sehaj Randhir Singh · Founder, Guerilla · New York · 2026
+  </footer>
+
+</div>
+
+<script>
+  const links = document.querySelectorAll('nav a[href^="#"]');
+  const map = [...links].map(a => ({ a, el: document.querySelector(a.getAttribute('href')) })).filter(x => x.el);
+  const onScroll = () => {
+    let cur = map[0];
+    for (const m of map) { if (m.el.getBoundingClientRect().top <= 120) cur = m; }
+    links.forEach(l => l.classList.remove('active'));
+    if (cur) cur.a.classList.add('active');
+  };
+  window.addEventListener('scroll', onScroll, { passive: true });
+  onScroll();
+</script>
+</body>
+</html>
