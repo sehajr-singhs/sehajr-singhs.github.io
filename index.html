@@ -81,7 +81,7 @@
   footer { margin-top: 80px; padding-top: 20px; border-top: 1px solid var(--line); color: var(--muted); font-size: 12px; }
 
 
-  .intro .lede { font-family: var(--serif); font-size: 21px; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.01em; }
+  .intro .lede { font-family: var(--serif); font-size: 18.5px; line-height: 1.4; margin-bottom: 18px; letter-spacing: -0.01em; }
   .theme { font-family: var(--serif); font-size: 16px; font-weight: 500; margin: 26px 0 2px; }
   .ml { list-style: none; }
   .ml li { display: grid; grid-template-columns: 1fr auto; gap: 14px; padding: 10px 0; border-bottom: 1px solid var(--line); font-size: 13.5px; line-height: 1.5; }
@@ -90,11 +90,11 @@
   .ml a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
   .ml a:hover { border-color: var(--ink); }
   details.post { border-bottom: 1px solid var(--line); padding: 14px 0; }
-  details.post summary { cursor: pointer; list-style: none; font-family: var(--serif); font-size: 18px; line-height: 1.35; }
+  details.post summary { cursor: pointer; list-style: none; font-family: var(--mono); font-size: 14px; font-weight: 600; line-height: 1.45; }
   details.post summary::-webkit-details-marker { display: none; }
   details.post summary::before { content: "+ "; font-family: var(--mono); font-size: 13px; color: var(--muted); }
   details.post[open] summary::before { content: "\2212 "; }
-  details.post .dek { display: block; font-family: var(--mono); font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  details.post .dek { display: block; font-family: var(--mono); font-size: 12.5px; font-weight: 400; color: var(--muted); margin-top: 4px; }
   details.post .body { margin-top: 14px; }
   details.post .body p { font-size: 14px; line-height: 1.75; margin-bottom: 12px; max-width: 640px; }
   details.post .body h2 { font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 20px 0 8px; }
@@ -102,7 +102,7 @@
   .go { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
   .orgs { color: var(--ink); }
 
-  .banner { display: block; width: 100%; height: auto; margin: 0 0 6px -8.1%;
+  .banner { display: block; width: 72%; height: auto; margin: 0 0 4px -5.8%;
     -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
     mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
     -webkit-mask-composite: source-in; mask-composite: intersect; }
@@ -111,7 +111,7 @@
   .pub-title a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color .18s; }
   .pub-title a:hover { border-color: var(--ink); }
   details.ms { padding: 16px 0; }
-  details.ms summary { display: grid; grid-template-columns: 14px 1fr; gap: 16px; align-items: start; font-family: var(--mono); font-size: 14px; line-height: 1.45; }
+  details.ms summary { font-weight: 400; display: grid; grid-template-columns: 14px 1fr; gap: 16px; align-items: start; font-family: var(--mono); font-size: 14px; line-height: 1.45; }
   details.ms summary::before, details.ms[open] summary::before { content: none; }
   details.ms summary .num { font-size: 12px; color: var(--muted); margin-top: 3px; }
   details.ms .pub-title { display: block; }
@@ -144,7 +144,7 @@
     .ml li { grid-template-columns: 1fr; gap: 2px; }
     .rom li { grid-template-columns: 30px 1fr; }
     .rom li .r { grid-column: 2; }
-    .intro .lede { font-size: 18px; }
+    .intro .lede { font-size: 17px; }
     .wrap { padding: 40px 20px 80px; }
     .brand { font-size: 27px; }
     header { margin-bottom: 34px; }
@@ -165,6 +165,7 @@
       <a href="#pubs">Publications</a>
       <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
+      <a href="#me">Off the clock</a>
       <a href="#contact">Contact</a>
       <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a>
     </nav>
@@ -173,17 +174,10 @@
   <div class="intro">
     <div class="lede">I build learned control for physical machines that comes with proofs.</div>
     <div class="tagline">
-      I'm the founder of <b>Guerilla</b> and a control and dynamics engineer in New York. Guerilla is building the <b>Index of Operations</b>, one representation that reads a machine as the shape its physical parts draw together and uses that shape to monitor it, model its dynamics and control it. The goal is the control layer for the machine age: the grid, the factory floor and the robots that come next.
+      I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers. We train neural Lyapunov functions so they're verifiable by construction, and my first-author paper on it was recently accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. I'm also a data center research intern, studying how huge blocks of AI load connect to a grid whose wires were sized for a different decade. The goal there is a grid that carries AI load and stays stable while learned controllers make more of the calls.
     </div>
     <div>
-      I also work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers, where my first-author paper was recently accepted at NeurIPS 2026's Tackling Climate Change with ML workshop, and I intern on data-center grid infrastructure.
-    </div>
-    <div class="affil">
-      Founder, Guerilla &nbsp;·&nbsp; Research Collaborator, Cui Group, NYU Tandon ECE &nbsp;·&nbsp; QHSS Class of 2028<br>
-      <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a> &nbsp;·&nbsp;
-      <a href="https://www.linkedin.com/in/sehaj-randhir-singh" target="_blank" rel="noopener">LinkedIn</a> &nbsp;·&nbsp;
-      <a href="https://openreview.net/profile?id=~Sehaj_Randhir_Singh2" target="_blank" rel="noopener">OpenReview</a> &nbsp;·&nbsp;
-      <a href="https://orcid.org/0009-0002-9806-328X" target="_blank" rel="noopener">ORCID</a>
+      I'm also the founder of Guerilla. Guerilla is building the Index of Operations, one representation that reads a machine as the shape its physical parts draw together and uses that shape to monitor it, model its dynamics and control it. The goal there is the control layer for the machine age, which means the grid, the factory floor and the robots that come next.
     </div>
   </div>
 
@@ -191,24 +185,23 @@
   <div class="sec-label" id="active">Active projects</div>
   <div class="entry boxed">
     <div class="e-head">
-      <div class="e-title"><a href="guerilla/">Guerilla &middot; the Index of Operations</a> <span class="tag live">building</span></div>
+      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with data, interviews and/or funding from OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
+      <div class="e-meta">2026 – Present</div>
+    </div>
+    <div class="e-body">
+      AI data centers arrive as huge blocks of load, fast, on wires sized for a different decade. This study asks how the grid can carry that load through control instead of only new build-out: data centers and batteries as flexible, controllable loads, faster certified interconnection screening, and frequency and voltage margins under fast-ramping demand.
+    </div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title"><a href="guerilla/">Guerilla &middot; the Index of Operations</a></div>
       <div class="e-meta">2026 · Founder</div>
     </div>
     <div class="e-body">
       The Index of Operations is an index of the physical operators every machine is made of, like motors, pumps, joints and thermal masses, connected where they pass energy and force. Build a machine from it and its telemetry becomes a shape. That shape doesn't move when sensors are recalibrated (0.749 to 0.736 AUROC on ESA's OPS-SAT satellite, where raw features fall to 0.487), it beats the published OPS-SAT baseline (0.911 to 0.951), and the same signal that detects a fault gates the controller, cutting tracking error 8.2&times; under a 5&times; actuator fault in simulation. From one index it goes two ways: a world model of machines, and tiny models that run at the edge and retrofit the installed industrial base.
     </div>
     <div class="e-links"><a href="guerilla/">What I'm building, in full &rarr;</a></div>
-  </div>
-
-  <!-- ================= STUDY ================= -->
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
-      <div class="e-meta">2026 – Present</div>
-    </div>
-    <div class="e-body">
-      AI data centers arrive as huge blocks of load, fast, on wires sized for a different decade. This study asks how the grid can carry that load through control instead of only new build-out: data centers and batteries as flexible, controllable loads, faster certified interconnection screening, and frequency and voltage margins under fast-ramping demand.
-    </div>
   </div>
 
   <!-- ================= WORK ================= -->
@@ -365,9 +358,9 @@
 
   <!-- ================= WRITING ================= -->
   <div class="sec-label" id="writing">Writing</div>
-  <div class="sec-note">Short essays on what I'm building and why. Click one to read it.</div>
+  <div class="sec-note">Random short essays. Click one to read it. Dates are when the idea first landed in my notes.</div>
   <details class="post" id="what-world-models-throw-away">
-    <summary>What world models throw away<span class="dek">Machines break at the low level first. A model that predicts in a compressed latent can't see it coming.</span></summary>
+    <summary>What world models throw away<span class="dek">Oct 2026 &nbsp;·&nbsp; Machines break at the low level first. A model that predicts in a compressed latent can't see it coming.</span></summary>
     <div class="body">
 <p>I think the deepest unsolved problem in physical AI is representation. Not scale, not compute. How do you take continuous sensor data off a real machine and put it into a mathematical space that keeps the physics?</p>
 <p>The best world models right now answer that with compression. They encode the scene into a smaller latent, predict how the latent moves, and treat the fine detail as noise. For a lot of the world that's the right call. If you want to know where a thrown ball lands, you don't need the stitching on the ball.</p>
@@ -381,8 +374,35 @@
 <p>IOO can't do that yet. The control results are in simulation and I still build each operator by hand. But I'm pretty sure about the direction. The world models that end up running real machines won't be the ones that watched the most video. They'll be the ones that know what the machine is made of.</p>
     </div>
   </details>
+  <details class="post" id="order-matters">
+    <summary>Order matters<span class="dek">Sep 2026 &nbsp;·&nbsp; A child wires itself before anyone teaches it anything. I think machines should too.</span></summary>
+    <div class="body">
+<p>AlphaZero got good at chess, shogi and Go by playing itself. Nobody handed it openings or human games. It had the rules and a huge number of games against its own last version, and that was enough to beat programs built on decades of human knowledge.</p>
+<p>I had a dream about this, which sounds dumb, but it stuck. The dream was about both ways of learning at once. One is the AlphaZero way, where the agent trains inside its own environment. The other is the way school works, where someone who already knows hands you the knowledge and you parse it. I wrote it down that afternoon, and the part I kept was two words. Order matters.</p>
+<h2>Wire first, then read</h2>
+<p>A child doesn't start with a textbook. A child spends years knocking things over, and by the time anyone explains gravity, the body already knows it. The explanation lands because there's something there for it to land on. Flip the order and you get a kid who can recite the formula and can't catch a ball.</p>
+<p>A lot of the AI I see for physical machines has the order flipped. It reads first. It takes in a big pile of other people's data and hopes the wiring shows up somewhere inside. Sometimes it does. But a machine has a body, and the body has rules, so there's a lot to learn from the rules before reading anything.</p>
+<blockquote>Learn the body first. Then the knowledge has somewhere to go.</blockquote>
+<h2>What that means for what I'm building</h2>
+<p>The Index of Operations is my try at the wiring step. A motor is a motor before it's a dataset. If the model starts from the parts and how they pass energy to each other, it can learn inside itself first, the way AlphaZero did with the rules of the game. The operator's input and the outside knowledge come second, and they have something to attach to.</p>
+<p>I haven't built the self-training part yet, and I still build each operator by hand. But I think the order is right. The models that end up running real machines will have played against their own physics for a long time before anyone told them anything.</p>
+    </div>
+  </details>
+  <details class="post" id="one-shape-monitor-to-control">
+    <summary>One shape, from monitoring to control<span class="dek">Sep 2026 &nbsp;·&nbsp; The signal that tells you something's wrong should be the same one that fixes it.</span></summary>
+    <div class="body">
+<p>Most industrial AI stacks are split down the middle. One model watches the machine and raises alarms. A separate controller runs the machine, usually tuned once at commissioning. They don't share a representation, so when the monitor sees something, a human has to translate it into what the controller should do. That translation is slow, and on the grid or a production line slow is expensive.</p>
+<p>I wanted one object that does both. In the Index of Operations, the thing that detects a fault is the conservation slip at an interface between two operators. A healthy interface conserves what crosses it, and a failing one stops. That slip is also exactly what a controller needs to know, which part is misbehaving and by how much.</p>
+<h2>Close the loop with the same signal</h2>
+<p>So I used it as a gate. The controller runs model predictive control on the IOO graph, and adaptation only turns on at an interface whose slip says it stopped conserving. In simulation, with a 5× drop in actuator gain, slip-gated control had 8.2× lower tracking error than the same controller without the gate. With dropouts and sensor noise thrown in, steady-state error was 11.4× lower.</p>
+<p>The part I like most is what happens when nothing's wrong. The gate never opens, so healthy control is bit-identical to the plain controller. Adaptation costs nothing where it isn't needed, and that's the property you need before anyone lets a learned component near real hardware.</p>
+<blockquote>Monitoring and control aren't two products. They're two readings of the same shape.</blockquote>
+<h2>Where it has to go next</h2>
+<p>All of this is still simulation, a motor and a flywheel on a two-node graph, and there's no stability certificate yet tying the gate to closed-loop robustness. That second gap is the one I'm most equipped to close, because it's the same Lyapunov machinery from my work on certified grid controllers. The first gap closes on a bench, with one frozen controller across a physical actuator swap. That's the next 90 days.</p>
+    </div>
+  </details>
   <details class="post" id="built-not-learned">
-    <summary>Invariance you build, not invariance you learn<span class="dek">Why I stopped asking optimizers to discover physics I already know.</span></summary>
+    <summary>Invariance you build, not invariance you learn<span class="dek">Aug 2026 &nbsp;·&nbsp; Why I stopped asking optimizers to discover physics I already know.</span></summary>
     <div class="body">
 <p>There's a habit in machine learning I used to have too. You want a model that doesn't care about something, like which sensor it's reading or how that sensor was calibrated, so you add a loss term and hope the optimizer learns not to care. Domain-adversarial training is the cleanest version of this. Train the features so a second network can't tell the domains apart, and in theory the features become invariant.</p>
 <p>In practice it holds up in the lab and falls apart in the field. I ran it on the same recalibration test I use for everything. Given labels and target-domain data, a domain-adversarial network scored 0.983 in-domain on turbofan engines and then dropped 0.41 AUROC once the sensors were rescaled. On satellite telemetry it dropped 0.36. It learned the invariance on the data it saw, and the field gave it data it hadn't seen.</p>
@@ -395,21 +415,20 @@
 <p>The bigger lesson is about where physics should live. If you know a symmetry, don't spend data teaching it. Build it in, and spend the data on what you don't know yet.</p>
     </div>
   </details>
-  <details class="post" id="one-shape-monitor-to-control">
-    <summary>One shape, from monitoring to control<span class="dek">The signal that tells you something's wrong should be the same one that fixes it.</span></summary>
+  <details class="post" id="the-biggest-machine">
+    <summary>The biggest machine we've ever built<span class="dek">Jul 2026 &nbsp;·&nbsp; Growing up around the grid, and why the data-center boom is a control problem.</span></summary>
     <div class="body">
-<p>Most industrial AI stacks are split down the middle. One model watches the machine and raises alarms. A separate controller runs the machine, usually tuned once at commissioning. They don't share a representation, so when the monitor sees something, a human has to translate it into what the controller should do. That translation is slow, and on the grid or a production line slow is expensive.</p>
-<p>I wanted one object that does both. In the Index of Operations, the thing that detects a fault is the conservation slip at an interface between two operators. A healthy interface conserves what crosses it, and a failing one stops. That slip is also exactly what a controller needs to know, which part is misbehaving and by how much.</p>
-<h2>Close the loop with the same signal</h2>
-<p>So I used it as a gate. The controller runs model predictive control on the IOO graph, and adaptation only turns on at an interface whose slip says it stopped conserving. In simulation, with a 5× drop in actuator gain, slip-gated control had 8.2× lower tracking error than the same controller without the gate. With dropouts and sensor noise thrown in, steady-state error was 11.4× lower.</p>
-<p>The part I like most is what happens when nothing's wrong. The gate never opens, so healthy control is bit-identical to the plain controller. Adaptation costs nothing where it isn't needed, and that's the property you need before anyone lets a learned component near real hardware.</p>
-<blockquote>Monitoring and control aren't two products. They're two readings of the same shape.</blockquote>
-<h2>Where it has to go next</h2>
-<p>All of this is still simulation, a motor and a flywheel on a two-node graph, and there's no stability certificate yet tying the gate to closed-loop robustness. That second gap is the one I'm most equipped to close, because it's the same Lyapunov machinery from my work on certified grid controllers. The first gap closes on a bench, with one frozen controller across a physical actuator swap. That's the next 90 days.</p>
+<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
+<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set. So I started writing code and running experiments on anything I thought could make it more modern from a control and dynamics view. That turned into research, and the research turned into everything I work on now.</p>
+<h2>The data-center boom is a control problem</h2>
+<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
+<h2>Sampling isn't proof</h2>
+<p>That question is why I work on certified control. With Prof. Wenqi Cui at NYU I took a learned stability function for grid frequency that looked perfect by testing. It passed on 99.98% of sampled states, and 200,000 random samples found nothing. A directed search found violations 6.1% of the time. Testing visits points and a proof has to cover a region. Closing that gap, using the verifier to find counterexamples and then training through its bound, is our NeurIPS workshop paper.</p>
+<p>The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
     </div>
   </details>
   <details class="post" id="retrofit-the-machine-age">
-    <summary>Retrofit the machine age<span class="dek">The biggest market for physical AI is the machines that already exist.</span></summary>
+    <summary>Retrofit the machine age<span class="dek">Feb 2026 &nbsp;·&nbsp; The biggest market for physical AI is the machines that already exist.</span></summary>
     <div class="body">
 <p>When people say physical AI they usually mean new things, humanoids and robotaxis and dark factories. Those matter. But most of the machines that will exist in 2035 are already installed today. Motors, pumps, compressors, turbines, transformers. They'll run for decades, and almost none of them get any smarter after the day they're commissioned.</p>
 <p>Not by inventing new motors, but by getting existing systems to understand themselves. I wrote some version of that line in my notes a long time ago, and it's still the most underrated opportunity I know.</p>
@@ -420,18 +439,6 @@
 <p>That's the flywheel. Every machine IOO reads adds operators and interfaces to the index, and every new machine built from known operators starts with a prior instead of an empty model. The data flywheel in most of physical AI runs on more hours of video. This one runs on structure.</p>
 <h2>What's not done</h2>
 <p>Right now I hand-build each operator and the catalog is mostly rotating machinery, so the honest claim is a method that works across satellites, engines, a hexapod and a cruise benchmark, not yet a catalog that covers a factory. Learning operators from data is the step that turns this from a method into a company. That's what I'm building next.</p>
-    </div>
-  </details>
-  <details class="post" id="the-biggest-machine">
-    <summary>The biggest machine we've ever built<span class="dek">Growing up around the grid, and why the data-center boom is a control problem.</span></summary>
-    <div class="body">
-<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
-<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set. So I started writing code and running experiments on anything I thought could make it more modern from a control and dynamics view. That turned into research, and the research turned into everything I work on now.</p>
-<h2>The data-center boom is a control problem</h2>
-<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
-<h2>Sampling isn't proof</h2>
-<p>That question is why I work on certified control. With Prof. Wenqi Cui at NYU I took a learned stability function for grid frequency that looked perfect by testing. It passed on 99.98% of sampled states, and 200,000 random samples found nothing. A directed search found violations 6.1% of the time. Testing visits points and a proof has to cover a region. Closing that gap, using the verifier to find counterexamples and then training through its bound, is our NeurIPS workshop paper.</p>
-<p>The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
     </div>
   </details>
 
@@ -450,14 +457,15 @@
   <div class="life">
     <div class="fan">
       <figure tabindex="0"><img src="photos/sky-gazing.jpg" alt="Sehaj as a little kid in a stroller, looking up" loading="lazy"><figcaption>me sky gazing</figcaption></figure>
+      <figure tabindex="0"><img src="photos/broski-2.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me mewing with broski</figcaption></figure>
       <figure tabindex="0"><img src="photos/broski-1.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me messing with broski</figcaption></figure>
-      <figure tabindex="0"><img src="photos/broski-2.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me messing with broski</figcaption></figure>
       <figure tabindex="0"><img src="photos/tuff.jpg" alt="Sehaj in a beanie outdoors" loading="lazy"><figcaption>me feeling tuff</figcaption></figure>
     </div>
     <ul class="me">
       <li><span>I love cha.</span></li>
-      <li><span>I like reading and learning about Sikhi. Right now it's the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
+      <li><span>I like reading and learning about Sikhi (exploring my own interpretation beyond that of babas and false prophets). Right now it's the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
       <li><span>I love trail running and rock climbing.</span></li>
+      <li><span>Love dreaming about going back to Australia.</span></li>
       <li><span>Love aesthetic doomscrolling.</span></li>
       <li><span>I like playing RPG games through the night.</span></li>
       <li><span>Goal is to become a hermetic man in the woods.</span></li>
@@ -465,7 +473,7 @@
   </div>
 
   <footer>
-    Sehaj Randhir Singh · Founder, Guerilla · New York · 2026
+    Sehaj Randhir Singh · Research Collaborator, Cui Group, NYU Tandon ECE · QHSS Class of 2028 · New York · 2026
   </footer>
 
 </div>
