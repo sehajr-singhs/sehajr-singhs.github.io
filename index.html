@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sehaj Randhir Singh</title>
-<meta name="description" content="Sehaj Randhir Singh, founder of Guerilla. Control and dynamics engineer building the Index of Operations.">
+<meta name="description" content="Sehaj Randhir Singh. Control and dynamics engineer working on certified learned control for physical machines.">
 <style>
   :root {
     --bg: #ebe8e1;
@@ -90,11 +90,11 @@
   .ml a { color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--line); }
   .ml a:hover { border-color: var(--ink); }
   details.post { border-bottom: 1px solid var(--line); padding: 14px 0; }
-  details.post summary { cursor: pointer; list-style: none; font-family: var(--mono); font-size: 14px; font-weight: 600; line-height: 1.45; }
+  details.post summary { cursor: pointer; list-style: none; font-family: var(--mono); font-size: 13px; font-weight: 600; line-height: 1.45; }
   details.post summary::-webkit-details-marker { display: none; }
   details.post summary::before { content: "+ "; font-family: var(--mono); font-size: 13px; color: var(--muted); }
   details.post[open] summary::before { content: "\2212 "; }
-  details.post .dek { display: block; font-family: var(--mono); font-size: 12.5px; font-weight: 400; color: var(--muted); margin-top: 4px; }
+  details.post .dek { display: block; font-family: var(--mono); font-size: 12px; font-weight: 400; color: var(--muted); margin-top: 4px; }
   details.post .body { margin-top: 14px; }
   details.post .body p { font-size: 14px; line-height: 1.75; margin-bottom: 12px; max-width: 640px; }
   details.post .body h2 { font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 20px 0 8px; }
@@ -138,6 +138,20 @@
   .me li::before { content: "–"; color: var(--muted); }
   .me i { font-style: italic; }
 
+  .res-wrap { overflow-x: auto; margin: 14px 0 6px; }
+  .res { border-collapse: collapse; width: 100%; font-size: 12.5px; line-height: 1.5; color: var(--ink); }
+  .res th { text-align: left; font-weight: 400; color: var(--muted); font-size: 11px; letter-spacing: 0.06em; text-transform: uppercase; padding: 0 12px 6px 0; border-bottom: 1px solid var(--line); white-space: nowrap; }
+  .res td { padding: 8px 12px 8px 0; border-bottom: 1px solid var(--line); vertical-align: top; }
+  .res tr:last-child td { border-bottom: none; }
+  .res td:last-child, .res th:last-child { padding-right: 0; }
+  .res .k { color: var(--muted); }
+  .e-body p { margin-top: 10px; }
+  .e-body p:first-child { margin-top: 0; }
+  .e-body .ink { color: var(--ink); }
+  .qa { margin-top: 6px; }
+  .qa .q { font-weight: 600; font-size: 14px; margin-top: 20px; }
+  .qa .a { color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 4px; max-width: 640px; }
+
   @media (max-width: 560px) {
     .life { grid-template-columns: 1fr; gap: 20px; }
     .fan { max-width: 340px; }
@@ -177,7 +191,7 @@
       I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers. We train neural Lyapunov functions so they're verifiable by construction, and my first-author paper on it was recently accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. I'm also a data center research intern, studying how huge blocks of AI load connect to a grid whose wires were sized for a different decade. The goal there is a grid that carries AI load and stays stable while learned controllers make more of the calls.
     </div>
     <div>
-      I'm also the founder of Guerilla. Guerilla is building the Index of Operations, one representation that reads a machine as the shape its physical parts draw together and uses that shape to monitor it, model its dynamics and control it. The goal there is the control layer for the machine age, which means the grid, the factory floor and the robots that come next.
+      I'm also building Guerilla, a project around one idea I call the Index of Operations. It doesn't treat a machine's sensor data as a table of numbers. It models the physical parts, like motors, pumps and joints, and checks whether energy is still conserved where they connect. That check catches faults on real satellite and robot data, it barely moves when sensors are recalibrated, and in simulation it tells a controller when to adapt. The control results are simulation only so far, and I still build each part model by hand.
     </div>
   </div>
 
@@ -185,7 +199,7 @@
   <div class="sec-label" id="active">Active projects</div>
   <div class="entry boxed">
     <div class="e-head">
-      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with data, interviews and/or funding from OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
+      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with data and/or interviews with OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
       <div class="e-meta">2026 – Present</div>
     </div>
     <div class="e-body">
@@ -196,12 +210,26 @@
   <div class="entry boxed">
     <div class="e-head">
       <div class="e-title"><a href="guerilla/">Guerilla &middot; the Index of Operations</a></div>
-      <div class="e-meta">2026 · Founder</div>
+      <div class="e-meta">2026</div>
     </div>
     <div class="e-body">
-      The Index of Operations is an index of the physical operators every machine is made of, like motors, pumps, joints and thermal masses, connected where they pass energy and force. Build a machine from it and its telemetry becomes a shape. That shape doesn't move when sensors are recalibrated (0.749 to 0.736 AUROC on ESA's OPS-SAT satellite, where raw features fall to 0.487), it beats the published OPS-SAT baseline (0.911 to 0.951), and the same signal that detects a fault gates the controller, cutting tracking error 8.2&times; under a 5&times; actuator fault in simulation. From one index it goes two ways: a world model of machines, and tiny models that run at the edge and retrofit the installed industrial base.
+      <p>A machine is parts that pass energy to each other. The Index of Operations models each part, then watches the points where they connect. When a connection stops conserving what crosses it, something is wrong there. I call that signal slip.</p>
+      <p class="ink">What works today, and on what data:</p>
+      <div class="res-wrap">
+      <table class="res">
+        <tr><th>Test</th><th>Data</th><th>Baseline</th><th>With slip</th></tr>
+        <tr><td>Anomaly detection, ESA OPS-SAT, official 2,123-segment protocol <span class="k">(AUROC)</span></td><td>real</td><td>0.911, the published handcrafted features</td><td>0.951, the same features plus slip</td></tr>
+        <tr><td>Same satellite, before and after sensors are recalibrated <span class="k">(AUROC)</span></td><td>real, recalibration applied in software</td><td>raw statistics, 0.919 then 0.487</td><td>slip alone, 0.749 then 0.736</td></tr>
+        <tr><td>Joint-fault detection, hexapod robot, 145,683 gaits <span class="k">(AUC)</span></td><td>real</td><td>0.890, raw features</td><td>0.990</td></tr>
+        <tr><td>Tracking error after a 5&times; drop in actuator gain <span class="k">(integrated squared error)</span></td><td>simulation</td><td>plain model predictive control</td><td>8.2&times; lower with slip-gated control</td></tr>
+      </table>
+      </div>
+      <p>The first two rows are different experiments, so their numbers don't compare with each other. Row one adds slip to the published features on the official protocol. Row two uses slip by itself, with no labels, to test one thing, which is whether the score survives recalibration. Before recalibration, raw statistics score higher than slip alone (0.919 vs 0.749). After it, raw statistics are a coin flip and slip hasn't moved.</p>
+      <p class="ink">What doesn't work yet:</p>
+      <p>Control is simulation only, with no result on physical hardware. There's no stability proof on the slip gate. I build each part model by hand, mostly for rotating machinery. Slip is blind to slow level drift, which is what real wear looks like. On ten-minute averaged wind-farm data nothing worked, slip included (0.497). Most rows are single runs, and spread across seeds isn't reported here yet.</p>
+      <p>The IOO code and result files are private for now. <a href="mailto:sehajrsinghs@gmail.com" style="color:var(--ink);">Email me</a> and I'll send the files behind any number on this page.</p>
     </div>
-    <div class="e-links"><a href="guerilla/">What I'm building, in full &rarr;</a></div>
+    <div class="e-links"><a href="guerilla/">The full method, every result and every limit &rarr;</a></div>
   </div>
 
   <!-- ================= WORK ================= -->
@@ -242,61 +270,74 @@
 
   <!-- ================= PUBLICATIONS ================= -->
   <div class="sec-label" id="pubs">Publications &amp; manuscripts</div>
+  <div class="sec-note">One accepted paper, two under review, and 14 unpublished manuscripts. The manuscripts were written for NeurIPS 2026 workshops and weren't accepted there, so read them as preliminary work.</div>
 
   <div class="pub">
     <div class="num">01</div>
     <div>
-      <div class="pub-title">Learning Lyapunov Functions for Power System Transient Stability: Neural Verification and Retraining</div>
+      <div class="pub-title">Learning Lyapunov Functions for Power System Transient Stability: Neural Verification and Retraining <span class="tag live">accepted</span></div>
       <div class="pub-venue">S. R. Singh, W. Cui &nbsp;·&nbsp; TCCML @ NeurIPS 2026 &mdash; accepted, camera-ready in preparation &nbsp;·&nbsp; <a href="https://openreview.net/forum?id=iAKq71lqO6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">code</a></div>
     </div>
   </div>
   <div class="pub">
     <div class="num">02</div>
     <div>
-      <div class="pub-title">Two manuscripts submitted to IEEE</div>
-      <div class="pub-venue">IEEE &nbsp;·&nbsp; 2026 &mdash; under review</div>
+      <div class="pub-title">Two manuscripts, IEEE control and dynamics <span class="tag">under review</span></div>
+      <div class="pub-venue">IEEE &nbsp;·&nbsp; submitted 2026, no decision yet</div>
     </div>
   </div>
 
   <details class="post ms">
-    <summary><span class="num">03</span><span><span class="pub-title">The geometry of dynamics</span><span class="dek">5 manuscripts</span></span></summary>
+    <summary><span class="num">03</span><span><span class="pub-title">The grid under AI load</span><span class="dek">6 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/agfno" target="_blank" rel="noopener">Restoring the Truncated Band: Geometry-Aware Spectral Operators and a Direct Measurement of Geometric Forgetting</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span>Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</span><span class="r">manuscript · 2026</span></li>
+      <li><span>Certified Feasible-Capacity Operators for Interconnection Queues</span><span class="r">ML4PS manuscript</span></li>
+      <li><span>Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a></span><span class="r">ML4PS manuscript</span></li>
+      <li><span>Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</span><span class="r">ML4PS manuscript</span></li>
+      <li><span>Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a></span><span class="r">TCCML manuscript</span></li>
   </ul>
     </div>
   </details>
   <details class="post ms">
-    <summary><span class="num">04</span><span><span class="pub-title">Certified control</span><span class="dek">4 manuscripts</span></span></summary>
+    <summary><span class="num">04</span><span><span class="pub-title">Certified control</span><span class="dek">5 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span>The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a></span><span class="r">MLForSys manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a></span><span class="r">ML4PS manuscript</span></li>
+      <li><span>Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</span><span class="r">MLForSys manuscript</span></li>
   </ul>
     </div>
   </details>
   <details class="post ms">
-    <summary><span class="num">05</span><span><span class="pub-title">The grid under AI load</span><span class="dek">6 manuscripts</span></span></summary>
+    <summary><span class="num">05</span><span><span class="pub-title">The geometry of dynamics</span><span class="dek">3 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>Certified Feasible-Capacity Operators for Interconnection Queues</span><span class="r">manuscript · 2026</span></li>
-      <li><span>Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a></span><span class="r">manuscript · 2026</span></li>
-      <li><span>Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</span><span class="r">manuscript · 2026</span></li>
-      <li><span>Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</span><span class="r">manuscript · 2026</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a></span><span class="r">manuscript · 2026</span></li>
+      <li><span>Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a></span><span class="r">ML4PS manuscript</span></li>
   </ul>
     </div>
   </details>
 
+  <!-- ================= STRAIGHT ANSWERS ================= -->
+  <div class="sec-label" id="answers">Straight answers</div>
+  <div class="qa">
+    <div class="q">How much of this did I do myself?</div>
+    <div class="a">Guerilla and the Index of Operations are solo. The idea starts in my own notes, and the experiment design and the call on what counts as a result are mine. The Lyapunov paper is with Prof. Wenqi Cui, who supervises it, and I'm first author. I use AI coding tools heavily to write and run code.</div>
+    <div class="q">Are these separate contributions, or one idea many times?</div>
+    <div class="a">Three ideas, not fourteen. Certified control is about proving a learned controller is stable. The geometry of dynamics is about reading a machine as a shape. The grid under AI load applies both to interconnection and data-center demand. Several manuscripts are variations inside one thread, which is why they're listed by thread.</div>
+    <div class="q">Has it survived outside review?</div>
+    <div class="a">One paper has. The Lyapunov paper was accepted at the Tackling Climate Change with ML workshop at NeurIPS 2026. Two manuscripts are under review at IEEE. The other 14 were written for NeurIPS 2026 workshops, weren't accepted, and are unpublished. Read them as preliminary.</div>
+    <div class="q">Can I defend the math myself?</div>
+    <div class="a">Ask me. I'd rather walk through the Lyapunov conditions, the CROWN bound or the slip invariance proof on a call than have you take a web page's word for it.</div>
+  </div>
+
   <!-- ================= PROJECTS ================= -->
-  <div class="sec-label" id="projects">Selected repositories</div>
+  <div class="sec-label" id="projects">Some of my projects</div>
   <div class="sec-note">The builds behind the work above. Every one links to its code.</div>
   <div class="pub">
     <div class="num">01</div>
@@ -349,16 +390,20 @@
   </div>
 
   <!-- ================= RECOGNITION ================= -->
-  <div class="sec-label">Recognition</div>
+  <div class="sec-label">Recognition and academia</div>
   <ul class="ml">
+      <li><span>Queens High School for the Sciences, 4.0 with 15 APs, honor roll and AP Capstone</span><span class="r">Class of 2028</span></li>
       <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
       <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026, in a batch of great papers like ARES-CERT</span><span class="r">2026</span></li>
       <li><span>Columbia University, energy systems engineering class</span><span class="r">2026–27</span></li>
+      <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
+      <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
+      <li><span>QHSS Physics Olympiad lead</span><span class="r">QHSS</span></li>
   </ul>
 
   <!-- ================= WRITING ================= -->
   <div class="sec-label" id="writing">Writing</div>
-  <div class="sec-note">Random short essays. Click one to read it. Dates are when the idea first landed in my notes.</div>
+  <div class="sec-note">Random short essays.</div>
   <details class="post" id="what-world-models-throw-away">
     <summary>What world models throw away<span class="dek">Oct 2026 &nbsp;·&nbsp; Machines break at the low level first. A model that predicts in a compressed latent can't see it coming.</span></summary>
     <div class="body">
