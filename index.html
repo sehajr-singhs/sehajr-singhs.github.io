@@ -191,7 +191,7 @@
       I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers. We train neural Lyapunov functions so they're verifiable by construction, and my first-author paper on it was recently accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. I'm also a data center research intern, studying how huge blocks of AI load connect to a grid whose wires were sized for a different decade. The goal there is a grid that carries AI load and stays stable while learned controllers make more of the calls.
     </div>
     <div>
-      I'm also building Guerilla, a project around one idea I call the Index of Operations. It doesn't treat a machine's sensor data as a table of numbers. It models the physical parts, like motors, pumps and joints, and checks whether energy is still conserved where they connect. That check catches faults on real satellite and robot data, it barely moves when sensors are recalibrated, and in simulation it tells a controller when to adapt. The control results are simulation only so far, and I still build each part model by hand.
+      I'm also building Guerilla, a project around one idea I call the Index of Operations. It models a machine as physical parts and checks whether energy is still conserved where they connect, which catches faults on real satellite and robot data. The control side is simulation only so far.
     </div>
   </div>
 
@@ -213,21 +213,7 @@
       <div class="e-meta">2026</div>
     </div>
     <div class="e-body">
-      <p>A machine is parts that pass energy to each other. The Index of Operations models each part, then watches the points where they connect. When a connection stops conserving what crosses it, something is wrong there. I call that signal slip.</p>
-      <p class="ink">What works today, and on what data:</p>
-      <div class="res-wrap">
-      <table class="res">
-        <tr><th>Test</th><th>Data</th><th>Baseline</th><th>With slip</th></tr>
-        <tr><td>Anomaly detection, ESA OPS-SAT, official 2,123-segment protocol <span class="k">(AUROC)</span></td><td>real</td><td>0.911, the published handcrafted features</td><td>0.951, the same features plus slip</td></tr>
-        <tr><td>Same satellite, before and after sensors are recalibrated <span class="k">(AUROC)</span></td><td>real, recalibration applied in software</td><td>raw statistics, 0.919 then 0.487</td><td>slip alone, 0.749 then 0.736</td></tr>
-        <tr><td>Joint-fault detection, hexapod robot, 145,683 gaits <span class="k">(AUC)</span></td><td>real</td><td>0.890, raw features</td><td>0.990</td></tr>
-        <tr><td>Tracking error after a 5&times; drop in actuator gain <span class="k">(integrated squared error)</span></td><td>simulation</td><td>plain model predictive control</td><td>8.2&times; lower with slip-gated control</td></tr>
-      </table>
-      </div>
-      <p>The first two rows are different experiments, so their numbers don't compare with each other. Row one adds slip to the published features on the official protocol. Row two uses slip by itself, with no labels, to test one thing, which is whether the score survives recalibration. Before recalibration, raw statistics score higher than slip alone (0.919 vs 0.749). After it, raw statistics are a coin flip and slip hasn't moved.</p>
-      <p class="ink">What doesn't work yet:</p>
-      <p>Control is simulation only, with no result on physical hardware. There's no stability proof on the slip gate. I build each part model by hand, mostly for rotating machinery. Slip is blind to slow level drift, which is what real wear looks like. On ten-minute averaged wind-farm data nothing worked, slip included (0.497). Most rows are single runs, and spread across seeds isn't reported here yet.</p>
-      <p>The IOO code and result files are private for now. <a href="mailto:sehajrsinghs@gmail.com" style="color:var(--ink);">Email me</a> and I'll send the files behind any number on this page.</p>
+      A machine is parts that pass energy to each other. The Index of Operations models each part and watches the points where they connect. When a connection stops conserving what crosses it, something is wrong there, and I call that signal slip. On real ESA satellite telemetry, adding slip to the published features lifts anomaly detection from 0.911 to 0.951 AUROC on the official protocol, and slip barely moves when the sensors are recalibrated. In simulation the same signal tells a controller when to adapt. Control isn't on physical hardware yet.
     </div>
     <div class="e-links"><a href="guerilla/">The full method, every result and every limit &rarr;</a></div>
   </div>
@@ -322,19 +308,6 @@
   </ul>
     </div>
   </details>
-
-  <!-- ================= STRAIGHT ANSWERS ================= -->
-  <div class="sec-label" id="answers">Straight answers</div>
-  <div class="qa">
-    <div class="q">How much of this did I do myself?</div>
-    <div class="a">Guerilla and the Index of Operations are solo. The idea starts in my own notes, and the experiment design and the call on what counts as a result are mine. The Lyapunov paper is with Prof. Wenqi Cui, who supervises it, and I'm first author. I use AI coding tools heavily to write and run code.</div>
-    <div class="q">Are these separate contributions, or one idea many times?</div>
-    <div class="a">Three ideas, not fourteen. Certified control is about proving a learned controller is stable. The geometry of dynamics is about reading a machine as a shape. The grid under AI load applies both to interconnection and data-center demand. Several manuscripts are variations inside one thread, which is why they're listed by thread.</div>
-    <div class="q">Has it survived outside review?</div>
-    <div class="a">One paper has. The Lyapunov paper was accepted at the Tackling Climate Change with ML workshop at NeurIPS 2026. Two manuscripts are under review at IEEE. The other 14 were written for NeurIPS 2026 workshops, weren't accepted, and are unpublished. Read them as preliminary.</div>
-    <div class="q">Can I defend the math myself?</div>
-    <div class="a">Ask me. I'd rather walk through the Lyapunov conditions, the CROWN bound or the slip invariance proof on a call than have you take a web page's word for it.</div>
-  </div>
 
   <!-- ================= PROJECTS ================= -->
   <div class="sec-label" id="projects">Some of my projects</div>
