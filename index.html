@@ -123,7 +123,24 @@
   .rom li { grid-template-columns: 30px 1fr auto; }
   .rom li::before { counter-increment: rom; content: counter(rom, lower-roman) "."; color: var(--muted); font-size: 12px; margin-top: 2px; }
 
+  .life { display: grid; grid-template-columns: 1fr 1fr; gap: 36px; align-items: center; margin-top: 26px; }
+  .fan { position: relative; height: 290px; }
+  .fan figure { position: absolute; top: 34px; width: 148px; background: #fff; padding: 7px 7px 8px; border: 1px solid var(--line); box-shadow: 0 3px 12px rgba(0,0,0,.13); transition: transform .22s ease, box-shadow .22s ease; cursor: pointer; outline: none; }
+  .fan img { display: block; width: 100%; aspect-ratio: 3 / 4; object-fit: cover; }
+  .fan figcaption { font-size: 10.5px; line-height: 1.35; color: var(--ink); text-align: center; margin-top: 7px; min-height: 28px; }
+  .fan figure:nth-child(1) { left: 0; transform: rotate(-11deg); z-index: 1; }
+  .fan figure:nth-child(2) { left: 21%; transform: rotate(-4deg) translateY(-8px); z-index: 2; }
+  .fan figure:nth-child(3) { left: 42%; transform: rotate(4deg) translateY(-8px); z-index: 3; }
+  .fan figure:nth-child(4) { left: 63%; transform: rotate(11deg); z-index: 4; }
+  .fan figure:hover, .fan figure:focus { transform: rotate(0deg) translateY(-22px) scale(1.16); z-index: 10; box-shadow: 0 12px 28px rgba(0,0,0,.24); }
+  .me { list-style: none; font-size: 13.5px; line-height: 1.6; }
+  .me li { display: grid; grid-template-columns: 14px 1fr; gap: 10px; padding: 7px 0; }
+  .me li::before { content: "–"; color: var(--muted); }
+  .me i { font-style: italic; }
+
   @media (max-width: 560px) {
+    .life { grid-template-columns: 1fr; gap: 20px; }
+    .fan { max-width: 340px; }
     .ml li { grid-template-columns: 1fr; gap: 2px; }
     .rom li { grid-template-columns: 30px 1fr; }
     .rom li .r { grid-column: 2; }
@@ -426,6 +443,25 @@
     <div class="row"><b>LinkedIn</b> &nbsp; <a href="https://www.linkedin.com/in/sehaj-randhir-singh" target="_blank" rel="noopener">linkedin.com/in/sehaj-randhir-singh</a></div>
     <div class="row"><b>OpenReview</b> &nbsp; <a href="https://openreview.net/profile?id=~Sehaj_Randhir_Singh2" target="_blank" rel="noopener">openreview.net/profile?id=~Sehaj_Randhir_Singh2</a></div>
     <div class="row"><b>ORCID</b> &nbsp; <a href="https://orcid.org/0009-0002-9806-328X" target="_blank" rel="noopener">0009-0002-9806-328X</a></div>
+  </div>
+
+  <!-- ================= OFF THE CLOCK ================= -->
+  <div class="sec-label" id="me">Off the clock</div>
+  <div class="life">
+    <div class="fan">
+      <figure tabindex="0"><img src="photos/sky-gazing.jpg" alt="Sehaj as a little kid in a stroller, looking up" loading="lazy"><figcaption>me sky gazing</figcaption></figure>
+      <figure tabindex="0"><img src="photos/broski-1.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me messing with broski</figcaption></figure>
+      <figure tabindex="0"><img src="photos/broski-2.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me messing with broski</figcaption></figure>
+      <figure tabindex="0"><img src="photos/tuff.jpg" alt="Sehaj in a beanie outdoors" loading="lazy"><figcaption>me feeling tuff</figcaption></figure>
+    </div>
+    <ul class="me">
+      <li><span>I love cha.</span></li>
+      <li><span>I like reading and learning about Sikhi. Right now it's the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
+      <li><span>I love trail running and rock climbing.</span></li>
+      <li><span>Love aesthetic doomscrolling.</span></li>
+      <li><span>I like playing RPG games through the night.</span></li>
+      <li><span>Goal is to become a hermetic man in the woods.</span></li>
+    </ul>
   </div>
 
   <footer>
