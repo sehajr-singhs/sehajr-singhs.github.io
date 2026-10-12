@@ -119,6 +119,8 @@
   details.ms[open] .pub-title::after { content: "  −"; }
   details.ms .dek { margin-top: 3px; }
   details.ms .body { margin: 8px 0 0 30px; }
+  details.ms .body p { color: var(--muted); font-size: 13.5px; line-height: 1.6; margin-bottom: 0; }
+  details.ms .body .go { margin-top: 8px; font-size: 12.5px; }
   .rom { counter-reset: rom; }
   .rom li { grid-template-columns: 30px 1fr auto; }
   .rom li::before { counter-increment: rom; content: counter(rom, lower-roman) "."; color: var(--muted); font-size: 12px; margin-top: 2px; }
@@ -177,10 +179,10 @@
       <a href="#active" class="active">Active projects</a>
       <a href="#work">Work</a>
       <a href="#pubs">Publications</a>
-      <a href="#projects">Projects</a>
       <a href="#writing">Writing</a>
-      <a href="#me">Off the clock</a>
+      <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
+      <a href="#me">Off the clock</a>
       <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
@@ -309,71 +311,6 @@
     </div>
   </details>
 
-  <!-- ================= PROJECTS ================= -->
-  <div class="sec-label" id="projects">Some of my projects</div>
-  <div class="sec-note">The builds behind the work above. Every one links to its code.</div>
-  <div class="pub">
-    <div class="num">01</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">Operating Atlas</a></div>
-      <div class="pub-venue">Recalibration-invariant fingerprints of machine operation. 99.4% identification across 7 real systems, 99.0% under re-instrumentation vs 80.3% for marginal statistics.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">02</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Certified training for neural Lyapunov functions</a></div>
-      <div class="pub-venue">Trains the stability certificate through the CROWN bound so it is verifiable by construction. ρ = 2.5 on all five seeds vs 1.8 for counterexample repair, three verifiers in agreement.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">03</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/certified-neural-lyapunov" target="_blank" rel="noopener">Formal verification of neural Lyapunov certificates</a></div>
-      <div class="pub-venue">99.98% of sampled states pass, 200,000 random samples find nothing, a directed search finds violations 6.1% of the time. Closed with counterexample-guided verification, cross-checked three ways.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">04</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time-Series Operator</a></div>
-      <div class="pub-venue">Time as geometry, not tokens. Delay embedding, Koopman lifting and a learned vector field pretrained across domains, 31 of 40 zero-shot wins against a per-series GRU.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">05</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/ELECTRIC_ADAPTION" target="_blank" rel="noopener">Electric Adaption</a></div>
-      <div class="pub-venue">The whitepaper that started it. Operators pair a classical adaptive-control core with learned submodels, so an electrically driven machine keeps its efficiency and stability as its parameters drift with age.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">06</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">Operator</a></div>
-      <div class="pub-venue">A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">07</div>
-    <div>
-      <div class="pub-title"><a href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">Robotic Data Flywheel</a></div>
-      <div class="pub-venue">A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</div>
-    </div>
-  </div>
-
-  <!-- ================= RECOGNITION ================= -->
-  <div class="sec-label">Recognition and academia</div>
-  <ul class="ml">
-      <li><span>Queens High School for the Sciences, 4.0 with 15 APs, honor roll and AP Capstone</span><span class="r">Class of 2028</span></li>
-      <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
-      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026, in a batch of great papers like ARES-CERT</span><span class="r">2026</span></li>
-      <li><span>Columbia University, energy systems engineering class</span><span class="r">2026–27</span></li>
-      <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
-      <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
-      <li><span>QHSS Physics Olympiad lead</span><span class="r">QHSS</span></li>
-  </ul>
-
   <!-- ================= WRITING ================= -->
   <div class="sec-label" id="writing">Writing</div>
   <div class="sec-note">Random short essays.</div>
@@ -460,6 +397,71 @@
     </div>
   </details>
 
+  <!-- ================= PROJECTS ================= -->
+  <div class="sec-label" id="projects">Some of my projects</div>
+  <div class="sec-note">The builds behind the work above. Every one links to its code.</div>
+  <details class="post ms">
+    <summary><span class="num">01</span><span><span class="pub-title">Operating Atlas</span></span></summary>
+    <div class="body">
+      <p>Recalibration-invariant fingerprints of machine operation. 99.4% identification across 7 real systems, 99.0% under re-instrumentation vs 80.3% for marginal statistics.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">02</span><span><span class="pub-title">Certified training for neural Lyapunov functions</span></span></summary>
+    <div class="body">
+      <p>Trains the stability certificate through the CROWN bound so it is verifiable by construction. ρ = 2.5 on all five seeds vs 1.8 for counterexample repair, three verifiers in agreement.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">03</span><span><span class="pub-title">Formal verification of neural Lyapunov certificates</span></span></summary>
+    <div class="body">
+      <p>99.98% of sampled states pass, 200,000 random samples find nothing, a directed search finds violations 6.1% of the time. Closed with counterexample-guided verification, cross-checked three ways.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/certified-neural-lyapunov" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">04</span><span><span class="pub-title">Time-Series Operator</span></span></summary>
+    <div class="body">
+      <p>Time as geometry, not tokens. Delay embedding, Koopman lifting and a learned vector field pretrained across domains, 31 of 40 zero-shot wins against a per-series GRU.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">05</span><span><span class="pub-title">Electric Adaption</span></span></summary>
+    <div class="body">
+      <p>The whitepaper that started it. Operators pair a classical adaptive-control core with learned submodels, so an electrically driven machine keeps its efficiency and stability as its parameters drift with age.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/ELECTRIC_ADAPTION" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">06</span><span><span class="pub-title">Operator</span></span></summary>
+    <div class="body">
+      <p>A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">07</span><span><span class="pub-title">Robotic Data Flywheel</span></span></summary>
+    <div class="body">
+      <p>A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</p>
+      <a class="go" href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+
+  <!-- ================= RECOGNITION ================= -->
+  <div class="sec-label">Recognition and academia</div>
+  <ul class="ml">
+      <li><span>Queens High School for the Sciences, 4.0 with 15 APs, honor roll and AP Capstone</span><span class="r">Class of 2028</span></li>
+      <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
+      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026, in a batch of great papers like ARES-CERT</span><span class="r">2026</span></li>
+      <li><span>Columbia University, energy systems engineering class</span><span class="r">2026–27</span></li>
+      <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
+      <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
+      <li><span>QHSS Physics Olympiad lead</span><span class="r">QHSS</span></li>
+  </ul>
+
   <!-- ================= CONTACT ================= -->
   <div class="sec-label" id="contact">Contact</div>
   <div class="contact">
@@ -474,14 +476,14 @@
   <div class="sec-label" id="me">Off the clock</div>
   <div class="life">
     <div class="fan">
-      <figure tabindex="0"><img src="photos/sky-gazing.jpg" alt="Sehaj as a little kid in a stroller, looking up" loading="lazy"><figcaption>me sky gazing</figcaption></figure>
+      <figure tabindex="0"><img src="photos/sky-gazing.jpg" alt="Sehaj as a little kid in a stroller, looking up" loading="lazy"><figcaption>baby me sky gazing</figcaption></figure>
       <figure tabindex="0"><img src="photos/broski-2.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me mewing with broski</figcaption></figure>
       <figure tabindex="0"><img src="photos/broski-1.jpg" alt="Sehaj and his brother at night" loading="lazy"><figcaption>me messing with broski</figcaption></figure>
       <figure tabindex="0"><img src="photos/tuff.jpg" alt="Sehaj in a beanie outdoors" loading="lazy"><figcaption>me feeling tuff</figcaption></figure>
     </div>
     <ul class="me">
       <li><span>I love cha.</span></li>
-      <li><span>I like reading and learning about Sikhi (exploring my own interpretation beyond that of babas and false prophets). Right now it's the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
+      <li><span>I like reading and learning about Sikhi (exploring my own interpretation beyond that of babas and false prophets). My reads right now are the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
       <li><span>I love trail running and rock climbing.</span></li>
       <li><span>Love dreaming about going back to Australia.</span></li>
       <li><span>Love aesthetic doomscrolling.</span></li>
@@ -491,7 +493,7 @@
   </div>
 
   <footer>
-    Sehaj Randhir Singh · Research Collaborator, Cui Group, NYU Tandon ECE · QHSS Class of 2028 · New York · 2026
+    Sehaj Randhir Singh · Research Collaborator, Cui Group, NYU Tandon ECE · QHSS Class of 2028
   </footer>
 
 </div>
