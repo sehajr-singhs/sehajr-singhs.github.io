@@ -3,11 +3,11 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Sehaj Singh</title>
+<title>Sehaj Randhir Singh</title>
 <meta name="description" content="Sehaj Randhir Singh, founder of Guerilla. Control and dynamics engineer building the Index of Operations.">
 <style>
   :root {
-    --bg: #f5f3ef;
+    --bg: #ebe8e1;
     --ink: #1a1a1a;
     --muted: #6f6f6a;
     --line: #d8d5cd;
@@ -102,8 +102,31 @@
   .go { display: inline-block; margin-top: 10px; font-size: 13px; color: var(--ink); text-decoration: none; border-bottom: 1px solid var(--ink); }
   .orgs { color: var(--ink); }
 
+  .banner { display: block; width: 100%; height: auto; margin: 0 0 6px -8.1%;
+    -webkit-mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    mask-image: linear-gradient(to right, transparent, #000 7%, #000 93%, transparent), linear-gradient(to bottom, transparent, #000 22%, #000 78%, transparent);
+    -webkit-mask-composite: source-in; mask-composite: intersect; }
+  .dot { width: auto; height: auto; background: none; border-radius: 0; margin-top: 0; color: var(--muted); }
+  .dot::before { content: "–"; }
+  .pub-title a { color: var(--ink); text-decoration: none; border-bottom: 1.5px solid transparent; transition: border-color .18s; }
+  .pub-title a:hover { border-color: var(--ink); }
+  details.ms { padding: 16px 0; }
+  details.ms summary { display: grid; grid-template-columns: 14px 1fr; gap: 16px; align-items: start; font-family: var(--mono); font-size: 14px; line-height: 1.45; }
+  details.ms summary::before, details.ms[open] summary::before { content: none; }
+  details.ms summary .num { font-size: 12px; color: var(--muted); margin-top: 3px; }
+  details.ms .pub-title { display: block; }
+  details.ms .pub-title::after { content: "  +"; color: var(--muted); font-weight: 400; }
+  details.ms[open] .pub-title::after { content: "  −"; }
+  details.ms .dek { margin-top: 3px; }
+  details.ms .body { margin: 8px 0 0 30px; }
+  .rom { counter-reset: rom; }
+  .rom li { grid-template-columns: 30px 1fr auto; }
+  .rom li::before { counter-increment: rom; content: counter(rom, lower-roman) "."; color: var(--muted); font-size: 12px; margin-top: 2px; }
+
   @media (max-width: 560px) {
     .ml li { grid-template-columns: 1fr; gap: 2px; }
+    .rom li { grid-template-columns: 30px 1fr; }
+    .rom li .r { grid-column: 2; }
     .intro .lede { font-size: 18px; }
     .wrap { padding: 40px 20px 80px; }
     .brand { font-size: 27px; }
@@ -116,8 +139,9 @@
 <body>
 <div class="wrap">
 
+  <img class="banner" src="banner.jpg" alt="Sehaj Randhir Singh">
+
   <header>
-    <div class="brand">Sehaj Singh</div>
     <nav>
       <a href="#active" class="active">Active projects</a>
       <a href="#work">Work</a>
@@ -184,7 +208,7 @@
   <div class="entry">
     <div class="dot"></div>
     <div>
-      <div class="e-head"><div class="e-title">Research Intern, data-center grid infrastructure</div><div class="e-meta">2025–Present</div></div>
+      <div class="e-head"><div class="e-title">Data center research intern</div><div class="e-meta">2025–Present</div></div>
       <div class="e-body">Researching power-distribution bottlenecks and grid strain driven by the exponential compute demand of large-scale data centers, including generation-and-tie planning for how new load interconnects to the grid. Role and findings held under confidentiality.</div>
     </div>
   </div>
@@ -192,7 +216,7 @@
   <div class="entry">
     <div class="dot"></div>
     <div>
-      <div class="e-head"><div class="e-title">Power-systems modeling, grid infrastructure</div><div class="e-meta">ongoing</div></div>
+      <div class="e-head"><div class="e-title">Power-systems modeling, grid infrastructure</div><div class="e-meta">2025–Present</div></div>
       <div class="e-body">Build and run power-flow simulations for grid infrastructure design, gathering and analyzing the simulation data and producing engineering reports that inform decisions such as line selection and routing. Work conducted under confidentiality, described here at the level of capability rather than client detail.</div>
     </div>
   </div>
@@ -224,10 +248,10 @@
     </div>
   </div>
 
-  <details class="post">
-    <summary>The geometry of dynamics<span class="dek">5 manuscripts</span></summary>
+  <details class="post ms">
+    <summary><span class="num">03</span><span><span class="pub-title">The geometry of dynamics</span><span class="dek">5 manuscripts</span></span></summary>
     <div class="body">
-  <ul class="ml">
+  <ul class="ml rom">
       <li><span>Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</span><span class="r">manuscript · 2026</span></li>
       <li><span><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a></span><span class="r">manuscript · 2026</span></li>
       <li><span><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a></span><span class="r">manuscript · 2026</span></li>
@@ -236,10 +260,10 @@
   </ul>
     </div>
   </details>
-  <details class="post">
-    <summary>Certified control<span class="dek">4 manuscripts</span></summary>
+  <details class="post ms">
+    <summary><span class="num">04</span><span><span class="pub-title">Certified control</span><span class="dek">4 manuscripts</span></span></summary>
     <div class="body">
-  <ul class="ml">
+  <ul class="ml rom">
       <li><span>The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</span><span class="r">manuscript · 2026</span></li>
       <li><span><a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a></span><span class="r">manuscript · 2026</span></li>
       <li><span><a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a></span><span class="r">manuscript · 2026</span></li>
@@ -247,10 +271,10 @@
   </ul>
     </div>
   </details>
-  <details class="post">
-    <summary>The grid under AI load<span class="dek">6 manuscripts</span></summary>
+  <details class="post ms">
+    <summary><span class="num">05</span><span><span class="pub-title">The grid under AI load</span><span class="dek">6 manuscripts</span></span></summary>
     <div class="body">
-  <ul class="ml">
+  <ul class="ml rom">
       <li><span>Certified Feasible-Capacity Operators for Interconnection Queues</span><span class="r">manuscript · 2026</span></li>
       <li><span>Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</span><span class="r">manuscript · 2026</span></li>
       <li><span><a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a></span><span class="r">manuscript · 2026</span></li>
@@ -264,53 +288,53 @@
   <!-- ================= PROJECTS ================= -->
   <div class="sec-label" id="projects">Selected repositories</div>
   <div class="sec-note">The builds behind the work above. Every one links to its code.</div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">01</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">Operating Atlas</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">Recalibration-invariant fingerprints of machine operation. 99.4% identification across 7 real systems, 99.0% under re-instrumentation vs 80.3% for marginal statistics.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">Operating Atlas</a></div>
+      <div class="pub-venue">Recalibration-invariant fingerprints of machine operation. 99.4% identification across 7 real systems, 99.0% under re-instrumentation vs 80.3% for marginal statistics.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">02</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Certified training for neural Lyapunov functions</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">Trains the stability certificate through the CROWN bound so it is verifiable by construction. ρ = 2.5 on all five seeds vs 1.8 for counterexample repair, three verifiers in agreement.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Certified training for neural Lyapunov functions</a></div>
+      <div class="pub-venue">Trains the stability certificate through the CROWN bound so it is verifiable by construction. ρ = 2.5 on all five seeds vs 1.8 for counterexample repair, three verifiers in agreement.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">03</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-neural-lyapunov" target="_blank" rel="noopener">Formal verification of neural Lyapunov certificates</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">99.98% of sampled states pass, 200,000 random samples find nothing, a directed search finds violations 6.1% of the time. Closed with counterexample-guided verification, cross-checked three ways.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/certified-neural-lyapunov" target="_blank" rel="noopener">Formal verification of neural Lyapunov certificates</a></div>
+      <div class="pub-venue">99.98% of sampled states pass, 200,000 random samples find nothing, a directed search finds violations 6.1% of the time. Closed with counterexample-guided verification, cross-checked three ways.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">04</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time-Series Operator</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">Time as geometry, not tokens. Delay embedding, Koopman lifting and a learned vector field pretrained across domains, 31 of 40 zero-shot wins against a per-series GRU.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time-Series Operator</a></div>
+      <div class="pub-venue">Time as geometry, not tokens. Delay embedding, Koopman lifting and a learned vector field pretrained across domains, 31 of 40 zero-shot wins against a per-series GRU.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">05</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/ELECTRIC_ADAPTION" target="_blank" rel="noopener">Electric Adaption</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">The whitepaper that started it. Operators pair a classical adaptive-control core with learned submodels, so an electrically driven machine keeps its efficiency and stability as its parameters drift with age.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/ELECTRIC_ADAPTION" target="_blank" rel="noopener">Electric Adaption</a></div>
+      <div class="pub-venue">The whitepaper that started it. Operators pair a classical adaptive-control core with learned submodels, so an electrically driven machine keeps its efficiency and stability as its parameters drift with age.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">06</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">Operator</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">Operator</a></div>
+      <div class="pub-venue">A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</div>
     </div>
   </div>
-  <div class="entry">
-    <div class="dot"></div>
+  <div class="pub">
+    <div class="num">07</div>
     <div>
-      <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">Robotic Data Flywheel</a></div><div class="e-meta">2026</div></div>
-      <div class="e-body">A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</div>
+      <div class="pub-title"><a href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">Robotic Data Flywheel</a></div>
+      <div class="pub-venue">A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</div>
     </div>
   </div>
 
@@ -318,7 +342,7 @@
   <div class="sec-label">Recognition</div>
   <ul class="ml">
       <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
-      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026</span><span class="r">2026</span></li>
+      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026, in a batch of great papers like ARES-CERT</span><span class="r">2026</span></li>
       <li><span>Columbia University, energy systems engineering class</span><span class="r">2026–27</span></li>
   </ul>
 
