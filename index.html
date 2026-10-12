@@ -154,6 +154,9 @@
   .qa .q { font-weight: 600; font-size: 14px; margin-top: 20px; }
   .qa .a { color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 4px; max-width: 640px; }
 
+  .rom .pl { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); }
+  .rom .pl a { color: var(--muted); border-bottom: 1px solid var(--line); }
+
   @media (max-width: 560px) {
     .life { grid-template-columns: 1fr; gap: 20px; }
     .fan { max-width: 340px; }
@@ -279,12 +282,12 @@
     <summary><span class="num">03</span><span><span class="pub-title">The grid under AI load</span><span class="dek">6 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>Certified Feasible-Capacity Operators for Interconnection Queues</span><span class="r">ML4PS manuscript</span></li>
-      <li><span>Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a></span><span class="r">ML4PS manuscript</span></li>
-      <li><span>Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</span><span class="r">ML4PS manuscript</span></li>
-      <li><span>Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a></span><span class="r">TCCML manuscript</span></li>
+      <li><span><a href="papers/certified-feasible-capacity-operators.pdf" target="_blank" rel="noopener">Certified Feasible-Capacity Operators for Interconnection Queues</a><span class="pl"><a href="papers/certified-feasible-capacity-operators.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/certify-then-switch.pdf" target="_blank" rel="noopener">Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</a><span class="pl"><a href="papers/certify-then-switch.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a><span class="pl"><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/graph-fourier-power-flow-operators.pdf" target="_blank" rel="noopener">Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</a><span class="pl"><a href="papers/graph-fourier-power-flow-operators.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/forecast-flag-shed.pdf" target="_blank" rel="noopener">Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</a><span class="pl"><a href="papers/forecast-flag-shed.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a><span class="pl"><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">code</a></span></span><span class="r">TCCML manuscript</span></li>
   </ul>
     </div>
   </details>
@@ -292,11 +295,11 @@
     <summary><span class="num">04</span><span><span class="pub-title">Certified control</span><span class="dek">5 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a></span><span class="r">MLForSys manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a></span><span class="r">ML4PS manuscript</span></li>
-      <li><span>Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</span><span class="r">MLForSys manuscript</span></li>
+      <li><span><a href="papers/verifier-as-the-sampler.pdf" target="_blank" rel="noopener">The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</a><span class="pl"><a href="papers/verifier-as-the-sampler.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/certified-learning-for-lossy-power-grids.pdf" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a><span class="pl"><a href="papers/certified-learning-for-lossy-power-grids.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a><span class="pl"><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">code</a></span></span><span class="r">MLForSys manuscript</span></li>
+      <li><span><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a><span class="pl"><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/certifying-causal-scaling.pdf" target="_blank" rel="noopener">Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</a><span class="pl"><a href="papers/certifying-causal-scaling.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">MLForSys manuscript</span></li>
   </ul>
     </div>
   </details>
@@ -304,9 +307,9 @@
     <summary><span class="num">05</span><span><span class="pub-title">The geometry of dynamics</span><span class="dek">3 unpublished manuscripts</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span>Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/geometric-state-manifolds.pdf" target="_blank" rel="noopener">Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</a><span class="pl"><a href="papers/geometric-state-manifolds.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a><span class="pl"><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a><span class="pl"><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
   </ul>
     </div>
   </details>
