@@ -181,6 +181,7 @@
     <nav>
       <a href="#active" class="active">Active projects</a>
       <a href="#work">Work</a>
+      <a href="#talks">Talks</a>
       <a href="#pubs">Publications</a>
       <a href="#writing">Writing</a>
       <a href="#projects">Projects</a>
@@ -223,6 +224,40 @@
     <div class="e-links"><a href="guerilla/">The full method, every result and every limit &rarr;</a></div>
   </div>
 
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title">Certified grid-side behavior for an AI UPS</div>
+      <div class="e-meta">2026</div>
+    </div>
+    <div class="e-body">
+      An AI training campus steps its power by tens of percent every few seconds, and the grid wants to know none of that reaches it. An AI UPS, a battery and inverter between the campus and the feeder, is built to absorb it. I'm writing the proof that it does: for every load profile in a stated range, the grid sees a bounded ramp, the feeder voltage stays in its band, and the battery stays inside its power and charge limits, checked by sound branch-and-bound rather than by sampling. It also gives the smallest battery that makes the guarantee hold at each ramp limit.
+      <!-- TODO before publishing: add the certified numbers from ai-ups-cert/results and link the paper PDF -->
+    </div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title"><a href="https://github.com/sehajr-singhs/genco-certify" target="_blank" rel="noopener">Open source: a feasibility check for grid foundation models (OpenGridFM)</a></div>
+      <div class="e-meta">2026 – Present</div>
+    </div>
+    <div class="e-body">
+      Grid foundation models like GENCO answer a power-flow question in milliseconds, but nobody can act on an answer without knowing it's right. My check warm-starts Newton from the model's prediction and certifies it only if a true solution sits right next to it. On GENCO's published outage predictions for the 2,000-bus Texas grid, it certified 609 of 989 cases with no wrong answer passed, and the warm start halves Newton's iterations. I'm developing it with the OpenGridFM maintainers at IBM Research and Hydro-Qu&eacute;bec, splitting the solution check from an optional security check and adding a bound that certifies without a full solve.
+    </div>
+    <div class="e-links"><a href="https://github.com/sehajr-singhs/genco-certify" target="_blank" rel="noopener">Code and slides &rarr;</a></div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title">Open source: Power Grid Model</div>
+      <div class="e-meta">2026 – Present</div>
+    </div>
+    <div class="e-body">
+      Power Grid Model is the open-source solver grid operators like Alliander actually run. I'm contributing to it, starting with a proposal to let Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate, benchmarked on the project's own test networks.
+      <!-- TODO before publishing: link the GitHub issue once it's open, and add the benchmark result -->
+    </div>
+  </div>
+
   <!-- ================= WORK ================= -->
   <div class="sec-label" id="work">Work</div>
 
@@ -260,6 +295,32 @@
   </div>
 
   <!-- ================= PUBLICATIONS ================= -->
+
+  <div class="sec-label" id="talks">Talks</div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">A certified screen for the interconnection study step</a></div><div class="e-meta">Oct 2026 &middot; PJM</div></div>
+      <div class="e-body">Presented to PJM's Applied Innovation team: a learned screen that answers how much a bus can take in about 1.4 ms instead of hundreds of power-flow solves, with a certificate that says which answers to trust and which to send to a full study.</div>
+    </div>
+  </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Learning Lyapunov Functions for Power System Transient Stability: Neural Verification and Retraining</div><div class="e-meta">2026 &middot; TCCML @ NeurIPS</div></div>
+      <div class="e-body">Accepted workshop paper, presented remotely.</div>
+    </div>
+  </div>
+  <!-- PSEG Long Island: add only once a presentation is actually scheduled.
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Certified screening for Long Island interconnection requests</div><div class="e-meta">2026 &middot; PSEG Long Island</div></div>
+      <div class="e-body"></div>
+    </div>
+  </div>
+  -->
+
   <div class="sec-label" id="pubs">Publications &amp; manuscripts</div>
   <div class="sec-note">One accepted paper, two under review, and 14 manuscripts written for NeurIPS 2026 workshops.</div>
 
@@ -450,6 +511,24 @@
     <div class="body">
       <p>A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</p>
       <a class="go" href="https://github.com/sehajr-singhs/robotic-data-flywheel" target="_blank" rel="noopener">code &rarr;</a>
+    </div>
+  </details>
+
+
+  <div class="sec-label" id="random">Random projects</div>
+  <div class="sec-note">Things I build because I want to see if they work.</div>
+  <details class="post ms">
+    <summary><span class="num">01</span><span><span class="pub-title">A poker bot built on the Index of Operations</span></span></summary>
+    <div class="body">
+      <p>An 8-handed no-limit hold'em bot where each opponent is an operator and slip flags the moment a player's bets stop carrying the strength they used to. Tested over 10,000+ hands against baseline bots and Slumbot.</p>
+      <!-- TODO before publishing: add mbb/hand results from ioo-poker/results and the repo link -->
+    </div>
+  </details>
+  <details class="post ms">
+    <summary><span class="num">02</span><span><span class="pub-title">Salvage</span></span></summary>
+    <div class="body">
+      <p>A teardown agent for dead electronics. Several models read each part, a gate in plain code decides, and anything a meter can settle gets measured before a part is called good. Verified parts get given away.</p>
+      <a class="go" href="https://sehajr-singhs.github.io/salvage/" target="_blank" rel="noopener">site &rarr;</a>
     </div>
   </details>
 
