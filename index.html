@@ -227,13 +227,13 @@
 
   <div class="entry boxed">
     <div class="e-head">
-      <div class="e-title">Certified grid-side behavior for an AI UPS</div>
+      <div class="e-title"><a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">Certified grid-side behavior for an AI UPS</a></div>
       <div class="e-meta">2026</div>
     </div>
     <div class="e-body">
-      An AI training campus steps its power by tens of percent every few seconds, and the grid wants to know none of that reaches it. An AI UPS, a battery and inverter between the campus and the feeder, is built to absorb it. I'm writing the proof that it does: for every load profile in a stated range, the grid sees a bounded ramp, the feeder voltage stays in its band, and the battery stays inside its power and charge limits, checked by sound branch-and-bound rather than by sampling. It also gives the smallest battery that makes the guarantee hold at each ramp limit.
-      <!-- TODO before publishing: add the certified numbers from ai-ups-cert/results and link the paper PDF -->
+      An AI training campus can step its power by 40 MW in an instant, and the grid wants to know none of that reaches it. An AI UPS, a battery and inverter between the campus and the feeder, is built to absorb it. I proved, by sound branch-and-bound, that for every load profile in range the grid sees at most a 10 MW/min ramp, the feeder voltage moves at most 1.35%, and the battery never saturates or runs empty, using 40 MW and 2.0 MWh, 1.43 times the minimum any controller could need. It's a public model with assumed parameters.
     </div>
+    <div class="e-links"><a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">The proof, the figures and the paper &rarr;</a></div>
   </div>
 
   <div class="entry boxed">
