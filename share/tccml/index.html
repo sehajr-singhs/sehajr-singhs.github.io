@@ -1,358 +1,297 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<title>Learning Lyapunov Functions for Power System Transient Stability</title>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Lyapunov Functions for Transient Stability</title>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.css">
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/katex.min.js"></script>
+<script defer src="https://cdn.jsdelivr.net/npm/katex@0.16.9/dist/contrib/auto-render.min.js"
+  onload="renderMathInElement(document.body,{delimiters:[{left:'$$',right:'$$',display:true},{left:'$',right:'$',display:false}]})"></script>
 <style>
-  :root { --bg:#fbfaf7; --ink:#1a1a1a; --muted:#5f5f5a; --line:#d8d5cd; --acc:#2f5d8a; --warn:#b3482f;
-    --serif:"Iowan Old Style","Palatino Linotype",Palatino,Georgia,serif; --sans:"Segoe UI","Helvetica Neue",Arial,sans-serif;
-    --mono:Consolas,"Courier New",monospace; }
-  @page { size: 1280px 720px; margin: 0; }
+  :root { --ink:#000; --mute:#555; --red:#d7263d; --green:#1f8a3b; --blue:#1d3c94; }
   * { box-sizing: border-box; margin: 0; padding: 0; }
-  html { -webkit-print-color-adjust: exact; print-color-adjust: exact; scroll-behavior: smooth; }
-  body { background:#e9e6df; color:var(--ink); font-family:var(--sans); font-size:18px; line-height:1.45; }
-  .s { width:1280px; height:720px; background:var(--bg); margin:24px auto; padding:50px 72px 46px; position:relative; overflow:hidden; display:flex; flex-direction:column; break-after:page; }
-  .k { font-size:12px; letter-spacing:.16em; text-transform:uppercase; color:var(--muted); border-bottom:1px solid var(--line); padding-bottom:9px; margin-bottom:20px; display:flex; justify-content:space-between; }
-  h1 { font-family:var(--serif); font-weight:500; font-size:34px; line-height:1.18; margin-bottom:16px; max-width:1120px; }
-  h1.t { font-size:44px; max-width:1050px; margin-top:96px; }
-  p { max-width:1100px; margin-bottom:10px; }
-  .m { color:var(--muted); }
-  b { font-weight:600; }
-  ul { margin:2px 0 0 20px; } li { margin-bottom:8px; max-width:1120px; }
-  .cols { display:grid; gap:30px; grid-template-columns:1.05fr 1fr; align-items:start; }
-  .c3 { display:grid; gap:18px; grid-template-columns:repeat(3,1fr); }
-  .c2 { display:grid; gap:18px; grid-template-columns:repeat(2,1fr); }
-  .card { border:1px solid var(--ink); border-radius:3px; padding:16px 18px; background:#fff; font-size:15.5px; line-height:1.42; }
-  .card .h { font-family:var(--serif); font-size:21px; margin-bottom:6px; }
-  .card .n { font-size:11px; letter-spacing:.14em; color:var(--muted); text-transform:uppercase; margin-bottom:5px; }
-  .eq { font-family:var(--mono); font-size:15px; background:#fff; border:1px solid var(--line); border-radius:3px; padding:10px 14px; margin:4px 0 12px; white-space:pre; line-height:1.5; }
-  table { border-collapse:collapse; font-size:15px; width:100%; margin:4px 0 10px; }
-  th { text-align:left; font-weight:600; font-size:12px; letter-spacing:.08em; text-transform:uppercase; color:var(--muted); border-bottom:1.5px solid var(--ink); padding:6px 8px 6px 0; }
-  td { border-bottom:1px solid var(--line); padding:6px 8px 6px 0; vertical-align:top; }
-  td.n { font-variant-numeric:tabular-nums; white-space:nowrap; }
-  img { width:100%; }
-  .f { position:absolute; left:72px; right:72px; bottom:22px; display:flex; justify-content:space-between; font-size:11.5px; color:var(--muted); letter-spacing:.04em; }
-  .warn { color:var(--warn); }
-  .ok { color:var(--acc); }
-  .big { display:grid; grid-template-columns:repeat(3,1fr); gap:18px; margin-top:8px; }
-  .big .card { padding:20px 18px; }
-  .big .v { font-family:var(--serif); font-size:38px; line-height:1.05; margin:6px 0 8px; }
-  #ctr { position:fixed; right:14px; bottom:10px; font-family:var(--mono); font-size:12px; color:var(--muted); background:#e9e6df; padding:2px 8px; border-radius:3px; z-index:9; }
-  @media print { body { background:var(--bg); } .s { margin:0; } #ctr { display:none; } }
+  html, body { background: #e9e9e9; }
+  body { font-family: "Helvetica Neue", Helvetica, Arial, sans-serif; color: var(--ink); }
+  .slide { width: 1920px; height: 1080px; background: #fff; position: relative; overflow: hidden;
+           margin: 24px auto; padding: 96px 100px 70px; display: flex; flex-direction: column; }
+  h1 { font-size: 84px; font-weight: 700; letter-spacing: -1.5px; line-height: 1.05; }
+  h2 { font-size: 44px; font-weight: 700; margin-top: 10px; letter-spacing: -0.5px; }
+  .body { flex: 1; display: flex; gap: 60px; align-items: center; margin-top: 30px; }
+  .col { flex: 1; }
+  .col.narrow { flex: 0.85; }
+  ul { list-style: none; }
+  li { font-size: 40px; line-height: 1.28; margin-bottom: 30px; padding-left: 40px; position: relative; }
+  li::before { content: "\2022"; position: absolute; left: 0; }
+  li li { font-size: 34px; margin: 12px 0 0; }
+  b { font-weight: 700; }
+  img { max-width: 100%; max-height: 760px; display: block; margin: 0 auto; }
+  .center { flex: 1; display: flex; align-items: center; justify-content: center; text-align: center; }
+  .statement { font-size: 76px; line-height: 1.18; font-weight: 500; max-width: 1650px; }
+  .eq { font-size: 40px; margin: 20px 0 30px; }
+  .red { color: var(--red); } .green { color: var(--green); } .blue { color: var(--blue); }
+  table { border-collapse: collapse; font-size: 40px; margin: 0 auto; }
+  th { text-align: left; font-weight: 700; padding: 14px 40px; border-bottom: 3px solid #000; }
+  td { padding: 16px 40px; }
+  tr:nth-child(even) td { background: #f3f3f3; }
+  .num { font-size: 120px; font-weight: 700; letter-spacing: -3px; line-height: 1; }
+  .numlbl { font-size: 32px; color: var(--mute); margin-top: 10px; line-height: 1.3; }
+  .card { flex: 1; text-align: center; }
+  .foot { position: absolute; left: 100px; right: 100px; bottom: 34px; display: flex;
+          justify-content: space-between; font-size: 24px; color: #777; }
+  .title-names { font-size: 46px; font-weight: 700; margin-top: 60px; }
+  .title-aff { font-size: 32px; color: var(--mute); margin-top: 14px; line-height: 1.45; }
+  .venue { position: absolute; left: 100px; bottom: 80px; font-size: 40px; font-weight: 700; }
+  .small { font-size: 30px; color: var(--mute); line-height: 1.4; }
+  .counter { position: fixed; right: 16px; bottom: 12px; font: 14px sans-serif; color: #666; }
+  @media print {
+    html, body { background: #fff; }
+    .slide { margin: 0; page-break-after: always; zoom: 1 !important; }
+    .counter { display: none; }
+    @page { size: 1920px 1080px; margin: 0; }
+  }
 </style>
 </head>
 <body>
 
-<section class="s">
-  <h1 class="t">Learning Lyapunov Functions for Power System Transient Stability</h1>
-  <p style="font-size:22px">Neural verification and retraining</p>
-  <p class="m" style="margin-top:22px">TCCML workshop at NeurIPS 2026 &middot; poster #240 &middot; 10 minute recorded talk</p>
-  <p style="margin-top:38px;font-size:19px"><b>Sehaj Randhir Singh</b><br><span class="m">Queens High School for the Sciences at York College, NY &middot; sehajrsinghs@gmail.com</span></p>
-  <p style="font-size:19px"><b>Wenqi Cui</b><br><span class="m">New York University, NY &middot; wenqicui@nyu.edu</span></p>
-  <div class="f"><span>Results: simulation on the Kron-reduced New England 39-bus swing model</span><span>01</span></div>
+<!-- 1 Title -->
+<section class="slide">
+  <div style="flex:1;display:flex;flex-direction:column;justify-content:center;">
+    <h1 style="font-size:96px;max-width:1700px;">Learning Lyapunov Functions for Power System Transient Stability</h1>
+    <h2 style="font-size:52px;font-weight:500;color:#333;margin-top:24px;">Neural Verification and Retraining</h2>
+    <div class="title-names">Sehaj Randhir Singh &nbsp;·&nbsp; Wenqi Cui</div>
+    <div class="title-aff">Queens High School for the Sciences at York College &nbsp;·&nbsp; New York University</div>
+  </div>
+  <div class="venue">Tackling Climate Change with Machine Learning, NeurIPS 2026</div>
 </section>
 
-<section class="s">
-  <div class="k"><span>TCCML &middot; why this matters</span><span>02</span></div>
-  <h1>Renewables shrink the inertia that gives the grid time to recover.</h1>
-  <div class="cols">
-    <div>
-      <ul>
-        <li><b>Transient stability:</b> after a large disturbance, every generator either settles back to synchronous operation or loses synchronism. It is a question about <i>every</i> post-fault state, not an average.</li>
-        <li>Wind and solar displace synchronous generation, reduce system inertia, and tighten the stability margins an operator can accept. The margins matter more exactly when there is less rotational energy to lean on.</li>
-        <li>Classical direct methods certify stability with a <b>Lyapunov function</b>. For networks with resistive losses, an exact one in closed form is generally unavailable (Chiang 1989).</li>
-        <li>So the candidate function gets learned as a neural network. And then a new question appears: how do you prove a learned function holds on a <b>continuous region</b>, not just where you checked?</li>
+<!-- 2 Aim -->
+<section class="slide">
+  <div class="center"><p class="statement">Our aim is to give learned grid stability certificates a guarantee that holds over a <b>whole region</b> of operating states, not just the states we happened to sample.</p></div>
+</section>
+
+<!-- 3 Why -->
+<section class="slide">
+  <h1>Why transient stability?</h1>
+  <div class="body">
+    <div class="col" style="flex:0.7"><ul>
+      <li>After a fault, generators must swing back into sync. If they don't, the grid separates.</li>
+      <li>Renewables replace synchronous machines, so the grid has <b>less inertia</b> and less margin after a disturbance.</li>
+      <li>Operators need to know <b>which states recover</b>, ahead of time, without simulating every fault.</li>
+    </ul></div>
+    <div class="col"><img src="fig/swing_stable_unstable.png" alt="stable and unstable swing after a disturbance"><p class="small" style="text-align:center;margin-top:16px;">Single machine after a step in mechanical power (illustration)</p></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>3</span></div>
+</section>
+
+<!-- 4 Model -->
+<section class="slide">
+  <h1>The model</h1>
+  <h2>Lossy, Kron-reduced swing equations</h2>
+  <div class="body" style="align-items:flex-start;margin-top:50px;">
+    <div class="col">
+      <div class="eq">$$\dot{\delta}_i = \omega_i$$</div>
+      <div class="eq">$$M_i\,\dot{\omega}_i = P_i - D_i\,\omega_i - u_i(\omega_i) - \sum_{j} B_{ij}\sin(\delta_i-\delta_j) - \sum_{j} G_{ij}\cos(\delta_i-\delta_j)$$</div>
+      <ul style="margin-top:20px;">
+        <li>$\delta_i$: rotor angle, $\omega_i$: frequency deviation of machine $i$, $u_i$: its frequency controller.</li>
+        <li>The conductance terms $G_{ij}$ make the system <b>lossy</b>, so the classic energy function no longer works as a Lyapunov function.</li>
+        <li>That is why we <b>learn</b> one.</li>
       </ul>
     </div>
-    <div class="card"><div class="n">The claim this talk builds</div>
-      More wind and solar means less synchronous inertia, so the window in which a disturbed system must be pulled back gets narrower. For that grid, passing sampled tests is not the standard. The standard is a proof over a set of states. This work is about producing exactly that proof for a learned Lyapunov function, and only counting it when a verifier signs it.</div>
   </div>
-  <div class="f"><span>Chiang 1989; Cui 2022</span><span>02</span></div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>4</span></div>
 </section>
 
-<section class="s">
-  <div class="k"><span>The model</span><span>03</span></div>
-  <h1>The swing equation with losses, on a Kron-reduced 10 machine network.</h1>
-  <div class="cols">
-    <div>
-      <img src="figures/fig_swing.png" alt="swing equation">
-      <div class="eq">u_i(w_i) = sat(c_i w_i)      saturated droop
-x = (d, w) in D subset R^20      n = 10 generators
-f_cl(x*) = 0                     isolated equilibrium</div>
-    </div>
-    <div>
+<!-- 5 Lyapunov -->
+<section class="slide">
+  <h1>Lyapunov functions</h1>
+  <h2>A certificate that the system returns to equilibrium</h2>
+  <div class="body">
+    <div class="col narrow">
       <ul>
-        <li>d_i and w_i are the rotor angle and frequency deviations of generator i; M_i and D_i are inertia and damping, P_i the net mechanical power input.</li>
-        <li><b>The lossy detail that causes the problem:</b> the conductance term sum_j G_ij cos(d_i − d_j) is generally not the gradient of any scalar potential. Classical energy function constructions need that gradient, so for a lossy network there is no analytical Lyapunov function in general.</li>
-        <li>Test case: the New England 39-bus system, Kron-reduced to its 10 generator buses. The uniform angle-shift invariance is removed with reference-subtracted coordinates.</li>
-        <li>Everything downstream verifies this closed loop dynamics f_cl directly.</li>
+        <li><b>Positivity:</b> $V(x) > V(x^*)$ for every $x \neq x^*$ in the region.</li>
+        <li><b>Decrease:</b> $\dot{V}(x) = \nabla V(x)^\top f(x) < 0$, so energy always falls along trajectories.</li>
+        <li>If both hold <b>everywhere</b> in a region, every trajectory that starts inside stays inside and converges.</li>
       </ul>
     </div>
+    <div class="col"><img src="fig/fig_bowl.png" alt="Lyapunov function as a bowl"></div>
   </div>
-  <div class="f"><span>Athay 1979; Chow 1992; paper Eq. 1</span><span>03</span></div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>5</span></div>
 </section>
 
-<section class="s">
-  <div class="k"><span>Lyapunov conditions</span><span>04</span></div>
-  <h1>An energy that is positive and decreasing. At every state.</h1>
-  <div class="cols">
-    <div>
-      <div class="eq">G(x)  = V(x) − V(x*)            &gt;  0     positivity
-V̇(x) = ∇V(x)ᵀ f_cl(x)           &lt;  0     decrease
+<!-- 6 Learning -->
+<section class="slide">
+  <h1>Learning the Lyapunov function</h1>
+  <div class="body">
+    <div class="col"><ul>
+      <li>$V_\phi$ is a single-hidden-layer <b>ELU network</b>.</li>
+      <li>Trained on sampled states with penalties whenever positivity or decrease fails.</li>
+      <li>4,000 steps on <b>one CPU core in 28 seconds</b>.</li>
+      <li>Training only sees samples. So the real question is: <b>does it hold between them?</b></li>
+    </ul></div>
+    <div class="col"><img src="fig/fig_sampling.png" alt="samples can miss a small violating pocket"></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>6</span></div>
+</section>
 
-exponential: V̇(x) ≤ −β (V(x) − V(x*)),
-             β &gt; 0</div>
-      <ul>
-        <li>Strict inequalities cannot hold at the equilibrium itself, so certification happens on compact regions that exclude a small ball around x*.</li>
-        <li>A family we use: the <b>level-set annulus</b> { x : c_in ≤ V(x) ≤ c_out }, a ring in the level sets of V around x*.</li>
-        <li>If both conditions hold on a region, every trajectory started there decreases in V toward the equilibrium. The word doing all the work is <b>every</b>: it is a claim about a continuum of states.</li>
-      </ul>
+<!-- 7 Sampling is not proof -->
+<section class="slide">
+  <h1>Sampling is not proof</h1>
+  <h2>Same network, same region, two answers</h2>
+  <div class="body">
+    <div class="col narrow"><ul>
+      <li><b>200,000 uniform samples:</b> no violation found. 99.98% satisfy decrease, 100% positivity, max $\dot V = -9.6$.</li>
+      <li><b class="red">Adversarial (PGD) search:</b> 6.1% of starts end in violations, with $\dot V$ up to <b class="red">+199.9</b>.</li>
+      <li><b>The verifier confirms</b> real counterexamples: $\dot V = +5.22$, and a state with $V(x) &lt; V(x^*)$.</li>
+    </ul></div>
+    <div class="col"><img src="fig/sampling_gap.png" alt="random sampling vs PGD"></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>7</span></div>
+</section>
+
+<!-- 8 CROWN -->
+<section class="slide">
+  <h1>Verification with CROWN</h1>
+  <h2>Certified bounds on the whole region, not samples</h2>
+  <div style="margin-top:24px;"><img src="fig/fig_crown.png" alt="CROWN bounds and branch and bound" style="max-height:470px;"></div>
+  <ul style="margin-top:28px;">
+    <li style="font-size:34px;margin-bottom:18px;">CROWN gives a <b>sound lower bound</b> on each condition over an entire input box. If the bound is above zero, the condition holds everywhere in that box.</li>
+    <li style="font-size:34px;margin-bottom:0;">If it's loose, <b>branch and bound</b> splits the box until every piece is certified, or a real counterexample is found.</li>
+  </ul>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>8</span></div>
+</section>
+
+<!-- 9 Loop -->
+<section class="slide">
+  <h1>Verification-guided training</h1>
+  <div style="flex:1;display:flex;align-items:center;"><img src="fig/fig_loop.png" alt="CEGIS loop and certified training" style="max-height:700px;"></div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>9</span></div>
+</section>
+
+<!-- 10 Protocol -->
+<section class="slide">
+  <h1>How we measure the certified region</h1>
+  <div class="body">
+    <div class="col"><ul>
+      <li>$\rho$ = side length of the largest square region on the slice where <b>both conditions are certified</b>.</li>
+      <li>Tested on the grid $\rho \in \{0.5, 1.0, 1.5, 2.0, 2.5\}$, with a small excluded neighborhood around the equilibrium.</li>
+      <li>Zero tolerance: one uncertified sub-box means the region fails. 30 s verifier budget per region.</li>
+      <li>Every certified region is also <b>attacked with PGD</b> as an audit.</li>
+    </ul></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>10</span></div>
+</section>
+
+<!-- 11 Results table -->
+<section class="slide">
+  <h1>Results</h1>
+  <h2>Five random seeds</h2>
+  <div class="center" style="flex-direction:column;">
+    <table>
+      <tr><th></th><th>Sample-based</th><th>CEGIS</th><th>Certified training</th></tr>
+      <tr><td><b>Certified scale $\rho$</b></td><td class="red"><b>0.0</b></td><td>1.8 ± 0.24</td><td><b>2.5</b> (all seeds)</td></tr>
+      <tr><td><b>Attack violation rate</b></td><td class="red">6.1%</td><td>0 in region</td><td>0 in region</td></tr>
+      <tr><td><b>Exponential rate $\beta$</b></td><td>n/a</td><td>3.97</td><td>3.97</td></tr>
+    </table>
+    <p class="small" style="margin-top:50px;max-width:1500px;">Both verification-guided methods reach the same decay rate. What they buy is a <b>bigger certified region</b>, not a faster one.</p>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>11</span></div>
+</section>
+
+<!-- 12 CEGIS curve -->
+<section class="slide">
+  <h1>One round of counterexamples is enough</h1>
+  <div class="body">
+    <div class="col narrow"><ul>
+      <li>Iteration 0: nothing certified, the attack finds violations.</li>
+      <li>After <b>one</b> counterexample-retraining step: $\rho$ jumps to 1.8 and the attack's worst $\dot V$ drops below zero.</li>
+      <li>Further iterations hold that gain.</li>
+    </ul></div>
+    <div class="col"><img src="fig/cegis_curve.png" alt="certified region over CEGIS iterations"></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>12</span></div>
+</section>
+
+<!-- 13 Fields -->
+<section class="slide">
+  <h1>Before and after</h1>
+  <div class="body">
+    <div class="col narrow"><ul>
+      <li>Left: the sample-trained $V$. The verifier's counterexample (×) sits in a red pocket where $\dot V &gt; 0$.</li>
+      <li>Right: after retraining, the green box is certified. Decrease holds out to $\rho = 2.0$ and positivity out to $\rho = 2.5$, both with positive margins.</li>
+    </ul></div>
+    <div class="col"><img src="fig/money_slice.png" alt="Lyapunov and Lie derivative fields before and after"></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>13</span></div>
+</section>
+
+<!-- 14 Annulus -->
+<section class="slide">
+  <h1>The certified region</h1>
+  <div class="body">
+    <div class="col narrow"><ul>
+      <li>Certified on the outer ring: angle within [0.1089, 0.7089] rad, frequency within ±0.4 Hz.</li>
+      <li>A small neighborhood around equilibrium (±0.015 rad, ±0.02 Hz) is excluded, where the decrease margin goes to zero.</li>
+      <li>All <b>8 of 8 tiles</b> certified on all five seeds.</li>
+    </ul></div>
+    <div class="col"><img src="fig/annulus_region_e10.png" alt="certified annular region"></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>14</span></div>
+</section>
+
+<!-- 15 Checks -->
+<section class="slide">
+  <h1>Independent checks</h1>
+  <div class="body" style="align-items:stretch;margin-top:80px;">
+    <div class="card"><div class="num">0</div><div class="numlbl">PGD violations found inside<br>any certified region</div></div>
+    <div class="card"><div class="num">24</div><div class="numlbl">boxes re-verified with JacobianOP,<br>a second verifier</div></div>
+    <div class="card"><div class="num">10<sup style="font-size:60px">−3</sup></div><div class="numlbl">tolerance $\delta$ of the dReal<br>SMT solver cross-check</div></div>
+  </div>
+  <p class="small" style="text-align:center;margin-bottom:60px;">None of these replaces the proof. Each catches a different implementation risk.</p>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>15</span></div>
+</section>
+
+<!-- 16 Limits -->
+<section class="slide">
+  <h1>What we have not shown yet</h1>
+  <div class="body"><div class="col"><ul>
+    <li>Certificates are on a <b>2-D slice</b> of the full state space, not the whole system.</li>
+    <li>Verification cost grows fast with dimension: branch and bound needs about 10 sub-domains in 2-D and 35 to 61 in 4-D.</li>
+    <li>The controller is held fixed. We certify the Lyapunov function, not a controller trained jointly with it.</li>
+    <li>Results are on a reduced model, not a full grid with inverter dynamics.</li>
+  </ul></div></div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>16</span></div>
+</section>
+
+<!-- 17 Conclusions -->
+<section class="slide">
+  <h1>Conclusions</h1>
+  <div class="center" style="text-align:left;justify-content:flex-start;">
+    <div style="max-width:1700px;">
+      <p style="font-size:46px;line-height:1.35;margin-bottom:50px;"><b>Key takeaway:</b> 200,000 samples can miss real violations. Putting a verifier inside training finds them and turns a network that certifies nothing into one certified over the whole tested region.</p>
+      <p style="font-size:46px;line-height:1.35;"><b>Next steps:</b> scale certificates past 2-D by composing them machine by machine, and certify the controller and the Lyapunov function together.</p>
     </div>
-    <div><img src="figures/fig_bowl.png" alt="energy bowl and trajectory"></div>
   </div>
-  <div class="f"><span>V is a neural network V_φ; G is the positivity margin</span><span>04</span></div>
 </section>
 
-<section class="s">
-  <div class="k"><span>Learned candidates</span><span>05</span></div>
-  <h1>Learn V as a small neural network by penalizing sampled violations.</h1>
-  <div class="cols">
-    <div>
-      <ul>
-        <li><b>Setup, following Cui 2022:</b> draw states from the operating domain, penalize violations of the positivity and decrease conditions at those states, train. The candidate V_φ is a single-hidden-layer ELU network.</li>
-        <li><b>Cost:</b> 4,000 steps on a single CPU core, 28 seconds. Cheap, and that matters later, because we will retrain it many times in a loop.</li>
-        <li><b>Where we look:</b> the two dimensional slice of generator 5, the plane (d5 − d5*, w5 − w5*), with all other states held at their equilibrium values. The full state is 20 dimensional; the slice lets us draw the conditions and their certified regions directly.</li>
-        <li>This sample-trained network is the empirical benchmark that the verifier will be run on.</li>
-      </ul>
-    </div>
-    <div class="card"><div class="n">What a certificate has to be</div>
-      Sample-based training says: at the points I drew, the conditions hold. A certificate says: for every state in this continuous region, the conditions hold. Those are different quantifiers. A finite sample measures typical behavior; a region of undetected violation can have arbitrarily small measure under the sampling distribution and still be a real hole in the proof.
-      <p style="margin:10px 0 0" class="m">Next slide: that gap is not hypothetical. We measured it.</p></div>
+<!-- 18 Thank you -->
+<section class="slide">
+  <div class="center" style="flex-direction:column;">
+    <p style="font-size:150px;font-weight:700;letter-spacing:-4px;">Thank you!</p>
+    <div class="title-names" style="margin-top:70px;">Sehaj Randhir Singh &nbsp;·&nbsp; Wenqi Cui</div>
+    <div class="title-aff">Queens High School for the Sciences at York College &nbsp;·&nbsp; New York University</div>
+    <div class="title-aff" style="margin-top:30px;color:#000;">sehajrsinghs@gmail.com &nbsp;·&nbsp; wenqicui@nyu.edu</div>
   </div>
-  <div class="f"><span>Cui 2022 sample-based procedure; training details in the paper appendix</span><span>05</span></div>
+  <div class="venue">Tackling Climate Change with Machine Learning, NeurIPS 2026</div>
 </section>
 
-<section class="s">
-  <div class="k"><span>Why sampling is not proof</span><span>06</span></div>
-  <h1>One network, two measurements. It passes the first and fails the second.</h1>
-  <div class="cols">
-    <div class="c2" style="grid-template-columns:1fr;gap:12px">
-      <div class="card"><div class="n">Measurement 1 &middot; uniform random evaluation</div>
-        <b>200,000 states</b> drawn uniformly over the region.<br>
-        Decrease condition satisfied on <b>99.98%</b>, positivity on <b>100%</b>. No violation of the decrease condition detected. Maximum Lyapunov derivative observed: <b>−9.6</b> (comfortably negative).<br>
-        <span class="m">By this measurement the network looks verified.</span></div>
-      <div class="card"><div class="n">Measurement 2 &middot; look for trouble on purpose</div>
-        A <b>PGD attack</b> ascends the Lyapunov derivative from random starts: <b>6.1%</b> of initializations end at states that violate the decrease condition, with the derivative reaching <b>+199.9</b>. The CROWN verifier confirms genuine counterexamples: a decrease violation with <b>V̇ = +5.22</b>, and a positivity violation, a state with <b>V(x) &lt; V(x*)</b>.</div>
-      <p class="m" style="margin-top:2px">Same network, same region. The violating states sit in pockets of negligible measure under uniform sampling, so 200,000 draws never landed in one. Verdict: this network certifies nothing, ρ = 0.</p>
-    </div>
-    <div><img src="figures/fig_sampling.png" alt="sampling misses a violation pocket"></div>
-  </div>
-  <div class="f"><span>Numbers from the paper appendix; the two measurements are kept separate on purpose</span><span>06</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>The verifier, part 1</span><span>07</span></div>
-  <h1>CROWN bounds the margin over a whole box, not a point.</h1>
-  <div class="cols">
-    <div>
-      <ul>
-        <li>Evaluating the network at samples describes those samples. A verifier instead takes a <b>box</b> B, an interval per coordinate, and reasons about <i>all</i> x inside it.</li>
-        <li>For each nonlinear operation, CROWN first finds the range its input takes over B, then encloses the operation between <b>two linear functions</b>, one above it and one below it. Propagating those enclosures <b>backward through the graph</b>, from output to input, yields a linear lower bound on the margin, whose minimum over a box is closed form.</li>
-        <li><b>Sound:</b> the bound can be conservative, but no state in the box can break it, including states nobody ever drew.</li>
-        <li>The same machinery covers general computation graphs and the exact blocks in our graph: ELU activations, sine, cosine, and multiplication (Shi 2024).</li>
-      </ul>
-      <div class="eq">lᵀx + l_b  ≤  h(x)  ≤  uᵀx + u_b      for all x in B
-min of a linear function over B is closed form
-     ⇒ sound lower bound h̲(B) on h</div>
-    </div>
-    <div><img src="figures/fig_crown.png" alt="linear bounds over sub-boxes"></div>
-  </div>
-  <div class="f"><span>Zhang 2018; Xu 2020; Shi 2024</span><span>07</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>The verifier, part 2</span><span>08</span></div>
-  <h1>Split what is inconclusive. One graph holds the network and the physics.</h1>
-  <div class="cols">
-    <div>
-      <ul>
-        <li>Linear enclosures are tight on small boxes and loose on large ones. A single bound over a big box is often <b>inconclusive</b>: lower bound negative, although no violating state exists.</li>
-        <li><b>Branch and bound</b> splits such a box and bounds every sub-box again. It stops one of three ways: every piece certified; a state with a negative margin found, kept as a <b>counterexample</b>; or the budget spent, and the region reported not certified.</li>
-        <li><b>One computation graph:</b> V_φ, its analytic gradient ∇V_φ, the controller, and the swing dynamics f_cl all live in the same graph. What the verifier proves, it proves about the model we actually run, not about a linearization of it.</li>
-      </ul>
-      <p class="m" style="margin-top:8px">Outcomes: certified, or a concrete counterexample state, or not certified. Never "looks fine".</p>
-    </div>
-    <div class="card"><div class="n">Three margins, verified on every sub-box</div>
-      <b>G_φ(x) = V_φ(x) − V_φ(x*)</b><br>positivity. Certified when its lower bound is strictly positive.
-      <p style="margin:10px 0 0"><b>F_φ(x) = −V̇_φ(x)</b><br>decrease. Certified when nonnegative everywhere.</p>
-      <p style="margin:10px 0 0"><b>F_φ,β(x) = −V̇_φ(x) − β (V_φ(x) − V_φ(x*))</b><br>exponential decrease at rate β.</p>
-      <p style="margin:12px 0 0" class="m">A box counts as certified only when all its sub-boxes clear their margins.</p></div>
-  </div>
-  <div class="f"><span>Verification graph: V_φ, ∇V_φ, controller, f_cl</span><span>08</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Method 1 &middot; CEGIS</span><span>09</span></div>
-  <h1>Counterexample-guided retraining: the verifier writes the hard examples.</h1>
-  <img src="figures/fig_loop.png" alt="CEGIS loop and certified training" style="width:100%;max-height:262px;object-fit:contain;margin-bottom:10px">
-  <div class="cols" style="grid-template-columns:1.1fr 1fr">
-    <ul style="font-size:17px">
-    <ul>
-      <li>Start from the sample-trained V_φ. Verify the target region with CROWN and branch and bound.</li>
-      <li>On failure, pull candidate counterexamples out of the uncertified sub-boxes into a cumulative training set, retrain, verify again. Repeat until certified or the computational budget is spent.</li>
-    </ul>
-    <ul>
-      <li>The controller is held fixed throughout. Only V_φ is updated.</li>
-      <li>The verifier is the only source of counterexamples. They are found, never assumed.</li>
-    </ul>
-  </div>
-  <div class="f"><span>Counterexample-guided inductive synthesis; verifier in the outer loop only</span><span>09</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Method 2 &middot; certified training</span><span>10</span></div>
-  <h1>Make the verifier's own bound a differentiable term in the loss.</h1>
-  <div class="cols">
-    <div>
-      <div class="eq">penalty per box B_k:
-   max { 0,  m − h̲(B_k) }
-averaged over the boxes that partition the region</div>
-      <ul>
-        <li>Run CROWN on each input box inside the single verification graph. The bound h̲ is <b>differentiable in φ</b>, the parameters of V_φ, because the whole graph is.</li>
-        <li>So backpropagation raises the <b>worst-case margin over every box</b>, instead of the margin at sampled points. A hinge pushes any box whose certified margin falls below a target m.</li>
-        <li>A box whose bound stays negative is split during training, so the partition refines exactly where certification is hardest.</li>
-        <li><b>Warm start:</b> certified training begins from the network the CEGIS loop produced, and both methods are scored by the same final standalone verification.</li>
-      </ul>
-    </div>
-    <div class="card"><div class="n">How ρ is measured (the protocol behind the table)</div>
-      <b>Region:</b> a square on the slice, d5 − d5* in [η, η+ρ] and w5 − w5* in [η, η+ρ], with offset η = 0.05 to stay away from x*. Other states at equilibrium.
-      <p style="margin:10px 0 0"><b>Grid:</b> ρ in {0.5, 1.0, 1.5, 2.0, 2.5}, swept upward, first failure stops.</p>
-      <p style="margin:10px 0 0"><b>Certified means:</b> branch and bound at zero tolerance, plus an independent PGD search inside the square that finds no violating state. 30 s of branch and bound per grid value.</p>
-      <p style="margin:10px 0 0"><b>Honesty note:</b> ρ = 0 means even the smallest square failed. 2.5 is the largest grid value, so a 2.5 entry is limited by the grid, not by a failed certificate.</p></div>
-  </div>
-  <div class="f"><span>Certified training follows Shi 2024; same verifier, same protocol for both methods</span><span>10</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Results</span><span>11</span></div>
-  <h1>Verification-guided training turns ρ = 0 into a certified region.</h1>
-  <div class="cols" style="grid-template-columns:0.95fr 1.05fr">
-    <div>
-      <table>
-        <tr><th>Five seeds</th><th>Sample-based</th><th>CEGIS</th><th>Certified training</th></tr>
-        <tr><td>Certified scale ρ</td><td class="n">0.0</td><td class="n">1.8 ± 0.24</td><td class="n">2.5 (all seeds)</td></tr>
-        <tr><td>Attack violation rate</td><td class="n">6.1%</td><td class="n">0 in region</td><td class="n">0 in region</td></tr>
-        <tr><td>Exponential rate β</td><td class="n">n/a</td><td class="n">3.97</td><td class="n">3.97</td></tr>
-      </table>
-      <ul>
-        <li><b>6.1%</b> is the PGD attack violation rate of the sample-trained network. Inside every certified region, the same attack finds nothing.</li>
-        <li>Both guided methods land on the same verified rate <b>β = 3.97</b>. The benefit of certified training is a <b>bigger certified region</b>, not a faster rate.</li>
-        <li>In the CEGIS loop, the principal gain arrives after the first counterexample-retraining step and then holds across iterations.</li>
-        <li>For the network drawn at right, decrease certifies out to <b>ρ = 2.0</b> and positivity out to <b>ρ = 2.5</b>, both with positive margins.</li>
-      </ul>
-    </div>
-    <div><img src="figures/money_slice.png" alt="Lyapunov derivative and value fields before and after retraining"></div>
-  </div>
-  <div class="f"><span>Main table (five seeds); fields on the generator-5 slice, red/dark where V̇ &gt; 0</span><span>11</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Certified annulus</span><span>12</span></div>
-  <h1>The shape of the guarantee: a ring around the equilibrium, on all five seeds.</h1>
-  <div class="cols" style="grid-template-columns:1fr 1.05fr">
-    <div>
-      <ul>
-        <li>The strict decrease condition cannot hold at x*, so the certificate excludes a small neighborhood and covers the <b>annulus</b> around it: a square annulus, the outer box cut into a 3 by 3 grid with the centre cell removed, 8 rectangular tiles.</li>
-        <li><b>Geometry, from the committed E10 results:</b> outer ring d5 in [0.1089, 0.7089] rad (6.2° to 40.6°), w5 in [−0.4, 0.4] Hz; excluded neighborhood ±0.015 rad and ±0.02 Hz.</li>
-        <li><b>All five seeds certify every tile, 8 of 8</b>, and the outer box stays inside the linear droop band (±0.4 Hz against saturation at 0.453 Hz).</li>
-        <li>The annulus construction <b>enlarges</b> the certified region versus verification without it. Smaller holes came back "unknown" under the same budget, not refuted.</li>
-        <li><b>Reading the hole:</b> it is not instability. The guarantee is that trajectories initialized inside the verified annulus decrease toward the excluded neighborhood of x*.</li>
-      </ul>
-    </div>
-    <div><img src="figures/annulus_region_e10.png" alt="certified annular region"></div>
-  </div>
-  <div class="f"><span>Geometry and per-seed certifications read from results/annulus_e10_report.md</span><span>12</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Independent checks</span><span>13</span></div>
-  <h1>Three tools that do not share our pipeline checked the certificates.</h1>
-  <div class="big">
-    <div class="card"><div class="n">Check 1 &middot; adversarial</div><div class="h">PGD audit</div>
-      Projected-gradient attacks search each certified region, ascending the margins from many random starts. They find <b>no feasible violation</b> inside any region we claim. On regions we report as failed, attacks find the violations.</div>
-    <div class="card"><div class="n">Check 2 &middot; another verifier</div><div class="h">JacobianOP</div>
-      A second verifier that expands the gradient nodes internally, instead of accepting our analytic-gradient graph. It found <b>no soundness contradictions on the 24 tested boxes</b>.</div>
-    <div class="card"><div class="n">Check 3 &middot; SMT</div><div class="h">dReal</div>
-      The SMT solver dReal at tolerance δ = 10<sup>−3</sup> returns <b><span class="ok">unsat</span></b> on the certified regions and <b><span class="warn">sat</span></b>, with the matching counterexample, on the failed ones.</div>
-  </div>
-  <p class="m" style="margin-top:22px">These checks do not remove every implementation risk, but they give independent evidence that both the successes and the failures are genuine. Each reported certificate and each reported failure is checked by a method other than the verifier that produced it.</p>
-  <div class="f"><span>Procedures in the paper appendix</span><span>13</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>What this is not</span><span>14</span></div>
-  <h1>Honest limits: a slice, a cost that grows with dimension, a fixed controller.</h1>
-  <div class="c2" style="gap:18px">
-    <div class="card"><div class="n">Slice, not the full state</div>
-      The certificates live on the two dimensional generator-5 slice, with the other nine generators held at equilibrium. That is a faithful projection of the model, not a certificate for the full system.</div>
-    <div class="card"><div class="n">Branch and bound does not scale for free</div>
-      Its cost can become prohibitive as the state dimension grows. In our own runs, certifying the full ρ = 2.5 square took on the order of 10 sub-domains at 2-D, and widening the slice to 4-D already pushed that to 35 to 61. Going to 9 or 18 more dimensions as-is is not on the table.</div>
-    <div class="card"><div class="n">The controller is fixed</div>
-      Training updates only V_φ; the controller and plant stay fixed, so nothing here measures robustness to model error. The certificate is only as good as the swing model behind it.</div>
-    <div class="card"><div class="n">What we would try next</div>
-      Compositional or decentralized certification: build local certificates per generator or per subsystem and combine them, so the proof scales with the network rather than the dimension. Integrating that with certified training is the open question.</div>
-  </div>
-  <p class="m" style="margin-top:16px">Everything shown is simulation on the Kron-reduced New England system. A slice-level certificate is not authorization to act on a physical grid.</p>
-  <div class="f"><span>This transparency is part of the contribution: caught at 99.98%, certified where it matters</span><span>14</span></div>
-</section>
-
-<section class="s">
-  <div class="k"><span>Takeaways</span><span>15</span></div>
-  <h1>Samples cannot prove stability on a continuous region. Verification can.</h1>
-  <div class="big">
-    <div class="card"><div class="n">Finding 1</div><div class="v">200,000 ≠ proof</div>
-      The sample-trained network satisfied the decrease condition on 99.98% of 200,000 uniform draws and still contained genuine violations: V̇ = +5.22, and a state with V below its value at equilibrium.</div>
-    <div class="card"><div class="n">Finding 2</div><div class="v">ρ: 0 → 2.5</div>
-      Counterexample-guided retraining reaches ρ = 1.8 ± 0.24; certified training reaches ρ = 2.5 on every seed, all at the verified exponential rate β = 3.97, audited by attacks and by independent solvers.</div>
-    <div class="card"><div class="n">Next</div><div class="v">2-D → full state</div>
-      Scale the proof from one slice to the whole system. The direction: compositional and decentralized verification, combined with the certified training loop.</div>
-  </div>
-  <p style="margin-top:26px">Thank you. Poster #240, and happy to dig into any of this.</p>
-  <p class="m">sehajrsinghs@gmail.com &middot; wenqicui@nyu.edu</p>
-  <div class="f"><span>TCCML at NeurIPS 2026</span><span>15</span></div>
-</section>
-
-<div id="ctr">1 / 15</div>
-
+<div class="counter" id="ctr"></div>
 <script>
-  var slides = Array.prototype.slice.call(document.querySelectorAll('.s'));
-  var ctr = document.getElementById('ctr');
-  var cur = 0;
-  function show(i) {
-    cur = Math.max(0, Math.min(slides.length - 1, i));
-    slides[cur].scrollIntoView({ behavior: 'instant', block: 'start' });
-    ctr.textContent = (cur + 1) + ' / ' + slides.length;
-  }
-  function fromScroll() {
-    var mid = window.scrollY + window.innerHeight / 2;
-    var best = 0, bestd = Infinity;
-    for (var i = 0; i < slides.length; i++) {
-      var r = slides[i].offsetTop + slides[i].offsetHeight / 2;
-      var d = Math.abs(r - mid);
-      if (d < bestd) { bestd = d; best = i; }
-    }
-    if (best !== cur) { cur = best; ctr.textContent = (cur + 1) + ' / ' + slides.length; }
-  }
-  window.addEventListener('scroll', fromScroll, { passive: true });
-  window.addEventListener('keydown', function (e) {
-    if (e.key === 'ArrowRight' || e.key === 'ArrowDown' || e.key === 'PageDown' || e.key === ' ') {
-      e.preventDefault(); show(cur + 1);
-    } else if (e.key === 'ArrowLeft' || e.key === 'ArrowUp' || e.key === 'PageUp') {
-      e.preventDefault(); show(cur - 1);
-    } else if (e.key === 'Home') { e.preventDefault(); show(0); }
-    else if (e.key === 'End') { e.preventDefault(); show(slides.length - 1); }
-  });
+  const s=[...document.querySelectorAll('.slide')]; let i=0;
+  function go(n){ i=Math.max(0,Math.min(s.length-1,n)); s[i].scrollIntoView({block:'center'}); document.getElementById('ctr').textContent=(i+1)+' / '+s.length; }
+  document.addEventListener('keydown',e=>{ if(['ArrowRight','ArrowDown','PageDown',' '].includes(e.key)){e.preventDefault();go(i+1);} if(['ArrowLeft','ArrowUp','PageUp'].includes(e.key)){e.preventDefault();go(i-1);} if(e.key==='Home')go(0); if(e.key==='End')go(s.length-1); });
+  function fit(){ const k=Math.min(1,(window.innerWidth-32)/1920); document.querySelectorAll('.slide').forEach(el=>{ el.style.zoom=k; }); }
+  window.addEventListener('resize',fit); fit(); go(0);
 </script>
-
 </body>
 </html>
