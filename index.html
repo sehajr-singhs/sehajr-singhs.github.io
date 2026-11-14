@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Sehaj Randhir Singh</title>
-<meta name="description" content="Sehaj Randhir Singh. Control and dynamics engineer working on certified learned control for physical machines.">
+<meta name="description" content="Sehaj Randhir Singh. Control and dynamics engineer in New York working on certified learned control for power grids and physical machines.">
 <style>
   :root {
     --bg: #ebe8e1;
@@ -154,6 +154,29 @@
   .qa .q { font-weight: 600; font-size: 14px; margin-top: 20px; }
   .qa .a { color: var(--muted); font-size: 13.5px; line-height: 1.65; margin-top: 4px; max-width: 640px; }
 
+  .entry.feature { border-width: 2px; padding: 22px 24px; }
+  .entry.feature .e-title { font-family: var(--serif); font-size: 21px; font-weight: 500; letter-spacing: -0.01em; line-height: 1.3; }
+  .entry.feature .e-body { font-size: 14px; color: var(--ink); }
+  .entry.feature .e-body p.m { color: var(--muted); }
+  .kicker { font-size: 11px; letter-spacing: 0.14em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+  .stats { display: grid; grid-template-columns: repeat(3, 1fr); gap: 10px; margin: 14px 0 4px; }
+  .stats div { border-top: 1px solid var(--ink); padding-top: 6px; font-size: 12px; color: var(--muted); line-height: 1.4; }
+  .stats b { display: block; font-family: var(--serif); font-size: 22px; font-weight: 500; color: var(--ink); }
+  details.article { background: var(--box); border: 1px solid var(--ink); border-radius: 3px; padding: 16px 20px; margin: 10px 0; }
+  details.article summary { cursor: pointer; list-style: none; font-weight: 600; font-size: 14.5px; line-height: 1.45; }
+  details.article summary::-webkit-details-marker { display: none; }
+  details.article summary::before { content: "+ "; color: var(--muted); }
+  details.article[open] summary::before { content: "\2212 "; }
+  details.article .dek { display: block; font-weight: 400; font-size: 12.5px; color: var(--muted); margin-top: 4px; }
+  details.article .body { margin-top: 14px; }
+  details.article .body p { font-size: 14px; line-height: 1.75; margin-bottom: 12px; }
+  details.article .body h2 { font-family: var(--serif); font-weight: 500; font-size: 18px; margin: 20px 0 8px; }
+  details.article .body ul { margin: 0 0 12px 18px; font-size: 13.5px; line-height: 1.65; }
+  details.article .body li { margin-bottom: 8px; }
+  details.article .body a { color: var(--ink); }
+  .sassy { display: block; width: 230px; max-width: 70%; height: auto; margin: 34px 0 4px; }
+  .sassy-cap { font-size: 12px; color: var(--muted); }
+  @media (max-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } .entry.feature .e-title { font-size: 18px; } }
   .rom .pl { display: block; margin-top: 3px; font-size: 12px; color: var(--muted); }
   .rom .pl a { color: var(--muted); border-bottom: 1px solid var(--line); }
 
@@ -169,6 +192,7 @@
     header { margin-bottom: 34px; }
     .e-meta { white-space: normal; }
   }
+  @media (max-width: 560px) { .fan figure:nth-child(4) { left: 55%; } .fan figure:nth-child(3) { left: 37%; } }
   @media (prefers-reduced-motion: reduce) { * { transition: none !important; } html { scroll-behavior: auto; } }
 </style>
 </head>
@@ -183,57 +207,55 @@
       <a href="#work">Work</a>
       <a href="#talks">Talks</a>
       <a href="#pubs">Publications</a>
-      <a href="#writing">Writing</a>
       <a href="#projects">Projects</a>
       <a href="#contact">Contact</a>
+      <a href="Sehaj-Randhir-Singh-CV.pdf" target="_blank" rel="noopener">CV</a>
       <a href="#me">Off the clock</a>
       <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">GitHub</a>
     </nav>
   </header>
 
   <div class="intro">
-    <div class="lede">I build learned control for physical machines that comes with proofs.</div>
     <div class="tagline">
-      I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers. We train neural Lyapunov functions so they're verifiable by construction, and my first-author paper on it was recently accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. I'm also a data center research intern, studying how huge blocks of AI load connect to a grid whose wires were sized for a different decade. The goal there is a grid that carries AI load and stays stable while learned controllers make more of the calls.
+      I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers, and my first-author paper on it was accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. Most of my time now goes into a certified thermal twin for power transformers, the equipment that decides how much AI load and clean energy a grid can actually take. I have five papers under review at the IEEE PES General Meeting 2027 and two at L4DC 2027.
     </div>
     <div>
-      I'm also building Guerilla, a project around one idea I call the Index of Operations. It models a machine as physical parts and checks whether energy is still conserved where they connect, which catches faults on real physical AI datasets. The control side is simulation only so far.
+      I'm also building <a href="operator/">Operator</a>, around one idea I call the Index of Operations. It models a machine as its physical parts and reads the shape they draw together. I presented it to Joe Garcia and the a16z Alpha Fellowship team in November 2026.
     </div>
   </div>
 
-  <!-- ================= GUERILLA ================= -->
+  <!-- ================= ACTIVE ================= -->
   <div class="sec-label" id="active">Active projects</div>
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title">The AI Data-Center Boom: control and systems flexibility for a grid under AI load, with data and/or interviews with OpenAI, Tesla Megapack, Mitsubishi Heavy Industries, NYISO, PJM, ERCOT and NYSERDA</div>
-      <div class="e-meta">2026 – Present</div>
-    </div>
+
+  <div class="entry boxed feature">
+    <div class="kicker">Main project &nbsp;·&nbsp; 2026 – Present</div>
+    <div class="e-title">A certified thermal twin for power transformers</div>
     <div class="e-body">
-      AI data centers arrive as huge blocks of load, fast, on wires sized for a different decade. This study asks how the grid can carry that load through control instead of only new build-out: data centers and batteries as flexible, controllable loads, faster certified interconnection screening, and frequency and voltage margins under fast-ramping demand.
+      <p>A transformer's real limit is the hot spot inside its winding, and nobody can put a sensor there while it's in service. So utilities rate for the worst case and leave capacity sitting idle, while AI data centers and new solar and wind wait years for a new unit. I'm building a twin that sees inside.</p>
+      <p>A multi-fidelity, physics-informed neural operator, trained on 3,200 coarse and 320 fine conjugate heat-transfer simulations, predicts the full temperature field through the winding in 40.8 ms. It only learns the correction on top of the IEEE C57.91 standard, never the physics the standard already knows. A second layer turns that into a rating an operator can sign: interval bounds on the hot spot over the whole dispatch window, a calibrated margin for model error, and an aging-aware controller that says how much extra load it buys and what that costs in insulation life.</p>
+      <div class="stats">
+        <div><b>0.542 °C</b>hot-spot error on designs it never saw</div>
+        <div><b>40.8 ms</b>per full temperature field</div>
+        <div><b>0.225 °C</b>top-oil error on real transformers, vs 4.15 °C for C57.91</div>
+      </div>
+      <p class="m">What's next is the full build for Terra NYC, JSHS and ISEF: 3-D simulation at a much larger scale, a bench rig with fiber-optic hot-spot sensing, and validation against measured hot-spot data from a utility or manufacturer. That's the one thing simulation can't give me, and it's what turns this from a paper into something a utility would run.</p>
     </div>
+    <div class="e-links"><a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Paper A: seeing inside the transformer &rarr;</a><a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Paper B: proof-carrying ratings &rarr;</a></div>
   </div>
 
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title"><a href="guerilla/">Guerilla &middot; the Index of Operations</a></div>
-      <div class="e-meta">2026</div>
-    </div>
+  <div class="entry boxed feature">
+    <div class="kicker">With Prof. Wenqi Cui, NYU Tandon ECE &nbsp;·&nbsp; 2026 – Present</div>
+    <div class="e-title">Certified neural Lyapunov functions for the grid</div>
     <div class="e-body">
-      A machine is parts that pass energy to each other. The Index of Operations models each part and watches the points where they connect. When a connection stops conserving what crosses it, something is wrong there, and I call that signal slip. On real physical AI datasets it catches faults that raw sensor features miss, and it barely moves when the sensors are recalibrated, which is where most monitoring quietly breaks. The first product is a small box that does this next to a machine a plant already owns, with no new sensors. In simulation the same signal tells a controller when to adapt. Control isn't on physical hardware yet.
+      <p>A learned stability function for grid frequency looked perfect by testing. It passed on 99.98% of sampled states and 200,000 random samples found nothing, but a directed search found violations 6.1% of the time. Testing visits points and a proof has to cover a region. So we put the verifier inside training: CROWN branch and bound finds the counterexamples, and the network trains through the bound until it's verifiable by construction.</p>
+      <div class="stats">
+        <div><b>ρ = 2.5</b>certified on all five seeds</div>
+        <div><b>1.8</b>where counterexample repair stalls</div>
+        <div><b>3</b>independent verifiers in agreement</div>
+      </div>
+      <p class="m">First-author paper, accepted at the Tackling Climate Change with ML workshop at NeurIPS 2026.</p>
     </div>
-    <div class="e-links"><a href="guerilla/">The full method, every result and every limit &rarr;</a></div>
-  </div>
-
-
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title"><a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">Certified grid-side behavior for an AI UPS</a></div>
-      <div class="e-meta">2026</div>
-    </div>
-    <div class="e-body">
-      An AI training campus can step its power by 40 MW in an instant, and the grid wants to know none of that reaches it. An AI UPS, a battery and inverter between the campus and the feeder, is built to absorb it. I proved, by sound branch-and-bound, that for every load profile in range the grid sees at most a 10 MW/min ramp, the feeder voltage moves at most 1.35%, and the battery never saturates or runs empty, using 40 MW and 2.0 MWh, 1.43 times the minimum any controller could need. It's a public model with assumed parameters.
-    </div>
-    <div class="e-links"><a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">The proof, the figures and the paper &rarr;</a></div>
+    <div class="e-links"><a href="https://openreview.net/forum?id=iAKq71lqO6" target="_blank" rel="noopener">Paper &rarr;</a><a href="share/tccml/poster/TCCML-poster-Singh-Cui.pdf" target="_blank" rel="noopener">Poster &rarr;</a><a href="share/tccml/TCCML-talk-Singh-Cui.pdf" target="_blank" rel="noopener">Slides &rarr;</a><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Code &rarr;</a></div>
   </div>
 
   <div class="entry boxed">
@@ -242,7 +264,7 @@
       <div class="e-meta">2026 – Present</div>
     </div>
     <div class="e-body">
-      Grid foundation models like GENCO answer a power-flow question in milliseconds, but nobody can act on an answer without knowing it's right. My check warm-starts Newton from the model's prediction and certifies it only if a true solution sits right next to it. On GENCO's published outage predictions for the 2,000-bus Texas grid, it certified 609 of 989 cases with no wrong answer passed, and the warm start halves Newton's iterations. I'm developing it with the OpenGridFM maintainers at IBM Research and Hydro-Qu&eacute;bec, splitting the solution check from an optional security check and adding a bound that certifies without a full solve.
+      Grid foundation models like GENCO answer a power-flow question in milliseconds, but nobody can act on an answer without knowing it's right. My check warm-starts Newton from the model's prediction and certifies it only if a true solution sits right next to it. On GENCO's published outage predictions for the 2,000-bus Texas grid, it certified 609 of 989 cases with no wrong answer passed, and the warm start halves Newton's iterations. I'm developing it with the OpenGridFM maintainers at IBM Research and Hydro-Qu&eacute;bec.
     </div>
     <div class="e-links"><a href="https://github.com/sehajr-singhs/genco-certify" target="_blank" rel="noopener">Code and slides &rarr;</a></div>
   </div>
@@ -254,8 +276,47 @@
     </div>
     <div class="e-body">
       Power Grid Model is the open-source solver grid operators like Alliander actually run. I'm contributing to it, starting with a transmission validation case built from a public IEEE network, and a proposal, with benchmarks on the project's own test networks, to let Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate.
-      <!-- TODO before publishing: link the GitHub issue once it's open, and add the benchmark result -->
     </div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title"><a href="https://artofproblemsolving.com/polymath/mitprimes2026" target="_blank" rel="noopener">MIT PRIMES CrowdMath 2026: arithmetic conjectures on rational semirings</a></div>
+      <div class="e-meta">2026 – Present</div>
+    </div>
+    <div class="e-body">
+      Contributing to this year's CrowdMath, the open research project run by MIT PRIMES and Art of Problem Solving, on atomicity and irreducible divisors in rational semirings.
+    </div>
+  </div>
+
+  <details class="article">
+    <summary>The AI data-center boom: why it's a control problem<span class="dek">Article &nbsp;·&nbsp; 2026 – Present &nbsp;·&nbsp; growing up around the grid, and what I've built for a grid under AI load</span></summary>
+    <div class="body">
+<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
+<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set.</p>
+<h2>The data-center boom is a control problem</h2>
+<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. A training campus can swing tens of megawatts in seconds as thousands of accelerators compute and then sync together. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
+<h2>What I've built on it</h2>
+<ul>
+<li><b>A proved ramp limit for a data center's UPS.</b> A battery-backed uninterruptible power supply between the campus and the grid, with a proof that for every load profile in range the grid sees a bounded ramp and the battery never runs out, plus a sizing rule within 1.43&times; of what any controller could need. <a href="papers/pesgm2027-ups-ramp-certificate.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">figures and proof</a>. Under review, IEEE PES GM 2027.</li>
+<li><b>A fleet of those UPS batteries as grid support.</b> With &plusmn;10 MW of headroom per campus on the Kundur two-area model, verified inter-area damping goes from 0.024 to 0.106. <a href="papers/pesgm2027-ups-fleet-damping.pdf" target="_blank" rel="noopener">Paper</a>. Under review, IEEE PES GM 2027.</li>
+<li><b>A certified screen for interconnection queues.</b> How much a bus can take in 1.4 ms instead of hundreds of AC power flows, with a certificate that says which answers to trust and which to send to a full study. Presented to PJM's Applied Innovation team. <a href="papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">PJM slides</a>. Under review, IEEE PES GM 2027.</li>
+<li><b>How much regulation flexible AI compute can promise.</b> Two theorems that bound it, 17.32 MW certified against a 17.34 MW provable ceiling on a 40-job pool, where naive headroom accounting overpromises by 53%. <a href="share/flex-compute/Flexible-Compute-Regulation-Bound-Singh.pdf" target="_blank" rel="noopener">Note</a>.</li>
+</ul>
+<h2>Sampling isn't proof</h2>
+<p>All of it comes back to the same thing I learned with Prof. Cui. Testing visits points and a proof has to cover a region. The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
+    </div>
+  </details>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title"><a href="operator/">Operator &middot; the Index of Operations</a></div>
+      <div class="e-meta">2026 &middot; presented to a16z Alpha</div>
+    </div>
+    <div class="e-body">
+      A machine is parts that pass energy to each other. The Index of Operations gives every part its own axes, the stator, the winding, the bearing, the housing, and reads the shape they draw together as the machine runs. When a connection stops conserving what crosses it, something is wrong there. On real physical AI datasets it catches faults that raw sensor features miss, and it barely moves when the sensors are recalibrated, which is where most monitoring quietly breaks. The control side, a Lyapunov shield that keeps the shape from moving the wrong way, is in simulation so far, and a certified controller that ages with the machine is under review at L4DC 2027. I presented Operator to Joe Garcia and the a16z Alpha Fellowship team in November 2026.
+    </div>
+    <div class="e-links"><a href="operator/">The full idea, every result, every limit and the essays &rarr;</a></div>
   </div>
 
   <!-- ================= WORK ================= -->
@@ -266,6 +327,14 @@
     <div>
       <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Research Collaborator, Cui Group, NYU Tandon ECE</a></div><div class="e-meta">2026 – Present</div></div>
       <div class="e-body">Certified neural Lyapunov functions for power-grid transient stability. Instead of repairing a learned certificate after the fact, the network is trained to be verifiable by construction by differentiating through the CROWN bound. On the lossy 39-bus model it certifies ρ = 2.5 on all five seeds where counterexample repair stalls at 1.8, verified three independent ways. The only person in the group working on Lyapunov stability.</div>
+    </div>
+  </div>
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Research Collaborator, Mechatronics, Controls, and Robotics Lab, NYU Tandon MAE</div><div class="e-meta">2026 – Present</div></div>
+      <div class="e-body">With Prof. Vikram Kapila. Person re-identification for single-camera video, using motion as the main identity signal: identity switches on MOT17 cut 21.3% (1,265 to 995).</div>
     </div>
   </div>
 
@@ -286,14 +355,6 @@
   </div>
 
 
-  <div class="entry">
-    <div class="dot"></div>
-    <div>
-      <div class="e-head"><div class="e-title">Antioch</div><div class="e-meta">2025–26 · research collaboration</div></div>
-      <div class="e-body">Control and stability for simulated physical systems with an early-stage robotics-simulation startup, contributing technical feedback and development.</div>
-    </div>
-  </div>
-
   <!-- ================= PUBLICATIONS ================= -->
 
   <div class="sec-label" id="talks">Talks</div>
@@ -311,6 +372,13 @@
       <div class="e-body">Accepted workshop paper, presented remotely.</div>
     </div>
   </div>
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title"><a href="operator/">Operator: the Index of Operations</a></div><div class="e-meta">Nov 2026 &middot; a16z Alpha</div></div>
+      <div class="e-body">Presented Operator to Joe Garcia and the a16z Alpha Fellowship team.</div>
+    </div>
+  </div>
   <!-- PSEG Long Island: add only once a presentation is actually scheduled.
   <div class="entry">
     <div class="dot"></div>
@@ -322,142 +390,50 @@
   -->
 
   <div class="sec-label" id="pubs">Publications &amp; manuscripts</div>
-  <div class="sec-note">One accepted paper, two under review, and 14 manuscripts written for NeurIPS 2026 workshops.</div>
+  <div class="sec-note">One accepted paper, seven under review, and a few unpublished manuscripts worth reading.</div>
 
   <div class="pub">
     <div class="num">01</div>
     <div>
       <div class="pub-title">Learning Lyapunov Functions for Power System Transient Stability: Neural Verification and Retraining <span class="tag live">accepted</span></div>
-      <div class="pub-venue">S. R. Singh, W. Cui &nbsp;·&nbsp; TCCML @ NeurIPS 2026 &mdash; accepted, camera-ready in preparation &nbsp;·&nbsp; <a href="https://openreview.net/forum?id=iAKq71lqO6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">code</a></div>
-    </div>
-  </div>
-  <div class="pub">
-    <div class="num">02</div>
-    <div>
-      <div class="pub-title">Two manuscripts, IEEE control and dynamics <span class="tag">under review</span></div>
-      <div class="pub-venue">IEEE &nbsp;·&nbsp; submitted 2026, no decision yet</div>
+      <div class="pub-venue">S. R. Singh, W. Cui &nbsp;·&nbsp; TCCML @ NeurIPS 2026 &nbsp;·&nbsp; <a href="https://openreview.net/forum?id=iAKq71lqO6" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">paper</a> &nbsp;·&nbsp; <a href="share/tccml/poster/TCCML-poster-Singh-Cui.pdf" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">poster</a> &nbsp;·&nbsp; <a href="share/tccml/TCCML-talk-Singh-Cui.pdf" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">slides</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener" style="color:var(--muted);text-decoration:underline;text-underline-offset:2px;">code</a></div>
     </div>
   </div>
 
-  <details class="post ms">
-    <summary><span class="num">03</span><span><span class="pub-title">The grid under AI load</span><span class="dek">6 unpublished manuscripts</span></span></summary>
+  <details class="post ms" open>
+    <summary><span class="num">02</span><span><span class="pub-title">IEEE PES General Meeting 2027</span><span class="dek">5 papers under review</span></span></summary>
     <div class="body">
   <ul class="ml rom">
-      <li><span><a href="papers/certified-feasible-capacity-operators.pdf" target="_blank" rel="noopener">Certified Feasible-Capacity Operators for Interconnection Queues</a><span class="pl"><a href="papers/certified-feasible-capacity-operators.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/certify-then-switch.pdf" target="_blank" rel="noopener">Certify, Then Switch: A Physics-Informed Operator for Grid Reconfiguration Under Out-of-Distribution Data-Center Loads</a><span class="pl"><a href="papers/certify-then-switch.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a><span class="pl"><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/graph-fourier-power-flow-operators.pdf" target="_blank" rel="noopener">Graph-Fourier Power-Flow Operators and the Feasibility Gap in Learned Grid Control</a><span class="pl"><a href="papers/graph-fourier-power-flow-operators.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/forecast-flag-shed.pdf" target="_blank" rel="noopener">Forecast, Flag, Shed: A Learned Emergency Controller for Loss-of-Load</a><span class="pl"><a href="papers/forecast-flag-shed.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees Toward a Decarbonized Grid</a><span class="pl"><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">code</a></span></span><span class="r">TCCML manuscript</span></li>
-  </ul>
-    </div>
-  </details>
-  <details class="post ms">
-    <summary><span class="num">04</span><span><span class="pub-title">Certified control</span><span class="dek">5 unpublished manuscripts</span></span></summary>
-    <div class="body">
-  <ul class="ml rom">
-      <li><span><a href="papers/verifier-as-the-sampler.pdf" target="_blank" rel="noopener">The Verifier as the Sampler: Certified Frequency Control on the Lossy 39-Bus Grid</a><span class="pl"><a href="papers/verifier-as-the-sampler.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/certified-learning-for-lossy-power-grids.pdf" target="_blank" rel="noopener">Certified Learning for Lossy Power Grids: Compositional Verification of a Learned Stability Correction</a><span class="pl"><a href="papers/certified-learning-for-lossy-power-grids.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/compositional-grid-certs" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a><span class="pl"><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">code</a></span></span><span class="r">MLForSys manuscript</span></li>
-      <li><span><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a><span class="pl"><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/certifying-causal-scaling.pdf" target="_blank" rel="noopener">Certifying Causal Scaling: A Metamorphic Verifier for Learned Physical Predictors</a><span class="pl"><a href="papers/certifying-causal-scaling.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">MLForSys manuscript</span></li>
-  </ul>
-    </div>
-  </details>
-  <details class="post ms">
-    <summary><span class="num">05</span><span><span class="pub-title">The geometry of dynamics</span><span class="dek">3 unpublished manuscripts</span></span></summary>
-    <div class="body">
-  <ul class="ml rom">
-      <li><span><a href="papers/geometric-state-manifolds.pdf" target="_blank" rel="noopener">Geometric State Manifolds for Transferable, Data-Efficient Dynamic-System Learning</a><span class="pl"><a href="papers/geometric-state-manifolds.pdf" target="_blank" rel="noopener">paper</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a><span class="pl"><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
-      <li><span><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a><span class="pl"><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">code</a></span></span><span class="r">ML4PS manuscript</span></li>
+      <li><span><a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Seeing Inside the Transformer: Multi-Fidelity Physics-Informed Neural Operators for Winding Hot-Spot Fields</a></span><span class="r">under review</span></li>
+      <li><span><a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Proof-Carrying Transformer Ratings: Certified Hot-Spot Bounds and Aging-Aware Dispatch for Absorbing Clean Energy and AI Load</a></span><span class="r">under review</span></li>
+      <li><span><a href="papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Certified Capacity Screening for Generation Interconnection Queues</a></span><span class="r">under review</span></li>
+      <li><span><a href="papers/pesgm2027-ups-ramp-certificate.pdf" target="_blank" rel="noopener">A Proved Grid-Side Ramp Limit and Battery Sizing Rule for UPS-Buffered AI Training Campuses</a></span><span class="r">under review</span></li>
+      <li><span><a href="papers/pesgm2027-ups-fleet-damping.pdf" target="_blank" rel="noopener">Coordinated Oscillation Damping and Frequency Support from a Fleet of AI-Campus UPS Batteries with Verified Small-Signal and Nadir Bounds</a></span><span class="r">under review</span></li>
   </ul>
     </div>
   </details>
 
-  <!-- ================= WRITING ================= -->
-  <div class="sec-label" id="writing">Writing</div>
-  <div class="sec-note">Random short essays.</div>
-  <details class="post" id="what-world-models-throw-away">
-    <summary>What world models throw away<span class="dek">Oct 2026 &nbsp;·&nbsp; Machines break at the low level first. A model that predicts in a compressed latent can't see it coming.</span></summary>
+  <details class="post ms" open>
+    <summary><span class="num">03</span><span><span class="pub-title">L4DC 2027</span><span class="dek">2 papers under review</span></span></summary>
     <div class="body">
-<p>I think the deepest unsolved problem in physical AI is representation. Not scale, not compute. How do you take continuous sensor data off a real machine and put it into a mathematical space that keeps the physics?</p>
-<p>The best world models right now answer that with compression. They encode the scene into a smaller latent, predict how the latent moves, and treat the fine detail as noise. For a lot of the world that's the right call. If you want to know where a thrown ball lands, you don't need the stitching on the ball.</p>
-<p>Machines are different, because machines break at exactly the level compression throws away. A bearing starts to wear. A winding runs a few degrees hot. A joint picks up a little backlash. None of that changes the big picture at first. What changes is how two parts relate, a small break in the energy that should pass cleanly from one to the next. By the time it shows up at the macro level it's not a warning anymore, it's a failure.</p>
-<blockquote>A model that predicts in a compressed latent can't see the fault coming, because the fault lives in what it compressed.</blockquote>
-<h2>Keep the low level, on its own axes</h2>
-<p>So I went the other way. The Index of Operations doesn't squash a machine into one latent. It splits it into the physical operators it's made of, gives each one its own axes, and joins them where they trade energy, mass, heat or force. Then it watches whether each joint keeps conserving what flows across it.</p>
-<p>The payoff shows up in the most boring test there is. On ESA's OPS-SAT satellite telemetry, recalibrate the sensors and a detector on raw features drops from 0.919 to 0.487 AUROC. That's a coin flip, for a change that has nothing to do with the satellite's health. Reading conservation at the joints, it goes 0.749 to 0.736. The machine didn't change, so the representation didn't either.</p>
-<h2>A robot with no hands</h2>
-<p>There's a thought experiment I keep coming back to. Put a robot with two rounded stubs for arms in front of a keyboard and tell it to type. A policy trained on video of human hands has nothing to copy, because nothing in its data looks like its body. A model that indexes its own body as operators can treat it as geometry. The stub covers three keys, so tilt until the contact patch covers one, feel for slip where it touches, correct. A new body is a new shape from the same index, not a new dataset.</p>
-<p>IOO can't do that yet. The control results are in simulation and I still build each operator by hand. But I'm pretty sure about the direction. The world models that end up running real machines won't be the ones that watched the most video. They'll be the ones that know what the machine is made of.</p>
+  <ul class="ml rom">
+      <li><span><a href="papers/l4dc2027-certificates-that-age.pdf" target="_blank" rel="noopener">Certificates That Age With the Machine: Context-Scheduled Convex Lyapunov Functions and Sound Interval Branch-and-Bound for Neural Control Under Degradation</a></span><span class="r">under review</span></li>
+      <li><span><a href="papers/l4dc2027-dimension-wall.pdf" target="_blank" rel="noopener">Where the Dimension Wall Is: Sound Stochastic Lyapunov Certificates with Audited Enclosures</a></span><span class="r">under review</span></li>
+  </ul>
     </div>
   </details>
-  <details class="post" id="order-matters">
-    <summary>Order matters<span class="dek">Sep 2026 &nbsp;·&nbsp; A child wires itself before anyone teaches it anything. I think machines should too.</span></summary>
+
+  <details class="post ms">
+    <summary><span class="num">04</span><span><span class="pub-title">Unpublished manuscripts</span><span class="dek">6 selected, each with code</span></span></summary>
     <div class="body">
-<p>AlphaZero got good at chess, shogi and Go by playing itself. Nobody handed it openings or human games. It had the rules and a huge number of games against its own last version, and that was enough to beat programs built on decades of human knowledge.</p>
-<p>I had a dream about this, which sounds dumb, but it stuck. The dream was about both ways of learning at once. One is the AlphaZero way, where the agent trains inside its own environment. The other is the way school works, where someone who already knows hands you the knowledge and you parse it. I wrote it down that afternoon, and the part I kept was two words. Order matters.</p>
-<h2>Wire first, then read</h2>
-<p>A child doesn't start with a textbook. A child spends years knocking things over, and by the time anyone explains gravity, the body already knows it. The explanation lands because there's something there for it to land on. Flip the order and you get a kid who can recite the formula and can't catch a ball.</p>
-<p>A lot of the AI I see for physical machines has the order flipped. It reads first. It takes in a big pile of other people's data and hopes the wiring shows up somewhere inside. Sometimes it does. But a machine has a body, and the body has rules, so there's a lot to learn from the rules before reading anything.</p>
-<blockquote>Learn the body first. Then the knowledge has somewhere to go.</blockquote>
-<h2>What that means for what I'm building</h2>
-<p>The Index of Operations is my try at the wiring step. A motor is a motor before it's a dataset. If the model starts from the parts and how they pass energy to each other, it can learn inside itself first, the way AlphaZero did with the rules of the game. The operator's input and the outside knowledge come second, and they have something to attach to.</p>
-<p>I haven't built the self-training part yet, and I still build each operator by hand. But I think the order is right. The models that end up running real machines will have played against their own physics for a long time before anyone told them anything.</p>
-    </div>
-  </details>
-  <details class="post" id="one-shape-monitor-to-control">
-    <summary>One shape, from monitoring to control<span class="dek">Sep 2026 &nbsp;·&nbsp; The signal that tells you something's wrong should be the same one that fixes it.</span></summary>
-    <div class="body">
-<p>Most industrial AI stacks are split down the middle. One model watches the machine and raises alarms. A separate controller runs the machine, usually tuned once at commissioning. They don't share a representation, so when the monitor sees something, a human has to translate it into what the controller should do. That translation is slow, and on the grid or a production line slow is expensive.</p>
-<p>I wanted one object that does both. In the Index of Operations, the thing that detects a fault is the conservation slip at an interface between two operators. A healthy interface conserves what crosses it, and a failing one stops. That slip is also exactly what a controller needs to know, which part is misbehaving and by how much.</p>
-<h2>Close the loop with the same signal</h2>
-<p>So I used it as a gate. The controller runs model predictive control on the IOO graph, and adaptation only turns on at an interface whose slip says it stopped conserving. In simulation, with a 5× drop in actuator gain, slip-gated control had 8.2× lower tracking error than the same controller without the gate. With dropouts and sensor noise thrown in, steady-state error was 11.4× lower.</p>
-<p>The part I like most is what happens when nothing's wrong. The gate never opens, so healthy control is bit-identical to the plain controller. Adaptation costs nothing where it isn't needed, and that's the property you need before anyone lets a learned component near real hardware.</p>
-<blockquote>Monitoring and control aren't two products. They're two readings of the same shape.</blockquote>
-<h2>Where it has to go next</h2>
-<p>All of this is still simulation, a motor and a flywheel on a two-node graph, and there's no stability certificate yet tying the gate to closed-loop robustness. That second gap is the one I'm most equipped to close, because it's the same Lyapunov machinery from my work on certified grid controllers. The first gap closes on a bench, with one frozen controller across a physical actuator swap. That's the next 90 days.</p>
-    </div>
-  </details>
-  <details class="post" id="built-not-learned">
-    <summary>Invariance you build, not invariance you learn<span class="dek">Aug 2026 &nbsp;·&nbsp; Why I stopped asking optimizers to discover physics I already know.</span></summary>
-    <div class="body">
-<p>There's a habit in machine learning I used to have too. You want a model that doesn't care about something, like which sensor it's reading or how that sensor was calibrated, so you add a loss term and hope the optimizer learns not to care. Domain-adversarial training is the cleanest version of this. Train the features so a second network can't tell the domains apart, and in theory the features become invariant.</p>
-<p>In practice it holds up in the lab and falls apart in the field. I ran it on the same recalibration test I use for everything. Given labels and target-domain data, a domain-adversarial network scored 0.983 in-domain on turbofan engines and then dropped 0.41 AUROC once the sensors were rescaled. On satellite telemetry it dropped 0.36. It learned the invariance on the data it saw, and the field gave it data it hadn't seen.</p>
-<h2>Put it in the representation</h2>
-<p>The thing is, I already know the invariance I want. Recalibrating a sensor multiplies and shifts one channel. It doesn't change the machine. So instead of asking the optimizer to discover that, I built it into what the model reads. IOO measures how much each physical interface stops conserving, normalized by magnitude, and under that normalization any per-channel rescale cancels exactly. I checked it numerically to 1e-14, and it's provable, not just observed.</p>
-<p>Same test, same drift. IOO's slip went from 0.749 to 0.736 on satellites, and the drop on engines was 0.0012.</p>
-<blockquote>The optimizer can't recover what the representation never lost.</blockquote>
-<h2>The catch, and why it's a feature</h2>
-<p>Invariance has a cost, and I'd rather say it than have someone find it. The property that makes the shape immune to recalibration also makes it blind to slow level drift, and slow level drift is what real wear looks like. Raw statistics catch that and shape doesn't, so the two are complements, not rivals. That's fine with me, because it tells me exactly what each piece is for.</p>
-<p>The bigger lesson is about where physics should live. If you know a symmetry, don't spend data teaching it. Build it in, and spend the data on what you don't know yet.</p>
-    </div>
-  </details>
-  <details class="post" id="the-biggest-machine">
-    <summary>The biggest machine we've ever built<span class="dek">Jul 2026 &nbsp;·&nbsp; Growing up around the grid, and why the data-center boom is a control problem.</span></summary>
-    <div class="body">
-<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
-<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set. So I started writing code and running experiments on anything I thought could make it more modern from a control and dynamics view. That turned into research, and the research turned into everything I work on now.</p>
-<h2>The data-center boom is a control problem</h2>
-<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
-<h2>Sampling isn't proof</h2>
-<p>That question is why I work on certified control. With Prof. Wenqi Cui at NYU I took a learned stability function for grid frequency that looked perfect by testing. It passed on 99.98% of sampled states, and 200,000 random samples found nothing. A directed search found violations 6.1% of the time. Testing visits points and a proof has to cover a region. Closing that gap, using the verifier to find counterexamples and then training through its bound, is our NeurIPS workshop paper.</p>
-<p>The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
-    </div>
-  </details>
-  <details class="post" id="retrofit-the-machine-age">
-    <summary>Retrofit the machine age<span class="dek">Feb 2026 &nbsp;·&nbsp; The biggest market for physical AI is the machines that already exist.</span></summary>
-    <div class="body">
-<p>When people say physical AI they usually mean new things, humanoids and robotaxis and dark factories. Those matter. But most of the machines that will exist in 2035 are already installed today. Motors, pumps, compressors, turbines, transformers. They'll run for decades, and almost none of them get any smarter after the day they're commissioned.</p>
-<p>Not by inventing new motors, but by getting existing systems to understand themselves. I wrote some version of that line in my notes a long time ago, and it's still the most underrated opportunity I know.</p>
-<h2>Why most AI can't retrofit</h2>
-<p>Retrofitting is hostile to the way most models are built. Every unit is a little different, so a model trained on one doesn't transfer to the next. Sensors get swapped and recalibrated, so features drift for reasons that have nothing to do with health. And there's no labeled failure data, because the whole point is that failures are rare. A model that needs millions of examples per machine never pays for itself on a pump.</p>
-<h2>Why shape can</h2>
-<p>IOO works on the telemetry machines already stream, and it reads relationships instead of raw levels, so it doesn't care which sensor brand is on the shaft. The models are graphs of tens of nodes, so they run on a CPU next to the machine. And it doesn't start from zero. A pump and a motor share operators, so the index that learned one already knows a lot about the other.</p>
-<p>That's the flywheel. Every machine IOO reads adds operators and interfaces to the index, and every new machine built from known operators starts with a prior instead of an empty model. The data flywheel in most of physical AI runs on more hours of video. This one runs on structure.</p>
-<h2>What's not done</h2>
-<p>Right now I hand-build each operator and the catalog is mostly rotating machinery, so the honest claim is a method that works across satellites, engines, a hexapod and a cruise benchmark, not yet a catalog that covers a factory. Learning operators from data is the step that turns this from a method into a company. That's what I'm building next.</p>
+  <ul class="ml rom">
+      <li><span><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">Certifying Voltage Headroom on AI-Loaded Distribution Feeders: Closed-Form and Neural Band Guarantees</a><span class="pl"><a href="papers/certifying-voltage-headroom.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/verified-voltage-control" target="_blank" rel="noopener">code</a></span></span><span class="r">grid</span></li>
+      <li><span><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">Learning the Tie-Line Interface: GNN Fast Screening and Learned Local P/Q Control</a><span class="pl"><a href="papers/learning-the-tie-line-interface.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/gen-tie-grid-ai" target="_blank" rel="noopener">code</a></span></span><span class="r">grid</span></li>
+      <li><span><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">Multi-Agent ISS Certificates: Vector-Lyapunov Small-Gain Certification for Heterogeneous Swarms with Learned Dynamics</a><span class="pl"><a href="papers/multi-agent-iss-certificates.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/multiagent-iss-certificates" target="_blank" rel="noopener">code</a></span></span><span class="r">certified control</span></li>
+      <li><span><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">Rank-Fidelity-Gated Optimization: Keeping Certificate Descent Safe for Learned System Components</a><span class="pl"><a href="papers/rank-fidelity-gated-optimization.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/rank-fidelity-paradox" target="_blank" rel="noopener">code</a></span></span><span class="r">certified control</span></li>
+      <li><span><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">The Shapes a Machine Draws: Recalibration-Invariant Relational Atoms of Multi-Physics Operation</a><span class="pl"><a href="https://sehajr-singhs.github.io/operating-atlas/manuscript_NCS.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/operating-atlas" target="_blank" rel="noopener">code</a></span></span><span class="r">operator</span></li>
+      <li><span><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">Time Is Geometry: A Scale-Covariant Operator Model for Dynamical Systems</a><span class="pl"><a href="papers/time-is-geometry.pdf" target="_blank" rel="noopener">paper</a> &nbsp;·&nbsp; <a href="https://github.com/sehajr-singhs/time-series-operator" target="_blank" rel="noopener">code</a></span></span><span class="r">operator</span></li>
+  </ul>
     </div>
   </details>
 
@@ -502,46 +478,22 @@
   <details class="post ms">
     <summary><span class="num">06</span><span><span class="pub-title">Operator</span></span></summary>
     <div class="body">
-      <p>A learned controller for a degrading electromechanical plant that carries a per-step control-Lyapunov certificate through the whole degradation.</p>
+      <p>A learned controller for a degrading electromechanical plant whose Lyapunov certificate is scheduled by wear and checked by sound interval branch-and-bound. The paper is under review at L4DC 2027.</p>
       <a class="go" href="https://github.com/sehajr-singhs/operator" target="_blank" rel="noopener">code &rarr;</a>
-    </div>
-  </details>
-  <details class="post ms">
-    <summary><span class="num">07</span><span><span class="pub-title">Robotic Data Flywheel</span></span></summary>
-    <div class="body">
-      <p>A controlled study of the one variable that decides whether a robot data flywheel compounds or stalls: curation strategy.</p>
-    </div>
-  </details>
-
-
-  <div class="sec-label" id="random">Random projects</div>
-  <div class="sec-note">Things I build because I want to see if they work.</div>
-  <details class="post ms">
-    <summary><span class="num">01</span><span><span class="pub-title">A poker bot built on the Index of Operations</span></span></summary>
-    <div class="body">
-      <p>An 8-handed no-limit hold'em bot where each opponent is an operator and slip flags the moment a player's bets stop carrying the strength they used to. Being tested over 10,000+ hands against baseline bots and Slumbot.</p>
-      <!-- TODO before publishing: add mbb/hand results from ioo-poker/results and the repo link -->
-    </div>
-  </details>
-  <details class="post ms">
-    <summary><span class="num">02</span><span><span class="pub-title">Salvage</span></span></summary>
-    <div class="body">
-      <p>A teardown agent for dead electronics. Several models read each part, a gate in plain code decides, and anything a meter can settle gets measured before a part is called good. Verified parts get given away.</p>
     </div>
   </details>
 
   <!-- ================= RECOGNITION ================= -->
-  <div class="sec-label">Recognition and academia</div>
+  <div class="sec-label">Recognition and academics</div>
   <ul class="ml">
-      <li><span>Queens High School for the Sciences, 4.0 with 15 APs, honor roll and AP Capstone</span><span class="r">Class of 2028</span></li>
-      <li><span>Semifinalist, MIT research competition, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
-      <li><span>Anthropic AI for Science program</span><span class="r">2026</span></li>
-      <li><span>Participant, MIT and Anthropic study on researchers</span><span class="r">2026</span></li>
-      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026, in a batch of great papers like ARES-CERT</span><span class="r">2026</span></li>
-      <li><span>Columbia University, energy systems engineering class</span><span class="r">2026–27</span></li>
+      <li><span>Queens High School for the Sciences at York College: 4.0 GPA (95.76 transcript average), 4 APs completed and 14 in progress, AP Capstone</span><span class="r">Class of 2028</span></li>
+      <li><span>Semifinalist, MIT THINK Scholars Program, top 29 of 1,042 (~3%)</span><span class="r">2026</span></li>
+      <li><span>Anthropic AI for Science program, and participant in an MIT and Anthropic study on researchers</span><span class="r">2026</span></li>
+      <li><span>Columbia University Science Honors Program, Energy Systems Engineering (Fusion Power)</span><span class="r">2026–27</span></li>
+      <li><span>Contributor, MIT PRIMES CrowdMath 2026</span><span class="r">2026</span></li>
+      <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026</span><span class="r">2026</span></li>
       <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
       <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
-      <li><span>QHSS Physics Olympiad lead</span><span class="r">QHSS</span></li>
   </ul>
 
   <!-- ================= CONTACT ================= -->
@@ -551,6 +503,7 @@
     <div class="row"><b>GitHub</b> &nbsp; <a href="https://github.com/sehajr-singhs" target="_blank" rel="noopener">github.com/sehajr-singhs</a></div>
     <div class="row"><b>LinkedIn</b> &nbsp; <a href="https://www.linkedin.com/in/sehaj-randhir-singh" target="_blank" rel="noopener">linkedin.com/in/sehaj-randhir-singh</a></div>
     <div class="row"><b>OpenReview</b> &nbsp; <a href="https://openreview.net/profile?id=~Sehaj_Randhir_Singh2" target="_blank" rel="noopener">openreview.net/profile?id=~Sehaj_Randhir_Singh2</a></div>
+    <div class="row"><b>CV</b> &nbsp; <a href="Sehaj-Randhir-Singh-CV.pdf" target="_blank" rel="noopener">Sehaj-Randhir-Singh-CV.pdf</a></div>
     <div class="row"><b>ORCID</b> &nbsp; <a href="https://orcid.org/0009-0002-9806-328X" target="_blank" rel="noopener">0009-0002-9806-328X</a></div>
   </div>
 
@@ -574,6 +527,8 @@
       <li><span>I know it seems like I'm a software type person, but I really like building things with my hands (I have a good number of random things and good potential products for the grid).</span></li>
     </ul>
   </div>
+  <img class="sassy" src="photos/sassy-the-sasquatch.png" alt="Sassy the Sasquatch" loading="lazy">
+  <div class="sassy-cap">my favorite show</div>
 
   <footer>
     Sehaj Randhir Singh · Research Collaborator, Cui Group, NYU Tandon ECE · QHSS Class of 2028
