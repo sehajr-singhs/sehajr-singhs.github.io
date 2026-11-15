@@ -237,8 +237,9 @@
       <div class="stats">
         <div><b>0.542 °C</b>hot-spot error on designs it never saw</div>
         <div><b>40.8 ms</b>per full temperature field</div>
-        <div><b>0.225 °C</b>top-oil error on real transformers, vs 4.15 °C for C57.91</div>
+        <div><b>0.515%</b>relative error on the full temperature field</div>
       </div>
+      <p class="m">On a real transformer's top oil (public ETTh1 data, one unit) the gain over the IEEE standard is small, 4.02 against 4.15 °C, and that data has no hot spot at all.</p>
       <p class="m">The honest gap: the hot spot is only checked against my own simulator. Everything next is built to close that.</p>
       <ul class="me" style="margin-top:6px">
         <li><span><b>3-D, at scale.</b> Keep thousands of cheap 2-D runs and add a few dozen 3-D sector runs through the oil ducts, then show the mix beats either alone. The thermal fields go out as an open dataset, because none exists publicly.</span></li>
@@ -302,7 +303,7 @@
       <div class="e-meta">2026 &middot; in development</div>
     </div>
     <div class="e-body">
-      Every FTC and FRC team tunes its robot by hand, after it's built, one mechanism at a time. Spool starts from the CAD. It pulls mass, inertia and gearing out of the assembly, computes starting feedforward and PIDF gains for the drivetrain, flywheel, turret and arm from motor physics, tunes them in simulation, and exports them straight into Pedro Pathing for FTC and WPILib for FRC. Then one short logged run on the real robot fits the friction CAD can't see. The test robot is my team's FTC bot, FAT MAN.
+      Every FTC and FRC team tunes its robot by hand, after it's built, one mechanism at a time. Spool starts from the CAD. It pulls mass, inertia and gearing out of the assembly, computes starting feedforward and PIDF gains for the drivetrain, flywheel, turret and arm from motor physics, tunes them in simulation, and exports them straight into Pedro Pathing for FTC and WPILib for FRC. Then one short logged run on the real robot fits the friction CAD can't see. The test robot is FAT MAN, our FTC side bot (see Work).
     </div>
   </div>
 
@@ -343,7 +344,7 @@
     <div class="dot"></div>
     <div>
       <div class="e-head"><div class="e-title"><a href="https://github.com/sehajr-singhs/certified-training-lyapunov" target="_blank" rel="noopener">Research Collaborator, Cui Group, NYU Tandon ECE</a></div><div class="e-meta">2026 – Present</div></div>
-      <div class="e-body">Certified neural Lyapunov functions for power-grid transient stability. Instead of repairing a learned certificate after the fact, the network is trained to be verifiable by construction by differentiating through the CROWN bound. On the lossy 39-bus model it certifies ρ = 2.5 on all five seeds where counterexample repair stalls at 1.8, verified three independent ways. The only person in the group working on Lyapunov stability.</div>
+      <div class="e-body">Certified neural Lyapunov functions for power-grid transient stability. Instead of repairing a learned certificate after the fact, the network is trained to be verifiable by construction by differentiating through the CROWN bound. On the lossy 39-bus model it certifies ρ = 2.5 on all five seeds where counterexample repair stalls at 1.8, verified three independent ways. I wrote the verification and training code and ran the experiments, with Prof. Cui advising; the code is public.</div>
     </div>
   </div>
 
@@ -371,6 +372,19 @@
     </div>
   </div>
 
+
+  <div class="entry">
+    <div class="dot"></div>
+    <div>
+      <div class="e-head"><div class="e-title">Mechanical lead, QHSS robotics (FTC)</div><div class="e-meta">QHSS</div></div>
+      <div class="e-body">
+        <p>I lead mechanical design for our FTC team. FAT MAN is our side and test bot: a mecanum drivetrain with odometry, a turret on 60-tooth hub gears, a two-motor 6000 rpm flywheel shooter with an adjustable hood, and a 4-bar arm. Its CAD is generated from code, FeatureScript that builds the Onshape model, and from it come the bill of materials and the engineering drawings the team builds from.</p>
+        <p class="ink"><img src="../share/fatman/fatman-iso.png" alt="FAT MAN, our FTC side and test bot, in CAD" style="width:100%;max-width:420px;display:block;margin:10px 0 4px" loading="lazy"></p>
+        <p>FAT MAN is also the test robot for Spool, a tool I'm building that reads a robot's CAD, computes starting gains for every mechanism from motor physics, tunes them in simulation, and exports them to Pedro Pathing (FTC) and WPILib (FRC), so a team isn't tuning everything by hand after the robot is built.</p>
+      </div>
+      <div class="e-links"><a href="../share/fatman/FAT_MAN_engineering_drawings.pdf" target="_blank" rel="noopener">Engineering drawings &rarr;</a></div>
+    </div>
+  </div>
 
   <!-- ================= PUBLICATIONS ================= -->
 
@@ -407,7 +421,7 @@
   -->
 
   <div class="sec-label" id="pubs">Publications &amp; manuscripts</div>
-  <div class="sec-note">One accepted paper, seven under review, and a few unpublished manuscripts worth reading.</div>
+  <div class="sec-note">One accepted workshop paper. Seven papers under review, which are submissions, not publications; I will post each decision here as it comes, accepted or not. The unpublished manuscripts are working research, each with its code.</div>
 
   <div class="pub">
     <div class="num">01</div>
@@ -501,6 +515,14 @@
     </div>
   </details>
 
+  <details class="post ms">
+    <summary><span class="num">07</span><span><span class="pub-title">AzaadAI</span></span></summary>
+    <div class="body">
+      <p>A research assistant over Bunga Azaadi's published papers. Gemma 4 31B, fine-tuned with LoRA on 3,603 examples that pair each answer with the reasoning behind it, so it shows its line of research and the passages it used instead of only an answer. It runs on my own GPU deployment (RunPod, vLLM) behind a Modal gateway, with a public tier and a research tier.</p>
+      <a class="go" href="https://sehajr-singhs.github.io/azaadai-web/" target="_blank" rel="noopener">site &rarr;</a>
+    </div>
+  </details>
+
   <!-- ================= RECOGNITION ================= -->
   <div class="sec-label">Recognition and academics</div>
   <ul class="ml">
@@ -511,7 +533,6 @@
       <li><span>Contributor, MIT PRIMES CrowdMath 2026</span><span class="r">2026</span></li>
       <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026</span><span class="r">2026</span></li>
       <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
-      <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
   </ul>
 
   <!-- ================= CONTACT ================= -->
@@ -536,7 +557,7 @@
     </div>
     <ul class="me">
       <li><span>I love cha (also known as chai).</span></li>
-      <li><span>I like reading and learning about Sikhi (exploring my own interpretation beyond that of babas and false prophets). My reads right now are the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
+      <li><span>I like reading and learning about Sikhi, and working out my own understanding of it from the texts themselves. My reads right now are the <i>Dasam Granth</i> in Surindar Singh Kohli's translation and <i>Sicques, Tigers, or Thieves</i> by Amandeep Singh Madra and Parmjit Singh.</span></li>
       <li><span>I love trail running and rock climbing.</span></li>
       <li><span>Love dreaming about going back to Australia.</span></li>
       <li><span>Love aesthetic doomscrolling.</span></li>
