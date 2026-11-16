@@ -175,6 +175,7 @@
   details.article .body ul { margin: 0 0 12px 18px; font-size: 13.5px; line-height: 1.65; }
   details.article .body li { margin-bottom: 8px; }
   details.article .body a { color: var(--ink); }
+  .e-body ul.me a { color: var(--ink); text-decoration: underline; text-underline-offset: 2px; }
   .sassy { display: block; width: 230px; max-width: 70%; height: auto; margin: 34px 0 4px; }
   .sassy-cap { font-size: 12px; color: var(--muted); }
   @media (max-width: 560px) { .stats { grid-template-columns: 1fr 1fr; } .entry.feature .e-title { font-size: 18px; } }
@@ -303,26 +304,38 @@
       <div class="e-meta">2026 &middot; in development</div>
     </div>
     <div class="e-body">
-      Every FTC and FRC team tunes its robot by hand, after it's built, one mechanism at a time. Spool starts from the CAD. It pulls mass, inertia and gearing out of the assembly, computes starting feedforward and PIDF gains for the drivetrain, flywheel, turret and arm from motor physics, tunes them in simulation, and exports them straight into Pedro Pathing for FTC and WPILib for FRC. Then one short logged run on the real robot fits the friction CAD can't see. The test robot is FAT MAN, our FTC side bot (see Work).
+      Every FTC and FRC team tunes its robot by hand, after it's built, one mechanism at a time. Spool starts from the CAD. It pulls mass, inertia and gearing out of the assembly, computes starting feedforward and PIDF gains for the drivetrain, flywheel, turret and arm from motor physics, tunes them in simulation, and exports them straight into Pedro Pathing for FTC and WPILib for FRC. Then one short logged run on the real robot fits the friction CAD can't see. The test robot is FAT MAN, our team's FTC side bot.
+    </div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title">Tools for a grid under AI load</div>
+      <div class="e-meta">2026</div>
+    </div>
+    <div class="e-body">
+      <ul class="me" style="margin-top:4px">
+        <li><span><b>A proved ramp limit for a data center's UPS.</b> A battery-backed uninterruptible power supply between the campus and the grid, with a proof that for every load profile in range the grid sees a bounded ramp and the battery never runs out, plus a sizing rule within 1.43&times; of what any controller could need. <a href="../papers/pesgm2027-ups-ramp-certificate.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">figures and proof</a>. Under review, IEEE PES GM 2027.</span></li>
+        <li><span><b>A fleet of those UPS batteries as grid support.</b> With &plusmn;10 MW of headroom per campus on the Kundur two-area model, verified inter-area damping goes from 0.024 to 0.106. <a href="../papers/pesgm2027-ups-fleet-damping.pdf" target="_blank" rel="noopener">Paper</a>. Under review, IEEE PES GM 2027.</span></li>
+        <li><span><b>A certified screen for interconnection queues.</b> How much a bus can take in 1.4 ms instead of hundreds of AC power flows, with a certificate that says which answers to trust and which to send to a full study. Presented to PJM's Applied Innovation team. <a href="../papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="../share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">PJM slides</a>. Under review, IEEE PES GM 2027.</span></li>
+        <li><span><b>How much regulation flexible AI compute can promise.</b> Two theorems that bound it: 17.32 MW certified against a 17.34 MW provable ceiling on a 40-job pool, where naive headroom accounting overpromises by 53%. <a href="../share/flex-compute/Flexible-Compute-Regulation-Bound-Singh.pdf" target="_blank" rel="noopener">Note</a>.</span></li>
+      </ul>
     </div>
   </div>
 
   <details class="article">
-    <summary>The AI data-center boom: why it's a control problem<span class="dek">Article &nbsp;·&nbsp; 2026 – Present &nbsp;·&nbsp; growing up around the grid, and what I've built for a grid under AI load</span></summary>
+    <summary>The AI data-center boom is a people problem too<span class="dek">Article &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; who actually decides how fast the grid can grow</span></summary>
     <div class="body">
-<p>My dad has been a grid operating engineer for 35 years. So for me the power grid was never a bill or a wall socket. It was a machine, and the biggest one people have ever built. Every large generator on it spins in lockstep at 60 cycles a second, and every time someone flips something on, the whole thing has to answer within seconds or the frequency starts to slide.</p>
-<p>What got me was how much of that answering is done by controllers that were tuned once and left alone. The hardware ages, the loads change, new kinds of generation show up, and the control law mostly stays where it was set.</p>
-<h2>The data-center boom is a control problem</h2>
-<p>Now the grid is being asked to take on something it wasn't planned for. AI data centers show up as huge blocks of load, they show up fast, and they want to connect where the wires were sized for a different decade. A training campus can swing tens of megawatts in seconds as thousands of accelerators compute and then sync together. Most of the public conversation is about generation, how many plants we need. Studying interconnection and talking to the people who run it, I've come to think the harder question is dynamic. Can the system stay stable while it changes this fast, with learned components making more of the calls?</p>
-<h2>What I've built on it</h2>
-<ul>
-<li><b>A proved ramp limit for a data center's UPS.</b> A battery-backed uninterruptible power supply between the campus and the grid, with a proof that for every load profile in range the grid sees a bounded ramp and the battery never runs out, plus a sizing rule within 1.43&times; of what any controller could need. <a href="../papers/pesgm2027-ups-ramp-certificate.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">figures and proof</a>. Under review, IEEE PES GM 2027.</li>
-<li><b>A fleet of those UPS batteries as grid support.</b> With &plusmn;10 MW of headroom per campus on the Kundur two-area model, verified inter-area damping goes from 0.024 to 0.106. <a href="../papers/pesgm2027-ups-fleet-damping.pdf" target="_blank" rel="noopener">Paper</a>. Under review, IEEE PES GM 2027.</li>
-<li><b>A certified screen for interconnection queues.</b> How much a bus can take in 1.4 ms instead of hundreds of AC power flows, with a certificate that says which answers to trust and which to send to a full study. Presented to PJM's Applied Innovation team. <a href="../papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="../share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">PJM slides</a>. Under review, IEEE PES GM 2027.</li>
-<li><b>How much regulation flexible AI compute can promise.</b> Two theorems that bound it, 17.32 MW certified against a 17.34 MW provable ceiling on a 40-job pool, where naive headroom accounting overpromises by 53%. <a href="../share/flex-compute/Flexible-Compute-Regulation-Bound-Singh.pdf" target="_blank" rel="noopener">Note</a>.</li>
-</ul>
-<h2>Sampling isn't proof</h2>
-<p>All of it comes back to the same thing I learned with Prof. Cui. Testing visits points and a proof has to cover a region. The grid is going to get learned controllers whether anyone's ready or not, because it's the only way to keep up. I want them to come with proofs.</p>
+<p>The headline numbers are big. One estimate puts the extra electricity AI could use by 2027 at 85 to 134 TWh a year, about what a whole country uses (de Vries, 2023). PJM, the grid operator for 67 million people, came up 6,625 MW short of its reliability target in its December 2025 capacity auction, after its demand forecast jumped 5,250 MW, almost all of it data centers. The same auction cleared only 774 MW of new generation (Howland, 2025).</p>
+<h2>We've been here before</h2>
+<p>Data-center demand roughly doubled from 2000 to 2005 (U.S. EPA, 2007), then nearly flattened. U.S. growth fell to about 4% from 2010 to 2014 as servers were virtualized and cooling got better (Shehabi et al., 2016), and global data-center electricity rose only about 6% from 2010 to 2018 while computing grew many times over (Masanet et al., 2020). So demand doesn't automatically follow compute. It's also worth being careful with the forecasts: a review of 258 estimates found only 31% of their sources were peer-reviewed (Mytton &amp; Ashtine, 2022).</p>
+<h2>The bottleneck has names</h2>
+<p>What's different now is how hard it is for supply to answer. About 2,600 GW of projects are waiting to connect to U.S. grids, double the whole existing fleet. Waits are up 70% in a decade, and about 80% of requests eventually withdraw (Gorman et al., 2025). PJM's auction hit its price cap for the third straight time, at $16.4 billion, with permitting, financing and gas-turbine shortages all cited (Howland, 2025). And the wiring itself is a labor problem: electrical work is 45 to 70% of a data center's construction cost, and Microsoft's president has called the electrician shortage the number one thing slowing its U.S. expansion (Fore, 2026). Not every effect is bad. U.S. power prices mostly tracked inflation from 2019 to 2024 and fell in real terms in 31 states (Wiser et al., 2025).</p>
+<h2>The fixes are almost all technical</h2>
+<p>The best ideas so far treat AI load as something that can move: shift training to when the grid has room (Lin et al., 2024). A 256-GPU cluster in Phoenix cut its power 25% for three hours at peak and still met its service guarantees (Colangelo et al., 2026). That's real, but it doesn't touch the queue, the permit or the shortage of people who can wire a substation. Energy research has a long habit of this: across more than 4,000 articles in three major journals, social science and interviews were badly underused (Sovacool et al., 2014).</p>
+<h2>The question I'm asking</h2>
+<p>Every one of those bottlenecks is a decision somebody makes: an interconnection engineer approving a study, an electrician taking a job, a utility planner trusting a forecast, a town board voting on a permit. The technical work I do helps on one side of that. The other side is the people, and that's what my AP Research project asks: how interconnection approvals, electrician supply, utility planning and local permitting decide whether generation can keep pace with AI load in PJM through 2030.</p>
+<p style="font-size:12px;color:var(--muted)">Sources: Colangelo et al. (2026), Nature Energy; de Vries (2023), Joule; Fore (2026), Fortune; Gorman et al. (2025), Joule; Howland (2025), Utility Dive; Lin et al. (2024), ACM; Masanet et al. (2020), Science; Mytton &amp; Ashtine (2022), Joule; Shehabi et al. (2016), Lawrence Berkeley National Laboratory; Sovacool et al. (2014), Energy Research &amp; Social Science; U.S. EPA (2007), Report to Congress; Wiser et al. (2025), The Electricity Journal.</p>
     </div>
   </details>
 
@@ -351,14 +364,6 @@
   <div class="entry">
     <div class="dot"></div>
     <div>
-      <div class="e-head"><div class="e-title">Research Collaborator, Mechatronics, Controls, and Robotics Lab, NYU Tandon MAE</div><div class="e-meta">2026 – Present</div></div>
-      <div class="e-body">With Prof. Vikram Kapila. Person re-identification for single-camera video, using motion as the main identity signal: identity switches on MOT17 cut 21.3% (1,265 to 995).</div>
-    </div>
-  </div>
-
-  <div class="entry">
-    <div class="dot"></div>
-    <div>
       <div class="e-head"><div class="e-title">Data center research intern</div><div class="e-meta">2025–Present</div></div>
       <div class="e-body">Researching power-distribution bottlenecks and grid strain driven by the exponential compute demand of large-scale data centers, including generation-and-tie planning for how new load interconnects to the grid. Role and findings held under confidentiality.</div>
     </div>
@@ -372,19 +377,6 @@
     </div>
   </div>
 
-
-  <div class="entry">
-    <div class="dot"></div>
-    <div>
-      <div class="e-head"><div class="e-title">Mechanical lead, QHSS robotics (FTC)</div><div class="e-meta">QHSS</div></div>
-      <div class="e-body">
-        <p>I lead mechanical design for our FTC team. FAT MAN is our side and test bot: a mecanum drivetrain with odometry, a turret on 60-tooth hub gears, a two-motor 6000 rpm flywheel shooter with an adjustable hood, and a 4-bar arm. Its CAD is generated from code, FeatureScript that builds the Onshape model, and from it come the bill of materials and the engineering drawings the team builds from.</p>
-        <p class="ink"><img src="../share/fatman/fatman-iso.png" alt="FAT MAN, our FTC side and test bot, in CAD" style="width:100%;max-width:420px;display:block;margin:10px 0 4px" loading="lazy"></p>
-        <p>FAT MAN is also the test robot for Spool, a tool I'm building that reads a robot's CAD, computes starting gains for every mechanism from motor physics, tunes them in simulation, and exports them to Pedro Pathing (FTC) and WPILib (FRC), so a team isn't tuning everything by hand after the robot is built.</p>
-      </div>
-      <div class="e-links"><a href="../share/fatman/FAT_MAN_engineering_drawings.pdf" target="_blank" rel="noopener">Engineering drawings &rarr;</a></div>
-    </div>
-  </div>
 
   <!-- ================= PUBLICATIONS ================= -->
 
@@ -534,6 +526,7 @@
       <li><span>Reviewer, L4DC 2027 (Learning for Dynamics and Control)</span><span class="r">2027</span></li>
       <li><span>Reviewer, ML4PS workshop @ NeurIPS 2026</span><span class="r">2026</span></li>
       <li><span>QHSS Hack Club, hardware lead and hackathon software lead</span><span class="r">QHSS</span></li>
+      <li><span>QHSS robotics team, the Cardinals, mechanical engineering lead</span><span class="r">QHSS</span></li>
   </ul>
 
   <!-- ================= CONTACT ================= -->
