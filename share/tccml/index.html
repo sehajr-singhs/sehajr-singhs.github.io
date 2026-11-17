@@ -68,21 +68,30 @@
   <div class="venue">Tackling Climate Change with Machine Learning, NeurIPS 2026</div>
 </section>
 
-<!-- 2 Aim -->
-<section class="slide">
-  <div class="center"><p class="statement">Our aim is to give learned grid stability certificates a guarantee that holds over a <b>whole region</b> of operating states, not just the states we happened to sample.</p></div>
-</section>
-
-<!-- 3 Why -->
+<!-- 2 Why -->
 <section class="slide">
   <h1>Why transient stability?</h1>
   <div class="body">
     <div class="col" style="flex:0.7"><ul>
-      <li>After a fault, generators must swing back into sync. If they don't, the grid separates.</li>
+      <li>After a fault, generators must regain synchronism. Otherwise, the power grid may lose stability and split into separate islands.</li>
       <li>Renewables replace synchronous machines, so the grid has <b>less inertia</b> and less margin after a disturbance.</li>
       <li>Operators need to know <b>which states recover</b>, ahead of time, without simulating every fault.</li>
     </ul></div>
     <div class="col"><img src="fig/swing_stable_unstable.png" alt="stable and unstable swing after a disturbance"><p class="small" style="text-align:center;margin-top:16px;">Single machine after a step in mechanical power (illustration)</p></div>
+  </div>
+  <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>2</span></div>
+</section>
+
+<!-- 3 Aim -->
+<section class="slide">
+  <h1>Why learn a Lyapunov function?</h1>
+  <div class="body" style="flex-direction:column;align-items:stretch;">
+    <ul>
+      <li>For nonlinear power system models, <b>Lyapunov functions</b> are widely used to certify stability.</li>
+      <li>With resistive losses, an exact closed-form Lyapunov function is generally unavailable, which motivates a <b>learning-based</b> approach.</li>
+      <li>Training relies on finite samples, so the key challenge is making sure the learned function stays valid across the <b>continuous state space</b>, including the regions between training samples.</li>
+    </ul>
+    <p class="statement" style="font-size:58px;margin-top:56px;max-width:none;">This work aims to give learned grid stability certificates a guarantee that holds over a <b>whole region</b> of operating states, not just the states we happened to sample.</p>
   </div>
   <div class="foot"><span>Singh &amp; Cui · TCCML 2026</span><span>3</span></div>
 </section>
