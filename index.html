@@ -218,7 +218,7 @@
 
   <div class="intro">
     <div class="tagline">
-      I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers, and my first-author paper on it was accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. Most of my time now goes into a certified thermal twin for power transformers, the equipment that decides how much AI load and clean energy a grid can actually take. I have five papers under review at the IEEE PES General Meeting 2027 and two at L4DC 2027.
+      I'm a control and dynamics engineer in New York. I work with <a href="https://wenqi-cui.github.io" target="_blank" rel="noopener">Prof. Wenqi Cui's group at NYU Tandon ECE</a> on certified stability for learned grid controllers, and my first-author paper on it was accepted at NeurIPS 2026's Tackling Climate Change with ML workshop. Most of my time now goes into the interconnection queue, where new solar, storage and data centers wait years to connect: I'm building a screen for cluster studies that certifies which projects the grid can take and sends the rest to the full study. I have five papers under review at the IEEE PES General Meeting 2027 and two at L4DC 2027.
     </div>
     <div>
       I'm also building <a href="operator/">Operator</a>, around one idea I call the Index of Operations. It models a machine as its physical parts and reads the shape they draw together. I presented it to Joe Garcia and the a16z Alpha Fellowship team in November 2026.
@@ -229,20 +229,30 @@
   <div class="sec-label" id="active">Active projects</div>
 
   <div class="entry boxed feature">
-    <div class="kicker">Main project &nbsp;·&nbsp; 2026 – Present</div>
-    <div class="e-title">A certified thermal twin for power transformers</div>
+    <div class="kicker">Main project &nbsp;&middot;&nbsp; 2026 &ndash; Present</div>
+    <div class="e-title">Certify or defer: fast, provably safe screening for grid interconnection</div>
     <div class="e-body">
-      <p>A transformer's real limit is the hot spot inside its winding, and nobody can put a sensor there while it's in service. So utilities rate for the worst case and leave capacity sitting idle, while AI data centers and new solar and wind wait years for a new unit. I'm building a twin that sees inside.</p>
-      <p>A multi-fidelity, physics-informed neural operator, trained on 3,200 coarse and 320 fine conjugate heat-transfer simulations, predicts the full temperature field through the winding in 40.8 ms. It only learns the correction on top of the IEEE C57.91 standard, never the physics the standard already knows. A second layer turns that into a rating an operator can sign: interval bounds on the hot spot over the whole dispatch window, a calibrated margin for model error, and an aging-aware controller that says how much extra load it buys and what that costs in insulation life.</p>
+      <p>New solar, storage and data centers now wait about five years to connect to the U.S. grid, and the bottleneck is the interconnection study. Grid operators like PJM study requests in clusters, because projects that each fit on their own can overload the grid together. Fast screens that judge requests one at a time, or with a linear model, miss that interaction.</p>
+      <p>I'm building a screen that pairs a learned model with a guarantee. A network that reads both the grid's structure and the set of requests predicts how much a cluster can really take, and a statistical certificate turns that into a capacity that holds at a chosen confidence level. Anything it can't vouch for goes to the full AC study, so it never replaces the study, it decides which cases need it. I reproduced PJM's cluster-study optimization exactly, and I presented the method to PJM's Applied Innovation team.</p>
       <div class="stats">
-        <div><b>0.542 °C</b>hot-spot error on designs it never saw</div>
-        <div><b>40.8 ms</b>per full temperature field</div>
-        <div><b>0.515%</b>relative error on the full temperature field</div>
+        <div><b>34%</b>median share of the sum of its requests' individual capacities that a cluster can jointly take (IEEE 118-bus)</div>
+        <div><b>1 in 3</b>unsafe clusters a linear screen calls safe</div>
+        <div><b>0 of 989</b>wrong answers passed when certifying a published AI model on the 2,000-bus Texas grid</div>
       </div>
-      <p class="m">On a real transformer's top oil (public ETTh1 data, one unit) the gain over the IEEE standard is small, 4.02 against 4.15 °C, and that data has no hot spot at all.</p>
-      <p class="m">What's next is the full build for Terra NYC, JSHS and ISEF: 3-D simulation at a much larger scale, a bench rig with fiber-optic hot-spot sensing, and validation against measured hot-spot data from a utility or manufacturer. That's the one thing simulation can't give me, and it's what turns this from a paper into something a utility would run.</p>
+      <p class="m">Results so far are on IEEE test grids and the public Texas synthetic grid, not on a utility's real network model. What's next: hundreds of clusters on the 2,000-bus Texas grid shaped by public queue data, a proven bound on how often the screen can call an unsafe cluster safe, and a check against the outcomes PJM published for its first cluster cycle.</p>
     </div>
-    <div class="e-links"><a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Paper A: seeing inside the transformer &rarr;</a><a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Paper B: proof-carrying ratings &rarr;</a></div>
+    <div class="e-links"><a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">Slides presented to PJM &rarr;</a><a href="share/pseg/PSEG-LI-Certified-Screen-Brief.pdf" target="_blank" rel="noopener">Two-page brief &rarr;</a></div>
+  </div>
+
+  <div class="entry boxed">
+    <div class="e-head">
+      <div class="e-title">A certified thermal twin for power transformers</div>
+      <div class="e-meta">2026</div>
+    </div>
+    <div class="e-body">
+      A transformer's real limit is the hot spot inside its winding, which can't be measured in service. A multi-fidelity, physics-informed neural operator predicts the full winding temperature field in 40.8 ms (0.542 &deg;C hot-spot error on simulated designs it never saw), and a second layer turns it into a rating with interval bounds and an aging-aware dispatch. Both are simulation results; validation against measured hot-spot data is the open step.
+    </div>
+    <div class="e-links"><a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Paper A &rarr;</a><a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Paper B &rarr;</a></div>
   </div>
 
   <div class="entry boxed feature">
