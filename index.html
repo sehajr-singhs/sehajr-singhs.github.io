@@ -244,17 +244,6 @@
     <div class="e-links"><a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">Slides presented to PJM &rarr;</a><a href="share/pseg/PSEG-LI-Certified-Screen-Brief.pdf" target="_blank" rel="noopener">Two-page brief &rarr;</a></div>
   </div>
 
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title">A certified thermal twin for power transformers</div>
-      <div class="e-meta">2026</div>
-    </div>
-    <div class="e-body">
-      A transformer's real limit is the hot spot inside its winding, which can't be measured in service. A multi-fidelity, physics-informed neural operator predicts the full winding temperature field in 40.8 ms (0.542 &deg;C hot-spot error on simulated designs it never saw), and a second layer turns it into a rating with interval bounds and an aging-aware dispatch. Both are simulation results; validation against measured hot-spot data is the open step.
-    </div>
-    <div class="e-links"><a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Paper A &rarr;</a><a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Paper B &rarr;</a></div>
-  </div>
-
   <div class="entry boxed feature">
     <div class="kicker">With Prof. Wenqi Cui, NYU Tandon ECE &nbsp;·&nbsp; 2026 – Present</div>
     <div class="e-title">Certified neural Lyapunov functions for the grid</div>
@@ -276,7 +265,7 @@
       <div class="e-meta">2026 – Present</div>
     </div>
     <div class="e-body">
-      Grid foundation models like GENCO answer a power-flow question in milliseconds, but nobody can act on an answer without knowing it's right. My check warm-starts Newton from the model's prediction and certifies it only if a true solution sits right next to it. On GENCO's published outage predictions for the 2,000-bus Texas grid, it certified 609 of 989 cases with no wrong answer passed, and the warm start halves Newton's iterations. I'm developing it with the OpenGridFM maintainers at IBM Research and Hydro-Qu&eacute;bec.
+      Grid foundation models like GENCO answer a power-flow question in milliseconds, but nobody can act on an answer without knowing it's right. My check warm-starts Newton from the model's prediction and certifies it only if a true solution sits right next to it. On GENCO's published outage predictions for the 2,000-bus Texas grid, it certified 609 of 989 cases with no wrong answer passed, and the warm start halves Newton's iterations. I shared it with the OpenGridFM maintainers at IBM Research and Hydro-Qu&eacute;bec, who invited me to their developer calls, and I'm now building a cheaper one-step certificate in answer to their main question: why not just run Newton?
     </div>
     <div class="e-links"><a href="https://github.com/sehajr-singhs/genco-certify" target="_blank" rel="noopener">Code and slides &rarr;</a></div>
   </div>
@@ -287,7 +276,7 @@
       <div class="e-meta">2026 – Present</div>
     </div>
     <div class="e-body">
-      Power Grid Model is the open-source solver grid operators like Alliander actually run. I'm contributing to it, starting with a transmission validation case built from a public IEEE network, and a proposal, with benchmarks on the project's own test networks, to let Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate.
+      Power Grid Model is the open-source solver grid operators like Alliander actually run. I've built my first contribution, an IEEE 118-bus transmission validation case that passes the project's validation tests, and a benchmark, on the project's own test networks, of letting Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate. Both are being submitted to the project.
     </div>
   </div>
 
@@ -301,20 +290,18 @@
     </div>
   </div>
 
-  <div class="entry boxed">
-    <div class="e-head">
-      <div class="e-title">Tools for a grid under AI load</div>
-      <div class="e-meta">2026</div>
-    </div>
-    <div class="e-body">
-      <ul class="me" style="margin-top:4px">
+  <details class="article">
+    <summary>Tools for a grid under AI load<span class="dek">Five projects &nbsp;&middot;&nbsp; 2026 &nbsp;&middot;&nbsp; interconnection, flexible compute, data-center UPS, transformers</span></summary>
+    <div class="body">
+      <ol class="me" style="margin-top:4px">
+        <li><span><b>A certified screen for interconnection requests.</b> How much one bus can take in 1.4 ms instead of hundreds of AC power flows, with a certificate that says which answers to trust and which to send to a full study. The single-request version of Certify or Defer. Presented to PJM's Applied Innovation team. <a href="papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">PJM slides</a>. Under review, IEEE PES GM 2027.</span></li>
+        <li><span><b>How much regulation flexible AI compute can promise.</b> Two theorems that bound it: 17.32 MW certified against a 17.34 MW provable ceiling on a 40-job pool, where naive headroom accounting overpromises by 53%. <a href="share/flex-compute/Flexible-Compute-Bound-Deck-Singh.pdf" target="_blank" rel="noopener">Slides</a> &middot; <a href="share/flex-compute/Flexible-Compute-Bound-Poster-Singh.pdf" target="_blank" rel="noopener">poster</a>.</span></li>
         <li><span><b>A proved ramp limit for a data center's UPS.</b> A battery-backed uninterruptible power supply between the campus and the grid, with a proof that for every load profile in range the grid sees a bounded ramp and the battery never runs out, plus a sizing rule within 1.43&times; of what any controller could need. <a href="papers/pesgm2027-ups-ramp-certificate.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="https://sehajr-singhs.github.io/ai-ups-cert/" target="_blank" rel="noopener">figures and proof</a>. Under review, IEEE PES GM 2027.</span></li>
         <li><span><b>A fleet of those UPS batteries as grid support.</b> With &plusmn;10 MW of headroom per campus on the Kundur two-area model, verified inter-area damping goes from 0.024 to 0.106. <a href="papers/pesgm2027-ups-fleet-damping.pdf" target="_blank" rel="noopener">Paper</a>. Under review, IEEE PES GM 2027.</span></li>
-        <li><span><b>A certified screen for interconnection queues.</b> How much a bus can take in 1.4 ms instead of hundreds of AC power flows, with a certificate that says which answers to trust and which to send to a full study. Presented to PJM's Applied Innovation team. <a href="papers/pesgm2027-certified-interconnection-screen.pdf" target="_blank" rel="noopener">Paper</a> &middot; <a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">PJM slides</a>. Under review, IEEE PES GM 2027.</span></li>
-        <li><span><b>How much regulation flexible AI compute can promise.</b> Two theorems that bound it: 17.32 MW certified against a 17.34 MW provable ceiling on a 40-job pool, where naive headroom accounting overpromises by 53%. <a href="share/flex-compute/Flexible-Compute-Regulation-Bound-Singh.pdf" target="_blank" rel="noopener">Note</a>.</span></li>
-      </ul>
+        <li><span><b>A certified thermal twin for power transformers.</b> A transformer's real limit is the hot spot inside its winding, which can't be measured in service. A multi-fidelity, physics-informed neural operator predicts the full winding temperature field in 40.8 ms (0.542 &deg;C hot-spot error on simulated designs it never saw), and a second layer turns it into a rating with interval bounds and an aging-aware dispatch. Both are simulation results; validation against measured hot-spot data is the open step. <a href="papers/pesgm2027-transformer-hotspot-operator.pdf" target="_blank" rel="noopener">Paper A</a> &middot; <a href="papers/pesgm2027-transformer-certified-rating.pdf" target="_blank" rel="noopener">Paper B</a>. Under review, IEEE PES GM 2027.</span></li>
+      </ol>
     </div>
-  </div>
+  </details>
 
   <details class="article">
     <summary>The AI data-center boom is a people problem too<span class="dek">Article &nbsp;·&nbsp; 2026 &nbsp;·&nbsp; who actually decides how fast the grid can grow</span></summary>
@@ -327,7 +314,7 @@
 <h2>The fixes are almost all technical</h2>
 <p>The best ideas so far treat AI load as something that can move: shift training to when the grid has room (Lin et al., 2024). A 256-GPU cluster in Phoenix cut its power 25% for three hours at peak and still met its service guarantees (Colangelo et al., 2026). That's real, but it doesn't touch the queue, the permit or the shortage of people who can wire a substation. Energy research has a long habit of this: across more than 4,000 articles in three major journals, social science and interviews were badly underused (Sovacool et al., 2014).</p>
 <h2>The question I'm asking</h2>
-<p>Every one of those bottlenecks is a decision somebody makes: an interconnection engineer approving a study, an electrician taking a job, a utility planner trusting a forecast, a town board voting on a permit. The technical work I do helps on one side of that. The other side is the people, and that's what my AP Research project asks: how interconnection approvals, electrician supply, utility planning and local permitting decide whether generation can keep pace with AI load in PJM through 2030.</p>
+<p>Every one of those bottlenecks is a decision somebody makes: an interconnection engineer approving a study, an electrician taking a job, a utility planner trusting a forecast, a town board voting on a permit. The technical work I do helps on one side of that: Certify or Defer is aimed at the first decision, the interconnection study. The other side is the people, and that's what my AP Research project asks: how interconnection approvals, electrician supply, utility planning and local permitting decide whether generation can keep pace with AI load in PJM through 2030.</p>
 <p style="font-size:12px;color:var(--muted)">Sources: Colangelo et al. (2026), Nature Energy; de Vries (2023), Joule; Fore (2026), Fortune; Gorman et al. (2025), Joule; Howland (2025), Utility Dive; Lin et al. (2024), ACM; Masanet et al. (2020), Science; Mytton &amp; Ashtine (2022), Joule; Shehabi et al. (2016), Lawrence Berkeley National Laboratory; Sovacool et al. (2014), Energy Research &amp; Social Science; U.S. EPA (2007), Report to Congress; Wiser et al. (2025), The Electricity Journal.</p>
     </div>
   </details>
