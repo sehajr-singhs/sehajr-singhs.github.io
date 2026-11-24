@@ -230,16 +230,16 @@
 
   <div class="entry boxed feature">
     <div class="kicker">Main project &nbsp;&middot;&nbsp; 2026 &ndash; Present</div>
-    <div class="e-title">Certify or defer: fast, provably safe screening for grid interconnection</div>
+    <div class="e-title">ClusterProof: deciding what connects to the grid, project by project and as a whole</div>
     <div class="e-body">
-      <p>New solar, storage and data centers now wait about five years to connect to the U.S. grid, and the bottleneck is the interconnection study. Grid operators like PJM study requests in clusters, because projects that each fit on their own can overload the grid together. Fast screens that judge requests one at a time, or with a linear model, miss that interaction.</p>
-      <p>I'm building a screen that pairs a learned model with a guarantee. A network that reads both the grid's structure and the set of requests predicts how much a cluster can really take, and a statistical certificate turns that into a capacity that holds at a chosen confidence level. Anything it can't vouch for goes to the full AC study, so it never replaces the study, it decides which cases need it. I reproduced PJM's cluster-study optimization exactly, and I presented the method to PJM's Applied Innovation team.</p>
+      <p>New solar, storage and data centers wait years to connect, and most never do: in PJM's own public queue data, only 24% of the requests submitted from 2008 to 2017 reached service and 72% withdrew. Grid operators now study requests in clusters, because 68% of active PJM requests sit in a county with at least five others, and projects that each fit on their own can overload the grid together.</p>
+      <p>I'm building a study engine that answers what an operator actually needs to know: how much each project can connect on its own, what the cluster can take as a whole, under every outage and season the operator checks, and which way of making room is fastest and cheapest, whether that's an upgrade, switching the network, or balancing load with flexible demand and storage. Physics stays exact, AI only predicts and ranks, and every fast answer either comes with a guarantee or goes to the full study. I reproduced PJM's cluster optimization exactly and presented the single-request version to PJM's Applied Innovation team.</p>
       <div class="stats">
-        <div><b>34%</b>median share of the sum of its requests' individual capacities that a cluster can jointly take (IEEE 118-bus)</div>
-        <div><b>1 in 3</b>unsafe clusters a linear screen calls safe</div>
+        <div><b>34%</b>median share of the sum of its projects' individual capacities that a cluster can take together (IEEE 118-bus)</div>
+        <div><b>8,190</b>PJM generation requests analyzed from PJM's public queue file</div>
         <div><b>0 of 989</b>wrong answers passed when certifying a published AI model on the 2,000-bus Texas grid</div>
       </div>
-      <p class="m">Results so far are on IEEE test grids and the public Texas synthetic grid, not on a utility's real network model. What's next: hundreds of clusters on the 2,000-bus Texas grid shaped by public queue data, a proven bound on how often the screen can call an unsafe cluster safe, and a check against the outcomes PJM published for its first cluster cycle.</p>
+      <p class="m">Results so far are on IEEE and public synthetic grids, not a utility's real network model, which is restricted. Next: seasons and outage types, switching and flexibility options, fair cost sharing between projects, all on the 2,000-bus Texas grid with real PJM request sizes.</p>
     </div>
     <div class="e-links"><a href="share/pjm/PJM-Certified-Screen.pdf" target="_blank" rel="noopener">Slides presented to PJM &rarr;</a><a href="share/pseg/PSEG-LI-Certified-Screen-Brief.pdf" target="_blank" rel="noopener">Two-page brief &rarr;</a></div>
   </div>
@@ -276,7 +276,7 @@
       <div class="e-meta">2026 – Present</div>
     </div>
     <div class="e-body">
-      Power Grid Model is the open-source solver grid operators like Alliander actually run. I've built my first contribution, an IEEE 118-bus transmission validation case that passes the project's validation tests, and a benchmark, on the project's own test networks, of letting Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate. Both are being submitted to the project.
+      Power Grid Model is the open-source solver grid operators like Alliander actually run. I've built my first contribution, an IEEE 118-bus transmission validation case that passes the project's validation tests, and a benchmark, on the project's own test networks, of letting Newton-Raphson start from a voltage the user supplies, such as the previous time step's solution or a learned estimate. The validation case is submitted (<a href="https://github.com/PowerGridModel/power-grid-model/pull/1720" target="_blank" rel="noopener">pull request #1720</a>) and the benchmark is posted on <a href="https://github.com/PowerGridModel/power-grid-model/issues/1609" target="_blank" rel="noopener">issue #1609</a>.
     </div>
   </div>
 
