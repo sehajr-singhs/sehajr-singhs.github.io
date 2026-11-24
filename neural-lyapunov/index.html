@@ -1,0 +1,96 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Learning Lyapunov Functions for Power System Transient Stability</title>
+<meta name="description" content="Neural verification and retraining for learned Lyapunov functions on the lossy IEEE 39-bus system. TCCML @ NeurIPS 2026.">
+<style>
+@font-face { font-family: Heros; src: url(assets/texgyreheros-regular.otf); }
+@font-face { font-family: Heros; font-weight: bold; src: url(assets/texgyreheros-bold.otf); }
+@font-face { font-family: Heros; font-style: italic; src: url(assets/texgyreheros-italic.otf); }
+:root { --ink:#111; --mute:#555; --line:#ddd; --soft:#f4f4f4; --bg:#fff; }
+* { box-sizing: border-box; }
+body { margin:0; background:var(--bg); color:var(--ink); font-family: Heros, Helvetica, Arial, sans-serif; line-height:1.6; font-size:16.5px; }
+.wrap { max-width: 900px; margin: 0 auto; padding: 0 max(16px, env(safe-area-inset-left)); }
+header { text-align:center; padding: 56px 0 18px; }
+h1 { font-size: clamp(28px, 5vw, 42px); line-height:1.12; letter-spacing:-0.6px; margin:0 0 6px; }
+.sub { font-size: clamp(17px, 2.6vw, 22px); color:#333; margin:0 0 18px; }
+.authors { font-size: 17px; margin: 0; }
+.authors a { color: var(--ink); }
+.aff { color: var(--mute); font-size: 14.5px; margin: 4px 0 2px; }
+.venue { font-weight: bold; margin: 8px 0 18px; }
+.btns { display:flex; flex-wrap:wrap; gap:10px; justify-content:center; }
+.btns a { background: var(--ink); color:#fff; text-decoration:none; padding: 8px 16px; border-radius: 999px; font-size: 14.5px; }
+.btns a.ghost { background: none; color: var(--ink); border: 1.5px solid var(--ink); }
+figure { margin: 26px 0; }
+figure img { width:100%; display:block; border-radius: 6px; border: 1px solid var(--line); }
+figcaption { font-size: 14px; color: var(--mute); margin-top: 8px; }
+section { padding: 26px 0; border-top: 1px solid var(--line); }
+h2 { font-size: 24px; margin: 0 0 12px; letter-spacing: -0.3px; }
+.stats { display:grid; grid-template-columns: repeat(4, minmax(0,1fr)); gap: 14px; margin: 18px 0; }
+.stat { background: var(--soft); border-radius: 8px; padding: 14px; text-align:center; }
+.stat b { display:block; font-size: 26px; line-height:1.1; }
+.stat span { display:block; font-size: 13px; color: var(--mute); margin-top: 4px; }
+.two { display:grid; grid-template-columns: 1fr 1fr; gap: 18px; }
+pre { background: var(--soft); padding: 14px; overflow-x:auto; font-size: 13px; border-radius: 6px; }
+footer { color: var(--mute); font-size: 13px; padding: 26px 0 40px; border-top:1px solid var(--line); }
+@media (max-width: 720px) { .stats { grid-template-columns: repeat(2, minmax(0,1fr)); } .two { grid-template-columns: 1fr; } }
+</style></head><body>
+<div class="wrap">
+<header>
+  <h1>Learning Lyapunov Functions for Power System Transient Stability</h1>
+  <p class="sub">Neural Verification and Retraining</p>
+  <p class="authors"><a href="https://sehajr-singhs.github.io/">Sehaj Randhir Singh</a> &nbsp;&middot;&nbsp; Wenqi Cui</p>
+  <p class="aff">Queens High School for the Sciences at York College &nbsp;&middot;&nbsp; New York University</p>
+  <p class="venue">Tackling Climate Change with Machine Learning workshop, NeurIPS 2026</p>
+  <div class="btns">
+    <a href="https://openreview.net/forum?id=iAKq71lqO6">Paper</a>
+    <a href="../share/tccml/poster/TCCML-poster-Singh-Cui.pdf">Poster</a>
+    <a href="../share/tccml/TCCML-talk-Singh-Cui.pdf">Slides</a>
+    <a class="ghost" href="https://github.com/sehajr-singhs/certified-training-lyapunov">Code</a>
+  </div>
+</header>
+
+<figure>
+  <img src="assets/certified_ring_trajectories.gif" alt="Animation: trajectories of the full 20-state lossy IEEE 39-bus swing model, started on the edge of the certified ring around the operating point, spiral into the operating point while the learned Lyapunov value decays to zero.">
+  <figcaption>Real closed-loop trajectories of the full 20-state lossy IEEE 39-bus model, started on the edge of the certified ring (yellow) on the generator-5 slice. All settle to the operating point within about 3 seconds. The certificate covers the slice; off it, the learned value can rise briefly (up to 9% here), which is why certifying the full state is the open problem.</figcaption>
+</figure>
+
+<section>
+  <h2>Summary</h2>
+  <p>As more of the grid runs on inverters and learned controllers, operators need a way to know a controller will keep the system stable after a disturbance. A Lyapunov function proves that, and recent work learns one with a neural network. But a learned function is usually checked by sampling, and sampling only visits points while a stability proof has to cover a whole region.</p>
+  <p>We take a neural Lyapunov function trained for the lossy New England 39-bus system. It satisfies the decrease condition on 99.98% of sampled states, and 200,000 random samples find no failure, yet a neural network verifier (CROWN with branch and bound) finds real violations, and a directed search hits them 6.1% of the time. We then put the verifier inside training: first using its counterexamples as training data, then differentiating through the verified bound itself, so the network is trained to be verifiable over the whole region.</p>
+  <div class="stats">
+    <div class="stat"><b>99.98%</b><span>states passing by sampling, with real violations still present</span></div>
+    <div class="stat"><b>1.8</b><span>certified radius where counterexample repair stalls</span></div>
+    <div class="stat"><b>2.5</b><span>certified radius with the verifier in training, all 5 seeds</span></div>
+    <div class="stat"><b>3</b><span>independent verifiers in agreement</span></div>
+  </div>
+</section>
+
+<section>
+  <h2>Why sampling isn't enough</h2>
+  <div class="two">
+    <figure style="margin:0"><img src="assets/fig_sampling.png" alt="Random samples miss the thin regions where the Lyapunov condition fails; the verifier covers the whole box."><figcaption>Schematic: samples can land everywhere except the small set of states where the condition fails. A verifier has to cover every point in the region.</figcaption></figure>
+    <figure style="margin:0"><img src="assets/fig_loop.png" alt="Training loop with the verifier inside: bound, counterexamples, retraining."><figcaption>The loop: the verifier bounds the condition over the region, and training pushes on the bound until it certifies.</figcaption></figure>
+  </div>
+</section>
+
+<section>
+  <h2>The certified region</h2>
+  <figure style="margin:0"><img src="assets/fig1_annulus.png" alt="Certified ring around the operating point on the generator-5 slice, with a small excluded neighborhood."></figure>
+  <p>The certificate holds on a ring around the operating point, excluding only a small neighborhood of the equilibrium (where the conditions are equalities no sound verifier can close). Certifying the ring proves convergence into that small neighborhood. Results are on two- and four-dimensional slices of the 20-state system; scaling the certificate to the full state is the open question this work points to.</p>
+</section>
+
+<section>
+  <h2>Citation</h2>
+<pre>@inproceedings{singh2026lyapunov,
+  title     = {Learning Lyapunov Functions for Power System Transient Stability:
+               Neural Verification and Retraining},
+  author    = {Singh, Sehaj Randhir and Cui, Wenqi},
+  booktitle = {Tackling Climate Change with Machine Learning workshop at NeurIPS},
+  year      = {2026}
+}</pre>
+</section>
+
+<footer>Code, results and every figure are reproducible from the repository. Built on Cui and Zhang's Lyapunov-regularized reinforcement learning for the 39-bus system.</footer>
+</div>
+</body></html>
