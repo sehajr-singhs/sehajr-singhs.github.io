@@ -38,7 +38,7 @@ footer { color: var(--mute); font-size: 13px; padding: 26px 0 40px; border-top:1
 <header>
   <h1>Learning Lyapunov Functions for Power System Transient Stability</h1>
   <p class="sub">Neural Verification and Retraining</p>
-  <p class="authors"><a href="https://sehajr-singhs.github.io/">Sehaj Randhir Singh</a> &nbsp;&middot;&nbsp; Wenqi Cui</p>
+  <p class="authors"><a href="https://sehajr-singhs.github.io/">Sehaj Randhir Singh</a> &nbsp;&middot;&nbsp; <a href="https://engineering.nyu.edu/faculty/wenqi-cui">Wenqi Cui</a></p>
   <p class="aff">Queens High School for the Sciences at York College &nbsp;&middot;&nbsp; New York University</p>
   <p class="venue">Tackling Climate Change with Machine Learning workshop, NeurIPS 2026</p>
   <div class="btns">
@@ -67,6 +67,12 @@ footer { color: var(--mute); font-size: 13px; padding: 26px 0 40px; border-top:1
 </section>
 
 <section>
+  <h2>The model</h2>
+  <p>The swing equation for the New England 39-bus system, Kron-reduced to ten generators, with line losses and droop control. Each generator has a rotor angle and a frequency. Losses matter: the conductance terms can't be written as the gradient of a scalar potential, so the classical energy functions don't apply and no analytical Lyapunov function is known in general. That's why the function is learned.</p>
+  <p>A Lyapunov function works like an energy. It has to be positive away from the operating point (a bowl), and its rate of change along the dynamics has to be negative (the system only moves downhill). If both hold on a region, every trajectory starting there is pulled back. We also check the stronger exponential version with decay rate &beta;.</p>
+</section>
+
+<section>
   <h2>Why sampling isn't enough</h2>
   <div class="two">
     <figure style="margin:0"><img src="assets/fig_sampling.png" alt="Random samples miss the thin regions where the Lyapunov condition fails; the verifier covers the whole box."><figcaption>Schematic: samples can land everywhere except the small set of states where the condition fails. A verifier has to cover every point in the region.</figcaption></figure>
@@ -75,9 +81,39 @@ footer { color: var(--mute); font-size: 13px; padding: 26px 0 40px; border-top:1
 </section>
 
 <section>
+  <h2>How the verifier works</h2>
+  <div class="two">
+    <div>
+      <p><b>CROWN.</b> For a box of states, bound every nonlinear operation in the network, its gradient, the controller and the swing dynamics between two linear functions, and push those bounds backward through the whole computation graph. The result is a sound lower bound on the Lyapunov margin over the entire box, including states nobody sampled.</p>
+      <p><b>Branch and bound.</b> If the bound is inconclusive, split the box and bound each piece again, until every piece is certified, a real violating state turns up, or the budget runs out.</p>
+    </div>
+    <figure style="margin:0"><img src="assets/fig_crown.png" alt="CROWN bounds each nonlinear operation between linear functions and propagates them backward to bound the margin over a box."></figure>
+  </div>
+  <p><b>Two ways to retrain.</b> <i>Counterexample-guided retraining (CEGIS)</i> verifies the region, adds the violating states the verifier finds to the training set, and repeats. <i>Certified training</i> goes further: the verifier's bound itself becomes a differentiable term in the loss, so training raises the worst-case margin over every box and refines the boxes where certification is hardest.</p>
+</section>
+
+<section>
+  <h2>Results</h2>
+  <p>Generator-5 slice, five seeds. The certified radius &rho; is measured on a grid up to 2.5, the largest value tested.</p>
+  <table style="width:100%;border-collapse:collapse;font-size:15px">
+    <tr style="border-bottom:1.5px solid #111"><th style="text-align:left;padding:6px 4px">Method</th><th style="text-align:left;padding:6px 4px">Certified radius &rho;</th><th style="text-align:left;padding:6px 4px">Attack finds a violation</th></tr>
+    <tr style="border-bottom:1px solid #ddd"><td style="padding:6px 4px">Trained on samples</td><td style="padding:6px 4px">0 (certifies nothing)</td><td style="padding:6px 4px">6.1% of runs</td></tr>
+    <tr style="border-bottom:1px solid #ddd"><td style="padding:6px 4px">Counterexample-guided retraining</td><td style="padding:6px 4px">1.8 &plusmn; 0.24</td><td style="padding:6px 4px">none inside the certified region</td></tr>
+    <tr><td style="padding:6px 4px"><b>Certified training</b></td><td style="padding:6px 4px"><b>2.5 on all five seeds</b></td><td style="padding:6px 4px">none inside the certified region</td></tr>
+  </table>
+  <p style="margin-top:12px">Both retrained networks verify the same decay rate, &beta; = 3.97, so the gain from certified training is a bigger proven region, not a faster descent.</p>
+  <p><b>Independent checks.</b> Every certificate is checked by tools that share nothing with our pipeline: a projected-gradient attack finds no violation inside any certified region, a second verifier (JacobianOP) agrees on all 24 boxes with no contradictions, and the SMT solver dReal returns unsat where we claim certified and finds the counterexample where we claim failure.</p>
+</section>
+
+<section>
   <h2>The certified region</h2>
   <figure style="margin:0"><img src="assets/fig1_annulus.png" alt="Certified ring around the operating point on the generator-5 slice, with a small excluded neighborhood."></figure>
   <p>The certificate holds on a ring around the operating point, excluding only a small neighborhood of the equilibrium (where the conditions are equalities no sound verifier can close). Certifying the ring proves convergence into that small neighborhood. Results are on two- and four-dimensional slices of the 20-state system; scaling the certificate to the full state is the open question this work points to.</p>
+</section>
+
+<section>
+  <h2>What this is not</h2>
+  <p>The certificates hold on two- and four-dimensional slices, not the full 20-state system, and branch-and-bound cost grows quickly with dimension (the two-dimensional square needed about ten sub-boxes; four dimensions roughly tripled that). The controller is fixed, so nothing here tests robustness to model error, and everything is in simulation. The next step is compositional verification: small certificates for each machine, combined.</p>
 </section>
 
 <section>
